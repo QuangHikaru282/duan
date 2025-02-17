@@ -197,8 +197,8 @@ MonoBehaviour:
   deceleration: 10
   maxSpeed: 5
   movementSmoothing: 0.05
-  maxHealth: 5
-  currentHealth: 3
+  maxHealth: 10
+  currentHealth: 10
   respawnPosition: {x: 0, y: 0}
   jumpForce: 13
   maxJumpCount: 2
@@ -207,29 +207,28 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
-  fallThresholdY: -10
   bulletPrefab: {fileID: 5782915061162433134, guid: 0d56e02de889b3e429707c3ef2f55888,
     type: 3}
   firePoint: {fileID: 6400186554282854516}
+  arrowDamage: 3
+  bulletCount: 0
   meleeDamage: 1
   attackRange: 0.5
+  attackPointOffset: 0.5
   attackPoint: {fileID: 60749791631562182}
   enemyLayers:
     serializedVersion: 2
     m_Bits: 256
   bulletText: {fileID: 0}
   healthText: {fileID: 0}
-  bulletCount: 0
-  arrowDamage: 3
-  gameOverManager: {fileID: 0}
-  attackPointOffset: 0.5
+  keyText: {fileID: 0}
+  keyCount: 0
+  fallThresholdY: -10
   knockbackForce: 3
+  gameOverManager: {fileID: 0}
   isAttacking: 0
   isBowAttacking: 0
   isAirAttacking: 0
-  checkpointPosition: {x: 0, y: 0}
-  lowFric: {fileID: 0}
-  highFric: {fileID: 0}
 --- !u!70 &2042731921359690349
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

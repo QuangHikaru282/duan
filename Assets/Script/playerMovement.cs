@@ -12,11 +12,11 @@ public class playerScript : MonoBehaviour
     public float movementSmoothing = 0.05f;
 
     [Header("Health Settings")]
-    public int maxHealth = 5;        // Máu tối đa của người chơi
-    public int currentHealth;        // Máu hiện tại của người chơi
+    public int maxHealth = 10;
+    public int currentHealth;
 
     [Header("Respawn Settings")]
-    public Vector2 respawnPosition;  // Vị trí hồi sinh sau khi mất máu
+    public Vector2 respawnPosition;
 
     [Header("Jump Settings")]
     public float jumpForce = 15f;
@@ -28,21 +28,21 @@ public class playerScript : MonoBehaviour
     public LayerMask groundLayer;
 
     [Header("Shooting Settings")]
-    public GameObject bulletPrefab;       // Prefab của đạn
-    public Transform firePoint;           // Vị trí bắn đạn
+    public GameObject bulletPrefab;
+    public Transform firePoint;
     public int arrowDamage = 3;
     public int bulletCount = 0;
 
     [Header("Attack Settings")]
-    public int meleeDamage = 1;            // Sát thương cận chiến
-    public float attackRange = 0.4f;       // Phạm vi tấn công cận chiến
+    public int meleeDamage = 1;
+    public float attackRange = 0.4f;
     public float attackPointOffset = 0.5f;
-    public Transform attackPoint;          // Điểm xuất phát của tấn công cận chiến
-    public LayerMask enemyLayers;          // Layer của kẻ địch
+    public Transform attackPoint;
+    public LayerMask enemyLayers;
 
     [Header("UI Settings")]
-    public TextMeshProUGUI bulletText;    // Tham chiếu đến UI TextMeshPro hiển thị số đạn
-    public TextMeshProUGUI healthText;    // Tham chiếu đến UI TextMeshPro hiển thị máu
+    public TextMeshProUGUI bulletText;
+    public TextMeshProUGUI healthText;
     public TextMeshProUGUI keyText;
 
     [Header("Key Settings")]
@@ -52,8 +52,7 @@ public class playerScript : MonoBehaviour
     public float fallThresholdY = -5f;
     public float knockbackForce = 5f;
 
-    //private
-    private int facingDirection = 1; // Hướng mà người chơi đang đối mặt (1: phải, -1: trái)
+    private int facingDirection = 1;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
     private int jumpCount;
@@ -66,7 +65,7 @@ public class playerScript : MonoBehaviour
     private Animator animator;
     private Vector2 checkpointPosition;
     [SerializeField]
-    private GameOverManager gameOverManager; // Tham chiếu đến GameOverManager
+    private GameOverManager gameOverManager;
     [HideInInspector]
     public bool isAttacking = false;
     [HideInInspector]
@@ -74,16 +73,15 @@ public class playerScript : MonoBehaviour
     [HideInInspector]
     public bool isAirAttacking = false;
 
-
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>(); // Khởi tạo Animator
+        animator = GetComponent<Animator>();
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         rb.interpolation = RigidbodyInterpolation2D.Interpolate;
         jumpCount = maxJumpCount;
-        currentHealth = 3;
+        currentHealth = 10;
         UpdateBulletUI();
         UpdateHealthUI();
         UpdateKeyUI();
@@ -94,45 +92,34 @@ public class playerScript : MonoBehaviour
             float checkpointY = PlayerPrefs.GetFloat("CheckpointY");
             checkpointPosition = new Vector2(checkpointX, checkpointY);
 
-            // Di chuyển người chơi đến vị trí checkpoint
             transform.position = checkpointPosition;
-
-            // Thiết lập lại các biến
             isDead = false;
             animator.SetBool("isDead", false);
 
-            // Thiết lập lại máu và cập nhật UI
             currentHealth = maxHealth;
             UpdateHealthUI();
 
-            // Thiết lập lại số lượng mũi tên
             bulletCount = 0;
             UpdateBulletUI();
 
-            // Xóa checkpoint khỏi PlayerPrefs để tránh lặp lại
             PlayerPrefs.DeleteKey("HasCheckpoint");
             PlayerPrefs.DeleteKey("CheckpointX");
             PlayerPrefs.DeleteKey("CheckpointY");
-        } // lay toa do checkpoint
+        }
         else
         {
-            // Nếu không có checkpoint, thiết lập vị trí respawn mặc định
             checkpointPosition = transform.position;
         }
     }
 
     void Update()
     {
-        if (isDead)
-            return;
-
+        if (isDead) return;
         HandleInput();
 
-        // Cập nhật Animator parameters
         animator.SetFloat("moveSpeed", Mathf.Abs(moveInput));
         animator.SetBool("isGrounded", isGrounded);
 
-        // Kiểm tra nếu người chơi đang nhảy
         if (!isGrounded && rb.velocity.y > 0)
         {
             animator.SetBool("isJumping", true);
@@ -144,7 +131,6 @@ public class playerScript : MonoBehaviour
 
         UpdateAttackPointPosition();
 
-        // Kiểm tra nếu người chơi bị rơi
         if (transform.position.y < fallThresholdY)
         {
             currentHealth = 0;
@@ -163,18 +149,16 @@ public class playerScript : MonoBehaviour
         Vector3 newPosition = transform.position;
         newPosition += Vector3.right * facingDirection * attackPointOffset;
         attackPoint.position = newPosition;
-    } // Quản lý hướng của attack point
+    }
 
     public void TakeDamage(int damage)
     {
+        Debug.Log("player nhan dmg dc goi!");
         if (isDead || isHurt)
             return;
 
         isHurt = true;
-
         currentHealth -= damage;
-
-        // Cập nhật UI máu
         UpdateHealthUI();
 
         if (currentHealth <= 0)
@@ -183,65 +167,58 @@ public class playerScript : MonoBehaviour
         }
         else
         {
-            // Đặt lại trạng thái tấn công
             isAttacking = false;
             isBowAttacking = false;
             isAirAttacking = false;
 
-            // Đặt lại các Trigger khác
             animator.ResetTrigger("AttackTrigger");
             animator.ResetTrigger("ComboTrigger");
             animator.ResetTrigger("AirAttackTrigger");
             animator.ResetTrigger("BowAttackTrigger");
 
-            // Kích hoạt Trigger Hurt
             animator.SetTrigger("HurtTrigger");
-
-            // Thêm hiệu ứng giật lùi
             ApplyKnockback();
 
-            // Bắt đầu Coroutine để kết thúc trạng thái Hurt
             StartCoroutine(EndHurt());
         }
     }
 
     IEnumerator EndHurt()
     {
-        // Thời gian của animation Hurt (thay thế bằng thời gian thực tế)
-        float hurtDuration = 0.6f; // Ví dụ: 0.6 giây
-
+        float hurtDuration = 0.6f;
         yield return new WaitForSeconds(hurtDuration);
 
         animator.SetBool("isHurt", false);
-        isHurt = false; // Đặt lại isHurt về false
+        isHurt = false;
     }
+
 
     void ApplyKnockback()
     {
-        // Xác định hướng giật lùi dựa trên hướng tấn công
-        int knockbackDirection = facingDirection * -1; // Ngược với hướng người chơi đang đối mặt
+        // Xác định hướng đẩy: đối với hướng player đang nhìn, ta đẩy ngược lại
+        int knockbackDirection = (facingDirection != 0) ? facingDirection * -1 : 1;
 
-        // Áp dụng lực giật lùi
-        rb.velocity = new Vector2(knockbackDirection * knockbackForce, rb.velocity.y);
+        // Reset vận tốc hiện tại để đảm bảo không bị cộng thêm các vận tốc cũ
+        rb.velocity = Vector2.zero;
+
+        // Đẩy player ra phía sau với một lực theo chiều ngang.
+        // Ở đây sử dụng ForceMode2D.Impulse để tạo hiệu ứng đẩy ngay lập tức.
+        rb.AddForce(new Vector2(knockbackDirection * knockbackForce, 0f), ForceMode2D.Impulse);
     }
+
+
+
 
     public void Respawn()
     {
-        // Di chuyển người chơi đến vị trí checkpoint
         transform.position = checkpointPosition;
-
-        // Thiết lập lại vận tốc và trạng thái của người chơi
         rb.velocity = Vector2.zero;
-
-        // Thiết lập lại các biến cần thiết
         isDead = false;
         animator.SetBool("isDead", false);
 
-        // Thiết lập lại máu và cập nhật UI
         currentHealth = 3;
         UpdateHealthUI();
 
-        // Thiết lập lại số lượng mũi tên
         bulletCount = 0;
         UpdateBulletUI();
     }
@@ -249,14 +226,10 @@ public class playerScript : MonoBehaviour
     public void AddHealth(int amount)
     {
         currentHealth += amount;
-
-        // Giới hạn máu không vượt quá maxHealth
         if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
         }
-
-        // Cập nhật UI máu
         UpdateHealthUI();
     }
 
@@ -268,10 +241,8 @@ public class playerScript : MonoBehaviour
 
     void HandleInput()
     {
-        // Đọc input di chuyển
         moveInput = Input.GetAxisRaw("Horizontal");
 
-        // Lật sprite dựa trên hướng di chuyển
         if (moveInput > 0)
         {
             facingDirection = 1;
@@ -283,19 +254,16 @@ public class playerScript : MonoBehaviour
             spriteRenderer.flipX = true;
         }
 
-        // Xử lý nhảy
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0)
         {
             jumpRequest = true;
         }
 
-        // Xử lý bắn đạn
         if (Input.GetKeyDown(KeyCode.K) && bulletCount > 0)
         {
             Shoot();
         }
 
-        // Xử lý tấn công cận chiến
         if (Input.GetKeyDown(KeyCode.J))
         {
             if (isGrounded)
@@ -311,24 +279,15 @@ public class playerScript : MonoBehaviour
 
     void HandleMovement()
     {
-        // Nếu đang bị thương, không xử lý di chuyển
-        if (isHurt)
-        {
-            return;
-        }
-
-        // Tính toán vận tốc mục tiêu
+        if (isHurt) return;
         float targetSpeed = moveInput * maxSpeed;
         float speedDifference = targetSpeed - rb.velocity.x;
 
-        // Xác định lực cần thiết
         float accelerationRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : deceleration;
         float movement = speedDifference * accelerationRate;
 
-        // Áp dụng lực
         rb.AddForce(Vector2.right * movement);
 
-        // Giới hạn tốc độ tối đa
         if (Mathf.Abs(rb.velocity.x) > maxSpeed)
         {
             rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * maxSpeed, rb.velocity.y);
@@ -337,9 +296,7 @@ public class playerScript : MonoBehaviour
 
     void HandleJump()
     {
-        if (isHurt)
-            return;
-
+        if (isHurt) return;
         CheckGrounded();
 
         if (jumpRequest)
@@ -366,7 +323,6 @@ public class playerScript : MonoBehaviour
             }
         }
 
-        // Cập nhật Animator
         animator.SetBool("isGrounded", isGrounded);
 
         if (isGrounded && !wasGrounded)
@@ -377,54 +333,39 @@ public class playerScript : MonoBehaviour
 
     public void Die()
     {
-        if (isDead)
-            return;
-
+        if (isDead) return;
         isDead = true;
 
         Debug.Log("Player has died.");
-
-        // Kích hoạt Trigger Die
         animator.SetTrigger("DieTrigger");
 
-        // Hiển thị màn hình Game Over
         if (gameOverManager != null)
         {
             gameOverManager.ShowGameOver();
         }
-
-        // Vô hiệu hóa các hành động của người chơi
         this.enabled = false;
     }
 
     void MeleeAttack()
     {
-
         if (!isAttacking)
         {
             isAttacking = true;
-
-            // Kích hoạt Trigger Attack
             animator.SetTrigger("AttackTrigger");
         }
         else
         {
-            // Nếu đang ở MeleeAttack1, cho phép kích hoạt combo
             animator.SetTrigger("ComboTrigger");
         }
     }
 
     void AirAttack()
     {
-        if (isGrounded)
-            return; // Chỉ cho phép Air Attack khi đang ở trên không
-        if (isAttacking || isBowAttacking || isAirAttacking)
-            return;
+        if (isGrounded) return;
+        if (isAttacking || isBowAttacking || isAirAttacking) return;
 
-            isAirAttacking = true;
-
-            // Kích hoạt Trigger AirAttack
-            animator.SetTrigger("AirAttackTrigger");
+        isAirAttacking = true;
+        animator.SetTrigger("AirAttackTrigger");
     }
 
     void Shoot()
@@ -433,52 +374,42 @@ public class playerScript : MonoBehaviour
             return;
 
         isBowAttacking = true;
-
-        // Kích hoạt Trigger BowAttack
         animator.SetTrigger("BowAttackTrigger");
 
-        // Giảm số lượng đạn
         bulletCount--;
-
-        // Cập nhật UI
         UpdateBulletUI();
     }
 
     public void DealDamage()
     {
-        // Phát hiện các kẻ địch trong phạm vi tấn công
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        // Player cận chiến
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(new Vector2(attackPoint.position.x, attackPoint.position.y), attackRange, enemyLayers);
 
-        // Gây sát thương cho kẻ địch
         foreach (Collider2D enemy in hitEnemies)
         {
-            EnemyMovement enemyScript = enemy.GetComponent<EnemyMovement>();
+            IEnemy enemyScript = enemy.GetComponent<IEnemy>();
             if (enemyScript != null)
             {
                 enemyScript.TakeDamage(meleeDamage, "Melee", facingDirection);
             }
         }
+
     }
 
     public void AddBullets(int amount)
     {
         bulletCount += amount;
-
-        // Cập nhật UI
         UpdateBulletUI();
     }
 
     public void SpawnArrow()
     {
-        // Tạo đạn tại vị trí bắn
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
-
-        // Thiết lập hướng di chuyển và sát thương cho đạn
-        Bullet bulletScript = bullet.GetComponent<Bullet>();
-        if (bulletScript != null)
+        Bullet Bullet = bullet.GetComponent<Bullet>();
+        if (Bullet != null)
         {
-            bulletScript.SetDirection(new Vector2(facingDirection, 0));
-            bulletScript.SetDamage(arrowDamage);
+            Bullet.SetDirection(new Vector2(facingDirection, 0));
+            Bullet.SetDamage(arrowDamage);
         }
     }
 
@@ -522,6 +453,4 @@ public class playerScript : MonoBehaviour
             healthText.text = "HP: " + currentHealth;
         }
     }
-
-
 }

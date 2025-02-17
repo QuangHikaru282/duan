@@ -2,24 +2,24 @@
 
 public class Bullet : MonoBehaviour
 {
-    public float speed = 10f;          // Toc do di chuyen cua dan
-    public float lifeTime = 5f;        // Thoi gian ton tai cua dan truoc khi tu huy
+    public float speed = 10f;    // Tốc độ di chuyển của đạn
+    public float lifeTime = 5f;  // Thời gian tồn tại của đạn trước khi tự hủy
 
     private Vector2 direction;
     private int facingDirection;
     private SpriteRenderer spriteRenderer;
 
-    public int damage = 3;             // Sat thuong cua dan
+    public int damage = 3;       // Sát thương của đạn
 
     void Start()
     {
-        // Huy dan sau khi het thoi gian ton tai
+        // Hủy đạn sau khi hết thời gian tồn tại
         Destroy(gameObject, lifeTime);
 
-        // Lay SpriteRenderer
+        // Lấy SpriteRenderer
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        // Lat sprite dua tren huong
+        // Lật sprite dựa trên hướng
         if (direction.x < 0)
         {
             spriteRenderer.flipX = true;
@@ -34,7 +34,7 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        // Di chuyen dan
+        // Di chuyển đạn
         transform.Translate(direction * speed * Time.deltaTime, Space.World);
     }
 
@@ -52,20 +52,20 @@ public class Bullet : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            // Goi ham de xu ly khi dan trung ke dich
-            EnemyMovement enemy = collision.GetComponent<EnemyMovement>();
-            if (enemy != null)
+            IEnemy enemyScript = collision.GetComponent<IEnemy>();
+            if (enemyScript != null)
             {
-                enemy.TakeDamage(damage, "Range", facingDirection);
+                enemyScript.TakeDamage(damage, "Range", facingDirection);
             }
-
-            // Huy dan sau khi trung ke dich
             Destroy(gameObject);
         }
-/*        else if (!collision.CompareTag("Player"))
+
+        else if (collision.CompareTag("Ground") || collision.CompareTag("Obstacle"))
         {
-            // Huy dan khi va cham voi bat ky thu gi khac tru nguoi choi
+            // Chạm sàn hoặc chướng ngại => hủy đạn
             Destroy(gameObject);
-        }*/
+        }
+        // Ngược lại, nếu collider không phải Enemy / Ground / Obstacle:
+        // => không hủy đạn, cho nó bay xuyên
     }
 }
