@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class GoblinNormal : MonoBehaviour, IEnemy
 {
     [Header("Health Settings")]
-    public int maxHealth = 10;
+    public int maxHealth = 3;
     private int currentHealth;
     public Slider healthBar;
 
@@ -48,7 +48,7 @@ public class GoblinNormal : MonoBehaviour, IEnemy
     [Header("Misc Settings")]
     public float killBelowY = -20f;  // nếu rơi xuống dưới này thì chết
 
-    // [NEW] Prefab hiệu ứng cận/xa
+    [Header("Prefabs & Effects")]
     public GameObject meleeEffect, rangeEffect;
 
     void Start()
@@ -145,38 +145,37 @@ public class GoblinNormal : MonoBehaviour, IEnemy
     {
         if (groundDetector == null) return;
 
-        // Raycast xuống để kiểm tra ground / MovingPlaform
-        RaycastHit2D groundHit = Physics2D.Raycast(groundDetector.position, Vector2.down, groundDetectDistance, groundLayer);
-        // Raycast ngang để kiểm tra tường / MovingPlaform
-        Vector2 sideDir = new Vector2(facingDirection, 0f);
-        RaycastHit2D wallHit = Physics2D.Raycast(groundDetector.position, sideDir, wallDetectDistance, groundLayer);
+        // Xác định vị trí của groundDetector
+        Vector2 detectorPos = groundDetector.position;
+        // Thiết lập một offset nhỏ theo trục X (điều chỉnh giá trị này cho phù hợp với sprite của bạn)
+        float horizontalOffset = 0.2f;
 
-        // Debug ray
-        Debug.DrawRay(groundDetector.position, Vector2.down * groundDetectDistance, Color.yellow);
-        Debug.DrawRay(groundDetector.position, sideDir * wallDetectDistance, Color.yellow);
+        // Tạo 2 điểm bắt tia: bên trái và bên phải của groundDetector
+        Vector2 leftRayOrigin = detectorPos + Vector2.left * horizontalOffset;
+        Vector2 rightRayOrigin = detectorPos + Vector2.right * horizontalOffset;
 
-        // [UPDATED] Kiểm tra Tag = "Ground" hoặc "MovingPlaform"
-        // groundHit
-        if (groundHit.collider == null)
+        // Bắn tia xuống (theo hướng Vector2.down)
+        RaycastHit2D leftHit = Physics2D.Raycast(leftRayOrigin, Vector2.down, groundDetectDistance, groundLayer);
+        RaycastHit2D rightHit = Physics2D.Raycast(rightRayOrigin, Vector2.down, groundDetectDistance, groundLayer);
+
+        // Vẽ Debug rays để kiểm tra trong Scene view
+        Debug.DrawRay(leftRayOrigin, Vector2.down * groundDetectDistance, Color.yellow);
+        Debug.DrawRay(rightRayOrigin, Vector2.down * groundDetectDistance, Color.yellow);
+
+        // Nếu một trong hai tia không phát hiện ground, thì đổi hướng
+        if (leftHit.collider == null || rightHit.collider == null)
         {
             ReverseDirection();
         }
-        else
-        {
-            // Nếu groundHit không phải Ground/MovingPlaform => quái quay
-            if (!groundHit.collider.CompareTag("Ground")
-                && !groundHit.collider.CompareTag("MovingPlaform"))
-            {
-                ReverseDirection();
-            }
-        }
 
-        // wallHit
+        // Bạn có thể bổ sung kiểm tra tia ray theo hướng ngang nếu cần (ví dụ để phát hiện tường)
+        // (Phần kiểm tra này giữ nguyên nếu bạn muốn)
+        Vector2 sideDir = new Vector2(facingDirection, 0f);
+        RaycastHit2D wallHit = Physics2D.Raycast(detectorPos, sideDir, wallDetectDistance, groundLayer);
+        Debug.DrawRay(detectorPos, sideDir * wallDetectDistance, Color.yellow);
         if (wallHit.collider != null)
         {
-            // Nếu wallHit là tường/MovingPlaform => quay
-            if (wallHit.collider.CompareTag("Ground")
-                || wallHit.collider.CompareTag("MovingPlaform"))
+            if (wallHit.collider.CompareTag("Ground") || wallHit.collider.CompareTag("MovingPlaform"))
             {
                 ReverseDirection();
             }
@@ -194,7 +193,7 @@ public class GoblinNormal : MonoBehaviour, IEnemy
 
     void SetFacingDirection(int dir)
     {
-        Debug.Log("Set face dir dc goi!");
+        Debug.Log("Set face direction called!");
         if (facingDirection == dir) return;
 
         facingDirection = dir;
@@ -204,7 +203,6 @@ public class GoblinNormal : MonoBehaviour, IEnemy
         {
             atkPoint.localPosition = new Vector3(0.3f * dir, atkPoint.localPosition.y, 0f);
         }
-        // groundDetector vẫn không đổi => theo thiết kế.
     }
 
     // ------------------- CHASE CONTROL -------------------
@@ -232,6 +230,10 @@ public class GoblinNormal : MonoBehaviour, IEnemy
         isAttacking = true;
         lastAttackTime = Time.time;
         rb.velocity = new Vector2(0f, rb.velocity.y);
+
+        // Tạm thời bỏ qua va chạm với Player khi attack
+        TemporarilyIgnorePlayerCollision(true);
+
         animator.SetTrigger("AttackTrigger");
     }
 
@@ -249,6 +251,8 @@ public class GoblinNormal : MonoBehaviour, IEnemy
     public void ResetAttack()
     {
         isAttacking = false;
+        // Khôi phục lại va chạm giữa goblin và player
+        TemporarilyIgnorePlayerCollision(false);
     }
 
     // ------------------- TAKE DAMAGE (IEnemy) -------------------
@@ -266,9 +270,7 @@ public class GoblinNormal : MonoBehaviour, IEnemy
         if (healthBar != null)
             healthBar.value = currentHealth;
 
-        // [NEW] Gọi ShowHitEffect
         ShowHitEffect(dmgType, attackDir);
-
         animator.SetTrigger("HurtTrigger");
         isHurt = true;
 
@@ -278,7 +280,6 @@ public class GoblinNormal : MonoBehaviour, IEnemy
             StartCoroutine(EndHurt(0.5f));
     }
 
-    // [NEW] ShowHitEffect
     void ShowHitEffect(string dmgType, int dir)
     {
         GameObject effectPrefab = null;
@@ -294,8 +295,7 @@ public class GoblinNormal : MonoBehaviour, IEnemy
             GameObject effect = Instantiate(effectPrefab, effectPos, Quaternion.identity);
 
             Vector3 scale = effect.transform.localScale;
-            if (dir < 0) scale.x = -Mathf.Abs(scale.x);
-            else scale.x = Mathf.Abs(scale.x);
+            scale.x = (dir < 0) ? -Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
             effect.transform.localScale = scale;
         }
     }
@@ -312,7 +312,8 @@ public class GoblinNormal : MonoBehaviour, IEnemy
         if (isDead) return;
         isDead = true;
         animator.SetBool("isDead", true);
-        if (healthBar != null) Destroy(healthBar.gameObject);
+        if (healthBar != null)
+            Destroy(healthBar.gameObject);
         rb.velocity = new Vector2(-facingDirection * 4f, 3f);
         StartCoroutine(DieVanish(0.5f));
     }
@@ -328,6 +329,22 @@ public class GoblinNormal : MonoBehaviour, IEnemy
     {
         if (!isDead && other.CompareTag("Trap"))
             Die();
+    }
+
+    // ------------------- TemporarilyIgnorePlayerCollision -------------------
+    // Tạm thời bỏ qua va chạm giữa collider của goblin và collider của Player
+    void TemporarilyIgnorePlayerCollision(bool ignore)
+    {
+        Collider2D goblinCollider = GetComponent<Collider2D>();
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null && goblinCollider != null)
+        {
+            Collider2D playerCollider = playerObj.GetComponent<Collider2D>();
+            if (playerCollider != null)
+            {
+                Physics2D.IgnoreCollision(goblinCollider, playerCollider, ignore);
+            }
+        }
     }
 
     // ------------------- GIZMOS -------------------

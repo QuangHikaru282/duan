@@ -26,6 +26,8 @@ public class playerScript : MonoBehaviour
     public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
     public LayerMask groundLayer;
+    public LayerMask platformLayer;
+
 
     [Header("Shooting Settings")]
     public GameObject bulletPrefab;
@@ -310,7 +312,8 @@ public class playerScript : MonoBehaviour
 
     void CheckGrounded()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundCheckRadius, groundLayer);
+        // Kết hợp groundLayer và platformLayer
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundCheckRadius, groundLayer | platformLayer);
         bool wasGrounded = isGrounded;
         isGrounded = false;
 
@@ -330,6 +333,7 @@ public class playerScript : MonoBehaviour
             jumpCount = maxJumpCount;
         }
     }
+
 
     public void Die()
     {
