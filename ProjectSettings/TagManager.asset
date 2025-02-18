@@ -9,6 +9,11 @@ TagManager:
   - MovingPlaform
   - Obstacle
   - Trap
+  - Interact
+  - Scene transition
+  - Heart
+  - AddHeart
+  - Diamond
   layers:
   - Default
   - TransparentFX
@@ -43,10 +48,13 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Background2
+  - name: Background
     uniqueID: 3417980345
     locked: 0
-  - name: Background
+  - name: Decorate
+    uniqueID: 1986378337
+    locked: 0
+  - name: Ground
     uniqueID: 193694717
     locked: 0
   - name: Default
@@ -75,4 +83,16 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 3875039351
+    locked: 0
+  - name: Dark
+    uniqueID: 2734022017
+    locked: 0
+  - name: Input
+    uniqueID: 293704639
+    locked: 0
+  - name: Fire
+    uniqueID: 1631276065
+    locked: 0
+  - name: Particle System
+    uniqueID: 1702177077
     locked: 0
