@@ -18,7 +18,7 @@ public class SceneSwitcher : MonoBehaviour
     private Animator outroAnimator;
     [SerializeField]
     private GameObject loading;
-    
+    [SerializeField]
     public GameObject movingObject;
     public float moveSpeed = 2f; // Tốc độ di chuyển
     public float waveFrequency = 2f; // Tần số sóng (số lần lên xuống trong 1 giây)
@@ -52,7 +52,9 @@ public class SceneSwitcher : MonoBehaviour
             Debug.Log("loi 3");
             movingObject = Instantiate(fire, startPosition, Quaternion.identity);
             animatorFire = movingObject.GetComponent<Animator>();
+            Debug.Log("loi m");
             StartCoroutine(ShowDecoratesInOrder());
+            Debug.Log("loi n");
             StartCoroutine(MoveObjectToTarget(movingObject, targetPosition));
             
         }
