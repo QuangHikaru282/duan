@@ -172,7 +172,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1460995964715906288
 Transform:
   m_ObjectHideFlags: 0
@@ -339,7 +339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e91fcc6a1e6e9748a44ac0d5b543c6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 3
   healthBar: {fileID: 1678934242339855294}
   enablePatrol: 1
   speed: 2
@@ -561,12 +561,22 @@ PrefabInstance:
     - target: {fileID: 8697225155872377617, guid: abdeb6ad9447d9147bc92428ebef7456,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8697225155872377617, guid: abdeb6ad9447d9147bc92428ebef7456,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113194238188284092, guid: abdeb6ad9447d9147bc92428ebef7456,
+        type: 3}
+      propertyPath: m_Value
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113194238188284092, guid: abdeb6ad9447d9147bc92428ebef7456,
+        type: 3}
+      propertyPath: m_MaxValue
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
