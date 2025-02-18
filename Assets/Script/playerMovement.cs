@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using TMPro; // TextMeshPro
 using System.Collections;
 
 public class playerScript : MonoBehaviour
@@ -28,7 +27,6 @@ public class playerScript : MonoBehaviour
     public LayerMask groundLayer;
     public LayerMask platformLayer;
 
-
     [Header("Shooting Settings")]
     public GameObject bulletPrefab;
     public Transform firePoint;
@@ -41,11 +39,6 @@ public class playerScript : MonoBehaviour
     public float attackPointOffset = 0.5f;
     public Transform attackPoint;
     public LayerMask enemyLayers;
-
-    [Header("UI Settings")]
-    public TextMeshProUGUI bulletText;
-    public TextMeshProUGUI healthText;
-    public TextMeshProUGUI keyText;
 
     [Header("Key Settings")]
     public int keyCount = 0;
@@ -83,10 +76,12 @@ public class playerScript : MonoBehaviour
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         rb.interpolation = RigidbodyInterpolation2D.Interpolate;
         jumpCount = maxJumpCount;
-        currentHealth = 10;
-        UpdateBulletUI();
-        UpdateHealthUI();
-        UpdateKeyUI();
+        currentHealth = maxHealth;
+
+        // Cập nhật UI ban đầu thông qua UIUpdateLogic singleton
+        UIUpdateLogic.Instance.UpdateArrowUI(bulletCount);
+        UIUpdateLogic.Instance.UpdateHealthUI(currentHealth);
+        UIUpdateLogic.Instance.UpdateKeyUI(keyCount);
 
         if (PlayerPrefs.HasKey("HasCheckpoint") && PlayerPrefs.GetInt("HasCheckpoint") == 1)
         {
@@ -99,10 +94,10 @@ public class playerScript : MonoBehaviour
             animator.SetBool("isDead", false);
 
             currentHealth = maxHealth;
-            UpdateHealthUI();
+            UIUpdateLogic.Instance.UpdateHealthUI(currentHealth);
 
             bulletCount = 0;
-            UpdateBulletUI();
+            UIUpdateLogic.Instance.UpdateArrowUI(bulletCount);
 
             PlayerPrefs.DeleteKey("HasCheckpoint");
             PlayerPrefs.DeleteKey("CheckpointX");
@@ -136,7 +131,7 @@ public class playerScript : MonoBehaviour
         if (transform.position.y < fallThresholdY)
         {
             currentHealth = 0;
-            UpdateHealthUI();
+            UIUpdateLogic.Instance.UpdateHealthUI(currentHealth);
             Die();
         }
     }
@@ -155,13 +150,13 @@ public class playerScript : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        Debug.Log("player nhan dmg dc goi!");
+        Debug.Log("Player nhận damage!");
         if (isDead || isHurt)
             return;
 
         isHurt = true;
         currentHealth -= damage;
-        UpdateHealthUI();
+        UIUpdateLogic.Instance.UpdateHealthUI(currentHealth);
 
         if (currentHealth <= 0)
         {
@@ -194,22 +189,17 @@ public class playerScript : MonoBehaviour
         isHurt = false;
     }
 
-
     void ApplyKnockback()
     {
-        // Xác định hướng đẩy: đối với hướng player đang nhìn, ta đẩy ngược lại
+        // Xác định hướng đẩy: nếu player đang nhìn sang một hướng, ta đẩy ngược lại.
         int knockbackDirection = (facingDirection != 0) ? facingDirection * -1 : 1;
 
-        // Reset vận tốc hiện tại để đảm bảo không bị cộng thêm các vận tốc cũ
+        // Reset vận tốc hiện tại để đảm bảo không cộng dồn vận tốc cũ.
         rb.velocity = Vector2.zero;
 
-        // Đẩy player ra phía sau với một lực theo chiều ngang.
-        // Ở đây sử dụng ForceMode2D.Impulse để tạo hiệu ứng đẩy ngay lập tức.
+        // Đẩy player theo chiều ngang ngay lập tức.
         rb.AddForce(new Vector2(knockbackDirection * knockbackForce, 0f), ForceMode2D.Impulse);
     }
-
-
-
 
     public void Respawn()
     {
@@ -218,11 +208,11 @@ public class playerScript : MonoBehaviour
         isDead = false;
         animator.SetBool("isDead", false);
 
-        currentHealth = 3;
-        UpdateHealthUI();
+        currentHealth = maxHealth;
+        UIUpdateLogic.Instance.UpdateHealthUI(currentHealth);
 
         bulletCount = 0;
-        UpdateBulletUI();
+        UIUpdateLogic.Instance.UpdateArrowUI(bulletCount);
     }
 
     public void AddHealth(int amount)
@@ -232,7 +222,7 @@ public class playerScript : MonoBehaviour
         {
             currentHealth = maxHealth;
         }
-        UpdateHealthUI();
+        UIUpdateLogic.Instance.UpdateHealthUI(currentHealth);
     }
 
     void FixedUpdate()
@@ -284,7 +274,6 @@ public class playerScript : MonoBehaviour
         if (isHurt) return;
         float targetSpeed = moveInput * maxSpeed;
         float speedDifference = targetSpeed - rb.velocity.x;
-
         float accelerationRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : deceleration;
         float movement = speedDifference * accelerationRate;
 
@@ -312,7 +301,6 @@ public class playerScript : MonoBehaviour
 
     void CheckGrounded()
     {
-        // Kết hợp groundLayer và platformLayer
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundCheckRadius, groundLayer | platformLayer);
         bool wasGrounded = isGrounded;
         isGrounded = false;
@@ -334,13 +322,12 @@ public class playerScript : MonoBehaviour
         }
     }
 
-
     public void Die()
     {
         if (isDead) return;
         isDead = true;
 
-        Debug.Log("Player has died.");
+        Debug.Log("Player đã chết.");
         animator.SetTrigger("DieTrigger");
 
         if (gameOverManager != null)
@@ -381,13 +368,12 @@ public class playerScript : MonoBehaviour
         animator.SetTrigger("BowAttackTrigger");
 
         bulletCount--;
-        UpdateBulletUI();
+        UIUpdateLogic.Instance.UpdateArrowUI(bulletCount);
     }
 
     public void DealDamage()
     {
-        // Player cận chiến
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(new Vector2(attackPoint.position.x, attackPoint.position.y), attackRange, enemyLayers);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
         foreach (Collider2D enemy in hitEnemies)
         {
@@ -397,30 +383,29 @@ public class playerScript : MonoBehaviour
                 enemyScript.TakeDamage(meleeDamage, "Melee", facingDirection);
             }
         }
-
     }
 
     public void AddBullets(int amount)
     {
         bulletCount += amount;
-        UpdateBulletUI();
+        UIUpdateLogic.Instance.UpdateArrowUI(bulletCount);
     }
 
     public void SpawnArrow()
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
-        Bullet Bullet = bullet.GetComponent<Bullet>();
-        if (Bullet != null)
+        Bullet bulletComponent = bullet.GetComponent<Bullet>();
+        if (bulletComponent != null)
         {
-            Bullet.SetDirection(new Vector2(facingDirection, 0));
-            Bullet.SetDamage(arrowDamage);
+            bulletComponent.SetDirection(new Vector2(facingDirection, 0));
+            bulletComponent.SetDamage(arrowDamage);
         }
     }
 
     public void AddKey()
     {
         keyCount++;
-        UpdateKeyUI();
+        UIUpdateLogic.Instance.UpdateKeyUI(keyCount);
     }
 
     public bool UseKey()
@@ -428,33 +413,22 @@ public class playerScript : MonoBehaviour
         if (keyCount > 0)
         {
             keyCount--;
-            UpdateKeyUI();
+            UIUpdateLogic.Instance.UpdateKeyUI(keyCount);
             return true;
         }
         return false;
     }
-
-    void UpdateKeyUI()
+    void TemporarilyIgnorePlayerCollision(bool ignore)
     {
-        if (keyText != null)
+        Collider2D goblinCollider = GetComponent<Collider2D>();
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null && goblinCollider != null)
         {
-            keyText.text = " " + keyCount;
-        }
-    }
-
-    void UpdateBulletUI()
-    {
-        if (bulletText != null)
-        {
-            bulletText.text = "Arrow: " + bulletCount;
-        }
-    }
-
-    void UpdateHealthUI()
-    {
-        if (healthText != null)
-        {
-            healthText.text = "HP: " + currentHealth;
+            Collider2D playerCollider = playerObj.GetComponent<Collider2D>();
+            if (playerCollider != null)
+            {
+                Physics2D.IgnoreCollision(goblinCollider, playerCollider, ignore);
+            }
         }
     }
 }
