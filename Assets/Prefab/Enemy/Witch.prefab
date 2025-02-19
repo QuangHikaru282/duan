@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2727166108215196612}
   - component: {fileID: 8498805069576925740}
   - component: {fileID: 4641329636389137380}
+  - component: {fileID: 9015986428072062718}
   m_Layer: 8
   m_Name: Witch
   m_TagString: Enemy
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 639351157
-  m_SortingLayer: 7
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -1037947981, guid: a42dd874114840641a6abaebe7f9a112, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -157,7 +158,6 @@ MonoBehaviour:
   firePoint: {fileID: 222724990878243396}
   witchBulletPrefab: {fileID: 8101465223323206308, guid: 8184bd18b0601eb418c0ef604867cc4b,
     type: 3}
-  bulletDamage: 3
   meleeEffect: {fileID: 6645803334524371341, guid: e81943fd38df03449abca6069b9f48b4,
     type: 3}
   rangeEffect: {fileID: 4281637207453206883, guid: e1e23abb60bad9a41bccb526b0654f7c,
@@ -165,7 +165,7 @@ MonoBehaviour:
   detectionAreaWidth: 12
   detectionAreaHeight: 6
   teleportDelay: 0.5
-  emergencyDamageThreshold: 5
+  emergencyDamageThreshold: 3
   alertMarkPrefab: {fileID: 2879550769798472158, guid: 7ec5ade9583831144adf66abe91b25c7,
     type: 3}
 --- !u!61 &4641329636389137380
@@ -213,6 +213,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.47430038, y: 1.1141909}
   m_EdgeRadius: 0
+--- !u!114 &9015986428072062718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632722150886002613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3967b2ce264511e43aaf8c1c627fbfbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropItemPrefabs:
+  - {fileID: 227186903172507890, guid: 89956d91f54961745b8c94f795233c1a, type: 3}
+  - {fileID: 3938232544952528158, guid: 59308a0dc2f99da4cb457008abed3fd7, type: 3}
+  - {fileID: 8595014721742156394, guid: 7acd461bbf0a0a849902fefffd4c0a4e, type: 3}
+  dropChance: 0.7
+  spawnOffset: 1
 --- !u!1 &5782277662620225187
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,12 +488,12 @@ PrefabInstance:
     - target: {fileID: 6427280163784928987, guid: 4febfb02390f79244b9271f11d66ffd7,
         type: 3}
       propertyPath: m_Value
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6427280163784928987, guid: 4febfb02390f79244b9271f11d66ffd7,
         type: 3}
       propertyPath: m_MaxValue
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

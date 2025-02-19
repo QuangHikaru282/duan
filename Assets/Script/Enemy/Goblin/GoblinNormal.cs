@@ -332,6 +332,12 @@ public class GoblinNormal : MonoBehaviour, IEnemy
             Destroy(healthBar.gameObject);
         rb.velocity = new Vector2(-facingDirection * 4f, 3f);
         StartCoroutine(DieVanish(0.5f));
+        ItemDropper dropper = GetComponent<ItemDropper>();
+        if (dropper != null)
+        {
+            dropper.DropItems();
+        }
+
     }
 
     IEnumerator DieVanish(float delay)

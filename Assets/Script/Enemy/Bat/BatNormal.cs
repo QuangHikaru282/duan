@@ -246,7 +246,10 @@ public class BatNormal : MonoBehaviour, IEnemy
         // Bật vật lý rơi
         rb.bodyType = RigidbodyType2D.Dynamic;
         rb.gravityScale = 1f;
-        if (enemyCollider != null) enemyCollider.isTrigger = false;
+        if (enemyCollider != null)
+        {
+            enemyCollider.enabled = false;
+        }
 
         if (aiPath != null)
         {
@@ -257,15 +260,23 @@ public class BatNormal : MonoBehaviour, IEnemy
 
     void OnCollisionEnter2D(Collision2D col)
     {
+
         if (isDead && col.collider.CompareTag("Ground"))
         {
-            StartCoroutine(DestroyAfter(0.4f));
+            StartCoroutine(DestroyAfter(0.5f));
+        }
+
+        ItemDropper dropper = GetComponent<ItemDropper>();
+        if (dropper != null)
+        {
+            dropper.DropItems();
         }
     }
 
 
     IEnumerator DestroyAfter(float delay)
     {
+
         yield return new WaitForSeconds(delay);
         Destroy(gameObject);
     }

@@ -6,64 +6,54 @@ public class UIUpdateLogic : MonoBehaviour
     public static UIUpdateLogic Instance;
 
     [Header("UI Elements")]
-    [Tooltip("Text hiển thị số mũi tên của player (có thể chỉnh sửa font, căn lề qua Inspector)")]
+    [Tooltip("Text hiển thị số mũi tên của player (dạng: Số lượng x)")]
     public TextMeshProUGUI arrowText;
-    [Tooltip("Text hiển thị số chìa khóa của player (có thể chỉnh sửa font, căn lề qua Inspector)")]
+    [Tooltip("Text hiển thị số chìa khóa của player (dạng: Số lượng x)")]
     public TextMeshProUGUI keyText;
-
-    // Các prefix được lấy từ text ban đầu (đã được định dạng qua Inspector)
-    private string arrowPrefix;
-    private string keyPrefix;
+    [Tooltip("Text hiển thị số coin của player (dạng: 4 chữ số, ví dụ: 0010)")]
+    public TextMeshProUGUI coinText;
 
     void Awake()
     {
         if (Instance == null)
-        {
             Instance = this;
-        }
         else
-        {
             Destroy(gameObject);
-        }
-    }
-
-    void Start()
-    {
-        // Lưu lại giá trị prefix ban đầu từ các TMP element
-        if (arrowText != null)
-        {
-            arrowPrefix = arrowText.text; // ví dụ: "Arrow: " được đặt sẵn qua Inspector
-        }
-        if (keyText != null)
-        {
-            keyPrefix = keyText.text; // ví dụ: "Key: " được đặt sẵn
-        }
     }
 
     /// <summary>
-    /// Cập nhật hiển thị số mũi tên theo định dạng từ Inspector.
+    /// Cập nhật hiển thị số mũi tên theo định dạng "x Số lượng"
+    /// Ví dụ: nếu arrowCount là 5, hiển thị "x 5"
     /// </summary>
-    /// <param name="arrowCount">Số mũi tên hiện tại</param>
     public void UpdateArrowUI(int arrowCount)
     {
         if (arrowText != null)
         {
-            arrowText.text = arrowPrefix + arrowCount;
+            arrowText.text = "x" + arrowCount.ToString();
         }
     }
 
     /// <summary>
-    /// Cập nhật hiển thị số chìa khóa theo định dạng từ Inspector.
+    /// Cập nhật hiển thị số chìa khóa theo định dạng "x Số lượng"
+    /// Ví dụ: nếu keyCount là 3, hiển thị "x 3"
     /// </summary>
-    /// <param name="keyCount">Số chìa khóa hiện tại</param>
     public void UpdateKeyUI(int keyCount)
     {
         if (keyText != null)
         {
-            keyText.text = keyPrefix + keyCount;
+            keyText.text = "x" + keyCount.ToString();
         }
     }
 
-    // Lưu ý: Hiển thị HP được quản lý riêng qua HealthUIManager, do đó
-    // UIUpdateLogic không còn xử lý cập nhật HP.
+    /// <summary>
+    /// Cập nhật hiển thị số coin theo định dạng 4 chữ số.
+    /// Ví dụ: nếu coinCount là 10, hiển thị "0010"
+    /// </summary>
+    public void UpdateCoinUI(int coinCount)
+    {
+        if (coinText != null)
+        {
+            coinText.text = coinCount.ToString("D4");
+        }
+    }
 }

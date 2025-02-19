@@ -340,19 +340,25 @@ public class WitchNormal : MonoBehaviour, IEnemy
         if (hpSlider != null)
             Destroy(hpSlider.gameObject);
         StartCoroutine(DieVanish(2f));
+        ItemDropper dropper = GetComponent<ItemDropper>();
+        if (dropper != null)
+        {
+            dropper.DropItems();
+        }
     }
 
     IEnumerator DieVanish(float delay)
     {
+
         yield return new WaitForSeconds(delay);
         Destroy(gameObject);
     }
 
-  /*  void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (!isDead && other.CompareTag("Trap"))
             Die();
-    }*/
+    }
 
     // Hàm cập nhật flip sprite và FirePoint
     void SetFacingDirection(int dir)

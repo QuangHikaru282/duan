@@ -17,13 +17,14 @@ GameObject:
   - component: {fileID: 5440370470422200210}
   - component: {fileID: 278156570879951900}
   - component: {fileID: 2618364900818882742}
+  - component: {fileID: 5160093548910218912}
   m_Layer: 8
   m_Name: Bat
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6824680049308035601
 Transform:
   m_ObjectHideFlags: 0
@@ -82,7 +83,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 639351157
-  m_SortingLayer: 7
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 1823693516, guid: ce9d943cbcc69d849b9bfae825ee797f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -294,6 +295,24 @@ MonoBehaviour:
     m_Bits: 8
   batDamage: 1
   attackCooldown: 1.5
+--- !u!114 &5160093548910218912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458885630010988881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3967b2ce264511e43aaf8c1c627fbfbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropItemPrefabs:
+  - {fileID: 3938232544952528158, guid: 59308a0dc2f99da4cb457008abed3fd7, type: 3}
+  - {fileID: 227186903172507890, guid: 89956d91f54961745b8c94f795233c1a, type: 3}
+  - {fileID: 8595014721742156394, guid: 7acd461bbf0a0a849902fefffd4c0a4e, type: 3}
+  dropChance: 0.5
+  spawnOffset: 1
 --- !u!1 &3100142269998467529
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,22 +651,22 @@ PrefabInstance:
     - target: {fileID: 8697225155872377617, guid: abdeb6ad9447d9147bc92428ebef7456,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8697225155872377617, guid: abdeb6ad9447d9147bc92428ebef7456,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9113194238188284092, guid: abdeb6ad9447d9147bc92428ebef7456,
         type: 3}
       propertyPath: m_Value
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9113194238188284092, guid: abdeb6ad9447d9147bc92428ebef7456,
         type: 3}
       propertyPath: m_MaxValue
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9113194238188284092, guid: abdeb6ad9447d9147bc92428ebef7456,
         type: 3}

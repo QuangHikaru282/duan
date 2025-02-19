@@ -92,10 +92,14 @@ public class playerScript : MonoBehaviour
             isDead = false;
             animator.SetBool("isDead", false);
 
-            // Giữ nguyên currentHealth theo giá trị đã lưu
+            // Cập nhật UI HP theo giá trị currentHealth đã lưu
             HealthUIManager.Instance.UpdateHealthUI(currentHealth);
 
             bulletCount = 0;
+            // Cập nhật UI arrow nếu cần
+            UIUpdateLogic.Instance.UpdateArrowUI(bulletCount);
+            // Cập nhật UI key nếu cần
+            UIUpdateLogic.Instance.UpdateKeyUI(keyCount);
 
             PlayerPrefs.DeleteKey("HasCheckpoint");
             PlayerPrefs.DeleteKey("CheckpointX");
@@ -192,10 +196,13 @@ public class playerScript : MonoBehaviour
         isDead = false;
         animator.SetBool("isDead", false);
 
-        // Giữ nguyên currentHealth theo giá trị đã thiết lập hoặc lưu trữ
+        // Cập nhật UI HP theo giá trị currentHealth hiện tại
         HealthUIManager.Instance.UpdateHealthUI(currentHealth);
 
         bulletCount = 0;
+        // Cập nhật lại UI arrow và key nếu cần
+        UIUpdateLogic.Instance.UpdateArrowUI(bulletCount);
+        UIUpdateLogic.Instance.UpdateKeyUI(keyCount);
     }
 
     public void AddHealth(int amount)
@@ -332,6 +339,8 @@ public class playerScript : MonoBehaviour
         isBowAttacking = true;
         animator.SetTrigger("BowAttackTrigger");
         bulletCount--;
+        // Cập nhật UI arrow mỗi khi bắn đạn
+        UIUpdateLogic.Instance.UpdateArrowUI(bulletCount);
     }
 
     public void DealDamage()
@@ -348,6 +357,7 @@ public class playerScript : MonoBehaviour
     public void AddBullets(int amount)
     {
         bulletCount += amount;
+        UIUpdateLogic.Instance.UpdateArrowUI(bulletCount);
     }
 
     public void SpawnArrow()
@@ -364,6 +374,7 @@ public class playerScript : MonoBehaviour
     public void AddKey()
     {
         keyCount++;
+        UIUpdateLogic.Instance.UpdateKeyUI(keyCount);
     }
 
     public bool UseKey()
@@ -371,6 +382,7 @@ public class playerScript : MonoBehaviour
         if (keyCount > 0)
         {
             keyCount--;
+            UIUpdateLogic.Instance.UpdateKeyUI(keyCount);
             return true;
         }
         return false;
