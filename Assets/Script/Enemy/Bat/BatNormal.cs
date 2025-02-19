@@ -246,7 +246,10 @@ public class BatNormal : MonoBehaviour, IEnemy
         // Bật vật lý rơi
         rb.bodyType = RigidbodyType2D.Dynamic;
         rb.gravityScale = 1f;
-        if (enemyCollider != null) enemyCollider.isTrigger = false;
+        if (enemyCollider != null)
+        {
+            enemyCollider.enabled = false;
+        }
 
         if (aiPath != null)
         {
@@ -257,15 +260,23 @@ public class BatNormal : MonoBehaviour, IEnemy
 
     void OnCollisionEnter2D(Collision2D col)
     {
+
         if (isDead && col.collider.CompareTag("Ground"))
         {
-            StartCoroutine(DestroyAfter(0.4f));
+            StartCoroutine(DestroyAfter(0.5f));
+        }
+
+        ItemDropper dropper = GetComponent<ItemDropper>();
+        if (dropper != null)
+        {
+            dropper.DropItems();
         }
     }
 
 
     IEnumerator DestroyAfter(float delay)
     {
+
         yield return new WaitForSeconds(delay);
         Destroy(gameObject);
     }
@@ -305,29 +316,6 @@ public class BatNormal : MonoBehaviour, IEnemy
         currentTarget = pointA;
     }
 
-   /* void OnCollisionStay2D(Collision2D col)
-    {
-        if (col.collider.CompareTag("Player"))
-        {
-            // if Player đang dưới Bat => bật
-            playerScript ps = col.collider.GetComponent<playerScript>();
-            if (ps != null)
-            {
-                Rigidbody2D playerRb = ps.GetComponent<Rigidbody2D>();
-                if (playerRb != null)
-                {
-                    // Giả sử push thẳng lên
-                    float pushForce = 5f;
-                    // Kiểm tra Player “dưới” Bat
-                    if (playerRb.position.y < transform.position.y)
-                    {
-                        playerRb.velocity = new Vector2(playerRb.velocity.x, 0f);
-                        playerRb.AddForce(Vector2.up * pushForce, ForceMode2D.Impulse);
-                    }
-                }
-            }
-        }
-    }*/
     
 
 

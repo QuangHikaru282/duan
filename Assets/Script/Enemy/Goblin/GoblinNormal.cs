@@ -41,6 +41,12 @@ public class GoblinNormal : MonoBehaviour, IEnemy
     private bool isHurt = false;
     private bool isAttacking = false;
 
+    // NEW: Biến để "freeze" chuyển động khi attack
+    [Header("Freeze Settings")]
+    [Tooltip("Thời gian đóng băng (freeze) khi goblin tấn công, tính bằng giây.")]
+    public float freezeDuration = 1f;
+    private bool isFrozen = false;  // Kiểm soát trạng thái đóng băng
+
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
@@ -80,9 +86,16 @@ public class GoblinNormal : MonoBehaviour, IEnemy
 
     void FixedUpdate()
     {
+        // Nếu goblin đang bị freeze (đang attack) thì không cho di chuyển
+        if (isFrozen)
+        {
+            rb.velocity = new Vector2(0f, rb.velocity.y);
+            return;
+        }
+
         if (isDead || isHurt) return;
 
-        // Rơi khỏi map
+        // Nếu rơi khỏi map, goblin chết
         if (transform.position.y < killBelowY)
         {
             Die();
@@ -145,31 +158,23 @@ public class GoblinNormal : MonoBehaviour, IEnemy
     {
         if (groundDetector == null) return;
 
-        // Xác định vị trí của groundDetector
         Vector2 detectorPos = groundDetector.position;
-        // Thiết lập một offset nhỏ theo trục X (điều chỉnh giá trị này cho phù hợp với sprite của bạn)
         float horizontalOffset = 0.2f;
 
-        // Tạo 2 điểm bắt tia: bên trái và bên phải của groundDetector
         Vector2 leftRayOrigin = detectorPos + Vector2.left * horizontalOffset;
         Vector2 rightRayOrigin = detectorPos + Vector2.right * horizontalOffset;
 
-        // Bắn tia xuống (theo hướng Vector2.down)
         RaycastHit2D leftHit = Physics2D.Raycast(leftRayOrigin, Vector2.down, groundDetectDistance, groundLayer);
         RaycastHit2D rightHit = Physics2D.Raycast(rightRayOrigin, Vector2.down, groundDetectDistance, groundLayer);
 
-        // Vẽ Debug rays để kiểm tra trong Scene view
         Debug.DrawRay(leftRayOrigin, Vector2.down * groundDetectDistance, Color.yellow);
         Debug.DrawRay(rightRayOrigin, Vector2.down * groundDetectDistance, Color.yellow);
 
-        // Nếu một trong hai tia không phát hiện ground, thì đổi hướng
         if (leftHit.collider == null || rightHit.collider == null)
         {
             ReverseDirection();
         }
 
-        // Bạn có thể bổ sung kiểm tra tia ray theo hướng ngang nếu cần (ví dụ để phát hiện tường)
-        // (Phần kiểm tra này giữ nguyên nếu bạn muốn)
         Vector2 sideDir = new Vector2(facingDirection, 0f);
         RaycastHit2D wallHit = Physics2D.Raycast(detectorPos, sideDir, wallDetectDistance, groundLayer);
         Debug.DrawRay(detectorPos, sideDir * wallDetectDistance, Color.yellow);
@@ -193,7 +198,6 @@ public class GoblinNormal : MonoBehaviour, IEnemy
 
     void SetFacingDirection(int dir)
     {
-        Debug.Log("Set face direction called!");
         if (facingDirection == dir) return;
 
         facingDirection = dir;
@@ -229,12 +233,25 @@ public class GoblinNormal : MonoBehaviour, IEnemy
 
         isAttacking = true;
         lastAttackTime = Time.time;
+
+        // Freeze chuyển động: đặt isFrozen = true và dừng vận tốc
+        isFrozen = true;
         rb.velocity = new Vector2(0f, rb.velocity.y);
 
-        // Tạm thời bỏ qua va chạm với Player khi attack
-        TemporarilyIgnorePlayerCollision(true);
-
         animator.SetTrigger("AttackTrigger");
+
+        // Bắt đầu coroutine freeze: giữ goblin đứng yên trong thời gian attack
+        StartCoroutine(FreezeAndAttackRoutine(freezeDuration));
+    }
+
+    IEnumerator FreezeAndAttackRoutine(float duration)
+    {
+        // Trong khoảng thời gian này, goblin sẽ không di chuyển.
+        yield return new WaitForSeconds(duration);
+
+        // Kết thúc trạng thái freeze, cho phép goblin di chuyển lại.
+        isFrozen = false;
+        ResetAttack();
     }
 
     public void GoblinDealDamage()
@@ -251,8 +268,7 @@ public class GoblinNormal : MonoBehaviour, IEnemy
     public void ResetAttack()
     {
         isAttacking = false;
-        // Khôi phục lại va chạm giữa goblin và player
-        TemporarilyIgnorePlayerCollision(false);
+        // Có thể thực hiện các logic khác sau khi attack xong, ví dụ: chuyển sang trạng thái chase hoặc patrol
     }
 
     // ------------------- TAKE DAMAGE (IEnemy) -------------------
@@ -316,6 +332,12 @@ public class GoblinNormal : MonoBehaviour, IEnemy
             Destroy(healthBar.gameObject);
         rb.velocity = new Vector2(-facingDirection * 4f, 3f);
         StartCoroutine(DieVanish(0.5f));
+        ItemDropper dropper = GetComponent<ItemDropper>();
+        if (dropper != null)
+        {
+            dropper.DropItems();
+        }
+
     }
 
     IEnumerator DieVanish(float delay)
@@ -329,22 +351,6 @@ public class GoblinNormal : MonoBehaviour, IEnemy
     {
         if (!isDead && other.CompareTag("Trap"))
             Die();
-    }
-
-    // ------------------- TemporarilyIgnorePlayerCollision -------------------
-    // Tạm thời bỏ qua va chạm giữa collider của goblin và collider của Player
-    void TemporarilyIgnorePlayerCollision(bool ignore)
-    {
-        Collider2D goblinCollider = GetComponent<Collider2D>();
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj != null && goblinCollider != null)
-        {
-            Collider2D playerCollider = playerObj.GetComponent<Collider2D>();
-            if (playerCollider != null)
-            {
-                Physics2D.IgnoreCollision(goblinCollider, playerCollider, ignore);
-            }
-        }
     }
 
     // ------------------- GIZMOS -------------------

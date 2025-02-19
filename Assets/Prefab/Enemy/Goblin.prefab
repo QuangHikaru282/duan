@@ -146,7 +146,7 @@ Transform:
   m_GameObject: {fileID: 6699971276365902236}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.542, y: -0.085, z: 0}
+  m_LocalPosition: {x: -0.359, y: 0.025, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -166,6 +166,7 @@ GameObject:
   - component: {fileID: 5444992700810525331}
   - component: {fileID: 1115192967148689385}
   - component: {fileID: 2292905932951753487}
+  - component: {fileID: -7982994356744104800}
   m_Layer: 8
   m_Name: Goblin
   m_TagString: Enemy
@@ -231,7 +232,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 639351157
-  m_SortingLayer: 7
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 1388821537, guid: 585f33e6a9647da42afea5b5f7e17fd3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -354,17 +355,36 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   atkPoint: {fileID: 629322103252422591}
-  attackRange: 0.3
+  attackRange: 0.5
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  goblinDamage: 2
+  goblinDamage: 1
   attackCooldown: 1.5
+  freezeDuration: 1
   killBelowY: -20
   meleeEffect: {fileID: 6645803334524371341, guid: e81943fd38df03449abca6069b9f48b4,
     type: 3}
   rangeEffect: {fileID: 4281637207453206883, guid: e1e23abb60bad9a41bccb526b0654f7c,
     type: 3}
+--- !u!114 &-7982994356744104800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9220092957517445129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3967b2ce264511e43aaf8c1c627fbfbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropItemPrefabs:
+  - {fileID: 3938232544952528158, guid: 59308a0dc2f99da4cb457008abed3fd7, type: 3}
+  - {fileID: 227186903172507890, guid: 89956d91f54961745b8c94f795233c1a, type: 3}
+  - {fileID: 8595014721742156394, guid: 7acd461bbf0a0a849902fefffd4c0a4e, type: 3}
+  dropChance: 0.3
+  spawnOffset: 1
 --- !u!1001 &7580776622667690754
 PrefabInstance:
   m_ObjectHideFlags: 0
