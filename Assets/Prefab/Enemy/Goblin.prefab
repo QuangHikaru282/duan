@@ -146,7 +146,7 @@ Transform:
   m_GameObject: {fileID: 6699971276365902236}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.542, y: -0.085, z: 0}
+  m_LocalPosition: {x: -0.359, y: 0.025, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -354,12 +354,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   atkPoint: {fileID: 629322103252422591}
-  attackRange: 0.3
+  attackRange: 0.5
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  goblinDamage: 2
+  goblinDamage: 1
   attackCooldown: 1.5
+  freezeDuration: 1
   killBelowY: -20
   meleeEffect: {fileID: 6645803334524371341, guid: e81943fd38df03449abca6069b9f48b4,
     type: 3}

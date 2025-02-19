@@ -305,29 +305,6 @@ public class BatNormal : MonoBehaviour, IEnemy
         currentTarget = pointA;
     }
 
-   /* void OnCollisionStay2D(Collision2D col)
-    {
-        if (col.collider.CompareTag("Player"))
-        {
-            // if Player đang dưới Bat => bật
-            playerScript ps = col.collider.GetComponent<playerScript>();
-            if (ps != null)
-            {
-                Rigidbody2D playerRb = ps.GetComponent<Rigidbody2D>();
-                if (playerRb != null)
-                {
-                    // Giả sử push thẳng lên
-                    float pushForce = 5f;
-                    // Kiểm tra Player “dưới” Bat
-                    if (playerRb.position.y < transform.position.y)
-                    {
-                        playerRb.velocity = new Vector2(playerRb.velocity.x, 0f);
-                        playerRb.AddForce(Vector2.up * pushForce, ForceMode2D.Impulse);
-                    }
-                }
-            }
-        }
-    }*/
     
 
 
