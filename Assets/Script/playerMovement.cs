@@ -55,6 +55,13 @@ public class playerScript : MonoBehaviour
     public float manaCostPerSec = 15f;
     private float manaAccum = 0f;
 
+    [Header("Dash Settings")]
+    public float dashForce = 5f;
+    public float dashCooldown = 0.25f;
+    private bool isDashing = false;
+    private float dashTimer = 0f;
+    private int airDashRemaining;
+
     [Header("Key Settings")]
     public int keyCount = 0;
 
@@ -121,6 +128,12 @@ public class playerScript : MonoBehaviour
         if (isDead) return;
         HandleInput();
 
+        // Update cooldown timer cho dash trên mặt đất
+        if (dashTimer > 0f)
+        {
+            dashTimer -= Time.deltaTime;
+        }
+
         animator.SetFloat("moveSpeed", Mathf.Abs(moveInput));
         animator.SetBool("isGrounded", isGrounded);
 
@@ -136,21 +149,16 @@ public class playerScript : MonoBehaviour
         {
             flameInstance.transform.position = skillShotPoint.position;
 
-            // Kiểm tra điều kiện flip dựa vào skillShotPoint (ví dụ: nếu localPosition.x < 0 => hướng trái)
             bool flip = (skillShotPoint.localPosition.x < 0);
-
-            // Cập nhật flip cho sprite
             SpriteRenderer flameSprite = flameInstance.GetComponent<SpriteRenderer>();
             if (flameSprite != null)
             {
                 flameSprite.flipX = flip;
             }
 
-            // Cập nhật collider offset để đảm bảo box collider lật theo cùng
             BoxCollider2D flameCollider = flameInstance.GetComponent<BoxCollider2D>();
             if (flameCollider != null)
             {
-                // Nếu flip thì đảo ngược giá trị offset.x, còn không thì dùng giá trị gốc
                 flameCollider.offset = new Vector2(flip ? -originalColliderOffset.x : originalColliderOffset.x, originalColliderOffset.y);
             }
         }
@@ -163,10 +171,11 @@ public class playerScript : MonoBehaviour
         }
     }
 
-
     void FixedUpdate()
     {
-        HandleMovement();
+        // Nếu đang dash, bỏ qua xử lý di chuyển thông thường
+        if (!isDashing)
+           HandleMovement();
         HandleJump();
     }
 
@@ -192,15 +201,6 @@ public class playerScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K) && bulletCount > 0)
         {
             Shoot();
-        }
-
-        // HomingBullet skill (E)
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (SkillManager.Instance.UseMana(homingBulletCost))
-            {
-                animator.SetTrigger(castTrigger);
-            }
         }
 
         // Melee (J)
@@ -238,6 +238,34 @@ public class playerScript : MonoBehaviour
             }
         }
 
+        // Dash (phím L)
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            // Nếu ở mặt đất và đủ cooldown, thực hiện dash
+            if (isGrounded && dashTimer <= 0f && !isDashing)
+            {
+                StartCoroutine(PerformDash());
+            }
+            // Nếu ở trên không và còn dash cho lần nhảy hiện tại
+            else if (!isGrounded && airDashRemaining > 0 && !isDashing)
+            {
+                StartCoroutine(PerformDash());
+                airDashRemaining--; // giảm số dash còn lại trong không
+            }
+        }
+
+
+
+
+        // HomingBullet skill (E)
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (SkillManager.Instance.UseMana(homingBulletCost))
+            {
+                animator.SetTrigger(castTrigger);
+            }
+        }
+
         // Flamethrower (Q)
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -260,6 +288,25 @@ public class playerScript : MonoBehaviour
             TurnOffFlamethrower();
         }
     }
+
+    // Coroutine thực hiện dash
+    IEnumerator PerformDash()
+    {
+        // Lưu lại giá trị gravity ban đầu
+        float originalGravity = rb.gravityScale;
+        rb.gravityScale = 0f; // Tạm tắt trọng lực
+        ResetAttackTriggers(); // Cancel các đòn tấn công
+        isDashing = true;
+        animator.SetBool("isDashing", true);
+        // Đặt velocity dash theo hướng của player, đặt trục y = 0 để không bị ảnh hưởng bởi trọng lực
+        rb.velocity = new Vector2(dashForce * facingDirection, 0f);
+        yield return new WaitForSeconds(0.2f); //thời gian càng ngắn thì quãng đường dash càng ngắn => lực cần tăng
+        animator.SetBool("isDashing", false);
+        isDashing = false;
+        rb.gravityScale = originalGravity; // Phục hồi trọng lực ban đầu
+        dashTimer = dashCooldown;
+    }
+
 
     // ------------------------ Group 3: Các hàm liên quan đến tấn công (skill, shoot, dealdamage) ------------------------
     void ResetAttackTriggers()
@@ -313,9 +360,6 @@ public class playerScript : MonoBehaviour
         Instantiate(homingBulletPrefab, skillShotPoint.position, skillShotPoint.rotation);
     }
 
-    // Đặt các biến này ở đầu class, ví dụ:
-
-
     public void OnCastSpawnFlamethrower()
     {
         if (flameThrowerPrefab == null) return;
@@ -330,52 +374,37 @@ public class playerScript : MonoBehaviour
         }
     }
 
-
-
-
-
     bool ConsumeFlameMana()
     {
         float dt = Time.deltaTime;
         float manaToAdd = manaCostPerSec * dt;
         manaAccum += manaToAdd; // tích lũy dần
 
-        // Số mana integer sẽ trừ lần này:
         int manaToConsume = Mathf.FloorToInt(manaAccum);
 
         if (manaToConsume > 0)
         {
-            // Trừ mana
             bool success = SkillManager.Instance.UseMana(manaToConsume);
             if (!success)
             {
-                // Không đủ mana để trừ => tắt skill
                 return false;
             }
-            // Giảm bớt trong "kho" tạm
             manaAccum -= manaToConsume;
         }
 
         return true;
     }
 
-
     void TurnOffFlamethrower()
     {
         animator.SetBool("isCastLooping", false);
-
         isFlamethrowerActive = false;
-
         if (flameInstance != null)
         {
             Destroy(flameInstance);
             flameInstance = null;
         }
-
-        
     }
-
-    
 
     // ------------------------ Group 4: Các hàm nhận sát thương, die và respawn ------------------------
     public void TakeDamage(int damage)
@@ -445,7 +474,7 @@ public class playerScript : MonoBehaviour
     // ------------------------ Group 5: Các hàm linh tinh ------------------------
     void HandleMovement()
     {
-        if (isHurt || isFlamethrowerActive) return;
+        if (isHurt || isFlamethrowerActive || isDashing) return;
 
         float targetSpeed = moveInput * maxSpeed;
         float speedDifference = targetSpeed - rb.velocity.x;
@@ -494,14 +523,16 @@ public class playerScript : MonoBehaviour
         animator.SetBool("isGrounded", isGrounded);
 
         if (isGrounded && !wasGrounded)
+        {
             jumpCount = maxJumpCount;
+            airDashRemaining = maxJumpCount;
+        }
     }
 
     void UpdateAttackPointPosition()
     {
         float sign = (facingDirection > 0) ? 1f : -1f;
 
-        // attackPoint
         if (attackPoint != null)
         {
             Vector3 atkLocalPos = attackPoint.localPosition;
@@ -509,7 +540,6 @@ public class playerScript : MonoBehaviour
             attackPoint.localPosition = atkLocalPos;
         }
 
-        // firePoint
         if (firePoint != null)
         {
             Vector3 fireLocalPos = firePoint.localPosition;
@@ -517,7 +547,6 @@ public class playerScript : MonoBehaviour
             firePoint.localPosition = fireLocalPos;
         }
 
-        // skillShotPoint
         if (skillShotPoint != null)
         {
             Vector3 skillLocalPos = skillShotPoint.localPosition;
