@@ -8,7 +8,6 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
-  importerVersion: 1
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -122,7 +121,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Frame_0
+  - name: enemy_Frame_0
     originalName: 
     pivot: {x: 0.5, y: -0.037037034}
     alignment: 9
@@ -133,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 23
       height: 27
-    spriteID: 724dc1f80da07644a9e1ff09624650d1
+    spriteID: caff9d7bec65f834b97545a0fc8d9ee9
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,7 +141,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Frame_1
+  - name: enemy_Frame_1
     originalName: 
     pivot: {x: 0.5, y: -0.13636364}
     alignment: 9
@@ -153,7 +152,7 @@ ScriptedImporter:
       y: 39
       width: 23
       height: 22
-    spriteID: f833b47efd250d247bafd3068265056c
+    spriteID: d92dae84dbba2e547a71ab65b3da065c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -162,7 +161,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 39}
-  - name: Frame_2
+  - name: enemy_Frame_2
     originalName: 
     pivot: {x: 0.5, y: -0.72727275}
     alignment: 9
@@ -173,7 +172,7 @@ ScriptedImporter:
       y: 99
       width: 23
       height: 11
-    spriteID: 7f243bf1d004af541ae3f6f35596abfe
+    spriteID: a72451c69134adc4fbf7233262d75e3f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -182,7 +181,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 99}
-  - name: Frame_3
+  - name: enemy_Frame_3
     originalName: 
     pivot: {x: 0.5, y: -0.90909094}
     alignment: 9
@@ -193,7 +192,7 @@ ScriptedImporter:
       y: 4
       width: 23
       height: 11
-    spriteID: aff5a225fe0754d4fa3090126cd6b4cc
+    spriteID: 0b21107de8bda9640bd1b2c89d742561
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -202,7 +201,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 35, y: 4}
-  - name: Frame_4
+  - name: enemy_Frame_4
     originalName: 
     pivot: {x: 0.5, y: -0.18181819}
     alignment: 9
@@ -213,7 +212,7 @@ ScriptedImporter:
       y: 69
       width: 23
       height: 22
-    spriteID: 8114f8c8b6e99e64f9373bc576b4108d
+    spriteID: b00f42e4c37e766458f88a08dac57e04
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -225,13 +224,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1816857306
+    guid: -262155246
     name: enemy
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Frame_0
+    - name: enemy_Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -239,8 +238,8 @@ ScriptedImporter:
         y: 1
         width: 23
         height: 27
-      spriteId: 724dc1f80da07644a9e1ff09624650d1
-    - name: Frame_1
+      spriteId: caff9d7bec65f834b97545a0fc8d9ee9
+    - name: enemy_Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -248,8 +247,8 @@ ScriptedImporter:
         y: 3
         width: 23
         height: 22
-      spriteId: f833b47efd250d247bafd3068265056c
-    - name: Frame_2
+      spriteId: d92dae84dbba2e547a71ab65b3da065c
+    - name: enemy_Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -257,8 +256,8 @@ ScriptedImporter:
         y: 8
         width: 23
         height: 11
-      spriteId: 7f243bf1d004af541ae3f6f35596abfe
-    - name: Frame_3
+      spriteId: a72451c69134adc4fbf7233262d75e3f
+    - name: enemy_Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -266,8 +265,8 @@ ScriptedImporter:
         y: 10
         width: 23
         height: 11
-      spriteId: aff5a225fe0754d4fa3090126cd6b4cc
-    - name: Frame_4
+      spriteId: 0b21107de8bda9640bd1b2c89d742561
+    - name: enemy_Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -275,7 +274,7 @@ ScriptedImporter:
         y: 4
         width: 23
         height: 22
-      spriteId: 8114f8c8b6e99e64f9373bc576b4108d
+      spriteId: b00f42e4c37e766458f88a08dac57e04
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -295,4 +294,3 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 29, y: 29}
-  previousTextureSize: {x: 64, y: 128}

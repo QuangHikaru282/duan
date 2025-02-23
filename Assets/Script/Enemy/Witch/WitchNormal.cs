@@ -297,7 +297,16 @@ public class WitchNormal : MonoBehaviour, IEnemy
         if (hpSlider != null)
             hpSlider.value = currentHealth;
         ShowHitEffect(dmgType, attackDir);
-        animator.SetTrigger("HurtTrigger");
+        if (dmgType == "DOT")
+        {
+            animator.SetTrigger("DotHurtTrigger");
+            // Anim ngắn, quái vẫn di chuyển
+        }
+        else
+        {
+            animator.SetTrigger("HurtTrigger");
+            // Quái bị cứng ngắn
+        }
         accumulatedDamage += dmg;
         animator.ResetTrigger("AttackTrigger");
        

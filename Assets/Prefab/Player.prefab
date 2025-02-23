@@ -31,6 +31,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 9197168839062050672}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3239863438361519144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1489403092757980732}
+  m_Layer: 3
+  m_Name: skillShotPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1489403092757980732
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3239863438361519144}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.258, y: -0.035, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9197168839062050672}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3275645097624748305
 GameObject:
   m_ObjectHideFlags: 0
@@ -100,6 +131,7 @@ Transform:
   - {fileID: 6400186554282854516}
   - {fileID: 60749791631562182}
   - {fileID: 1802311842946689255}
+  - {fileID: 1489403092757980732}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5127874801306576727
@@ -141,7 +173,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1608947629
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -754179710, guid: 31d56779ef97c0f4abe8d02202f8c912, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -199,7 +231,7 @@ MonoBehaviour:
   maxSpeed: 5
   movementSmoothing: 0.05
   maxHealth: 15
-  currentHealth: 15
+  currentHealth: 13
   respawnPosition: {x: 0, y: 0}
   jumpForce: 13
   maxJumpCount: 2
@@ -223,13 +255,18 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 256
+  homingBulletPrefab: {fileID: 7241086382850756693, guid: f0cdebab6c1bc8f43880eae32a3af471,
+    type: 3}
+  skillShotPoint: {fileID: 1489403092757980732}
+  castTrigger: CastTrigger
+  homingBulletCost: 10
+  flameThrowerPrefab: {fileID: 1218876806488606494, guid: c367d7ce4ecf7e242ae6e2b3d4331673,
+    type: 3}
+  manaCostPerSec: 15
   keyCount: 0
   fallThresholdY: -10
   knockbackForce: 3
   gameOverManager: {fileID: 0}
-  isAttacking: 0
-  isBowAttacking: 0
-  isAirAttacking: 0
 --- !u!70 &2042731921359690349
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

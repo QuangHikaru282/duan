@@ -21,7 +21,7 @@ public class ManaPickup : MonoBehaviour
             isPickedUp = true;
 
             // Gọi AddMana
-            ManaManager.Instance.AddMana(manaAmount);
+            SkillManager.Instance.AddMana(manaAmount);
 
             // Chuyển animation sang "collected"
             if (animator != null)

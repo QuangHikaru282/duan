@@ -8,7 +8,6 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
-  importerVersion: 1
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -122,7 +121,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Frame_0
+  - name: car_Frame_0
     originalName: 
     pivot: {x: 0.497076, y: -0.016666668}
     alignment: 9
@@ -133,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 171
       height: 60
-    spriteID: e56ef1fde11af2a45b4db1041c412940
+    spriteID: fd8774cd43522ac4d9c88cdaa7ce22c5
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,7 +141,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Frame_1
+  - name: car_Frame_1
     originalName: 
     pivot: {x: 0.497076, y: -0.016666668}
     alignment: 9
@@ -153,7 +152,7 @@ ScriptedImporter:
       y: 72
       width: 171
       height: 60
-    spriteID: 0b3f8a65320ee4146bc928f650554e93
+    spriteID: 2fd308618dccffa4297c43f8233b221e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -162,7 +161,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 72}
-  - name: Frame_2
+  - name: car_Frame_2
     originalName: 
     pivot: {x: 0.497076, y: -0.016666668}
     alignment: 9
@@ -173,7 +172,7 @@ ScriptedImporter:
       y: 140
       width: 171
       height: 60
-    spriteID: 4fe49b32d9b031e45b8c23aa2cbe3ebe
+    spriteID: e0eb36c1a0512214f888bb397b99e37e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -182,7 +181,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 140}
-  - name: Frame_3
+  - name: car_Frame_3
     originalName: 
     pivot: {x: 0.497076, y: -0.016666668}
     alignment: 9
@@ -193,7 +192,7 @@ ScriptedImporter:
       y: 208
       width: 171
       height: 60
-    spriteID: 93c6a201333489043ad37d4928159666
+    spriteID: 8f6a000948d54d9488bffae3c319c531
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -202,7 +201,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 208}
-  - name: Frame_4
+  - name: car_Frame_4
     originalName: 
     pivot: {x: 0.497076, y: -0.016666668}
     alignment: 9
@@ -213,7 +212,7 @@ ScriptedImporter:
       y: 276
       width: 171
       height: 60
-    spriteID: 793943f8225116a43b69d866362c641b
+    spriteID: 32b4c76bcee3a114c865a9f7746491d8
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -225,13 +224,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 696029512
+    guid: 1445809320
     name: car
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Frame_0
+    - name: car_Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -239,8 +238,8 @@ ScriptedImporter:
         y: 1
         width: 171
         height: 60
-      spriteId: e56ef1fde11af2a45b4db1041c412940
-    - name: Frame_1
+      spriteId: fd8774cd43522ac4d9c88cdaa7ce22c5
+    - name: car_Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -248,8 +247,8 @@ ScriptedImporter:
         y: 1
         width: 171
         height: 60
-      spriteId: 0b3f8a65320ee4146bc928f650554e93
-    - name: Frame_2
+      spriteId: 2fd308618dccffa4297c43f8233b221e
+    - name: car_Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -257,8 +256,8 @@ ScriptedImporter:
         y: 1
         width: 171
         height: 60
-      spriteId: 4fe49b32d9b031e45b8c23aa2cbe3ebe
-    - name: Frame_3
+      spriteId: e0eb36c1a0512214f888bb397b99e37e
+    - name: car_Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -266,8 +265,8 @@ ScriptedImporter:
         y: 1
         width: 171
         height: 60
-      spriteId: 93c6a201333489043ad37d4928159666
-    - name: Frame_4
+      spriteId: 8f6a000948d54d9488bffae3c319c531
+    - name: car_Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -275,7 +274,7 @@ ScriptedImporter:
         y: 1
         width: 171
         height: 60
-      spriteId: 793943f8225116a43b69d866362c641b
+      spriteId: 32b4c76bcee3a114c865a9f7746491d8
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -295,4 +294,3 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 184, y: 68}
-  previousTextureSize: {x: 256, y: 512}

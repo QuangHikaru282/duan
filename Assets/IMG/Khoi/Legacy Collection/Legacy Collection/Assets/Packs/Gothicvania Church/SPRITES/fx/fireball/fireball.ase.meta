@@ -8,7 +8,6 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
-  importerVersion: 1
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -122,7 +121,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Frame_0
+  - name: fireball_Frame_0
     originalName: 
     pivot: {x: 0.55, y: -0.09090909}
     alignment: 9
@@ -133,7 +132,7 @@ ScriptedImporter:
       y: 33
       width: 20
       height: 22
-    spriteID: 570cd9a0d8fec674dae095755543855e
+    spriteID: 016ed730fbbdadd4b8d2a66037e13f96
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,7 +141,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 33}
-  - name: Frame_1
+  - name: fireball_Frame_1
     originalName: 
     pivot: {x: 0.47368422, y: -0.08695652}
     alignment: 9
@@ -153,7 +152,7 @@ ScriptedImporter:
       y: 33
       width: 19
       height: 23
-    spriteID: 17b7344a52ec44943b047e71232b493a
+    spriteID: 4846a0196f451d7439ecfd35d1def9b4
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -162,7 +161,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 32, y: 33}
-  - name: Frame_2
+  - name: fireball_Frame_2
     originalName: 
     pivot: {x: 0.47826087, y: -0.095238104}
     alignment: 9
@@ -173,7 +172,7 @@ ScriptedImporter:
       y: 4
       width: 23
       height: 21
-    spriteID: 080e7b4a5bd161247bf3f34495c668ac
+    spriteID: 269b0a0a4ffc15d4e9185b30eaaf380a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -185,13 +184,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -911155725
+    guid: -951569961
     name: fireball
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Frame_0
+    - name: fireball_Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -199,8 +198,8 @@ ScriptedImporter:
         y: 2
         width: 20
         height: 22
-      spriteId: 570cd9a0d8fec674dae095755543855e
-    - name: Frame_1
+      spriteId: 016ed730fbbdadd4b8d2a66037e13f96
+    - name: fireball_Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -208,8 +207,8 @@ ScriptedImporter:
         y: 2
         width: 19
         height: 23
-      spriteId: 17b7344a52ec44943b047e71232b493a
-    - name: Frame_2
+      spriteId: 4846a0196f451d7439ecfd35d1def9b4
+    - name: fireball_Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -217,7 +216,7 @@ ScriptedImporter:
         y: 2
         width: 23
         height: 21
-      spriteId: 080e7b4a5bd161247bf3f34495c668ac
+      spriteId: 269b0a0a4ffc15d4e9185b30eaaf380a
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -237,4 +236,3 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 26, y: 26}
-  previousTextureSize: {x: 64, y: 64}

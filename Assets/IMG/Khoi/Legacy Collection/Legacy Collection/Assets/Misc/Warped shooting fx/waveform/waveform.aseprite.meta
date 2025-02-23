@@ -8,7 +8,6 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
-  importerVersion: 1
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -122,7 +121,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Frame_0
+  - name: waveform_Frame_0
     originalName: 
     pivot: {x: 0.40769228, y: -0.083333336}
     alignment: 9
@@ -133,7 +132,7 @@ ScriptedImporter:
       y: 106
       width: 65
       height: 24
-    spriteID: a8f2d85e53702f24894aae94621c8cf0
+    spriteID: c0530fda3e7bcd944b1c3108c6c275d4
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,7 +141,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 106}
-  - name: Frame_1
+  - name: waveform_Frame_1
     originalName: 
     pivot: {x: 0.50625, y: -0.11111111}
     alignment: 9
@@ -153,7 +152,7 @@ ScriptedImporter:
       y: 4
       width: 80
       height: 27
-    spriteID: c2492132c2655a041b7f167cc99aed5a
+    spriteID: 7d07c401ab8ebd4478c5f2e88c0abf90
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -162,7 +161,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Frame_2
+  - name: waveform_Frame_2
     originalName: 
     pivot: {x: 0.47333336, y: -0.037037037}
     alignment: 9
@@ -173,7 +172,7 @@ ScriptedImporter:
       y: 39
       width: 75
       height: 27
-    spriteID: 888369c85afc3fb499ff4744b4945943
+    spriteID: 0b474917940614d4d90269db58c891c5
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -182,7 +181,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 39}
-  - name: Frame_3
+  - name: waveform_Frame_3
     originalName: 
     pivot: {x: 0.5123457, y: -0.25}
     alignment: 9
@@ -193,7 +192,7 @@ ScriptedImporter:
       y: 74
       width: 81
       height: 24
-    spriteID: 2a771dd0f02cadb4e8b43ae1d2f51d5d
+    spriteID: 4ed4d89360e00c34abd93fc2989ffcc0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -205,13 +204,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1349299105
+    guid: 1199167315
     name: waveform
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Frame_0
+    - name: waveform_Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -219,8 +218,8 @@ ScriptedImporter:
         y: 2
         width: 65
         height: 24
-      spriteId: a8f2d85e53702f24894aae94621c8cf0
-    - name: Frame_1
+      spriteId: c0530fda3e7bcd944b1c3108c6c275d4
+    - name: waveform_Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -228,8 +227,8 @@ ScriptedImporter:
         y: 3
         width: 80
         height: 27
-      spriteId: c2492132c2655a041b7f167cc99aed5a
-    - name: Frame_2
+      spriteId: 7d07c401ab8ebd4478c5f2e88c0abf90
+    - name: waveform_Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -237,8 +236,8 @@ ScriptedImporter:
         y: 1
         width: 75
         height: 27
-      spriteId: 888369c85afc3fb499ff4744b4945943
-    - name: Frame_3
+      spriteId: 0b474917940614d4d90269db58c891c5
+    - name: waveform_Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -246,7 +245,7 @@ ScriptedImporter:
         y: 6
         width: 81
         height: 24
-      spriteId: 2a771dd0f02cadb4e8b43ae1d2f51d5d
+      spriteId: 4ed4d89360e00c34abd93fc2989ffcc0
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -266,4 +265,3 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 95, y: 32}
-  previousTextureSize: {x: 128, y: 256}

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8498805069576925740}
   - component: {fileID: 4641329636389137380}
   - component: {fileID: 9015986428072062718}
+  - component: {fileID: 8782831597232330875}
   m_Layer: 8
   m_Name: Witch
   m_TagString: Enemy
@@ -79,7 +80,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 639351157
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: -1037947981, guid: a42dd874114840641a6abaebe7f9a112, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -231,7 +232,21 @@ MonoBehaviour:
   - {fileID: 8595014721742156394, guid: 7acd461bbf0a0a849902fefffd4c0a4e, type: 3}
   - {fileID: 380629376001808881, guid: 3cfb417f6a93e3b4c92c5b227f3e55a2, type: 3}
   dropChance: 0.7
-  spawnOffset: 1
+  spawnOffset: 0
+--- !u!114 &8782831597232330875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632722150886002613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6a83182788ff114bb215b152761b55b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  burnEffectPrefab: {fileID: 7203417775670867246, guid: 3a8040a652d6c264eb4d85855e0da9fa,
+    type: 3}
 --- !u!1 &5782277662620225187
 GameObject:
   m_ObjectHideFlags: 0

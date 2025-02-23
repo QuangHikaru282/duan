@@ -287,8 +287,18 @@ public class GoblinNormal : MonoBehaviour, IEnemy
             healthBar.value = currentHealth;
 
         ShowHitEffect(dmgType, attackDir);
-        animator.SetTrigger("HurtTrigger");
-        isHurt = true;
+        if (dmgType == "DOT")
+        {
+            isHurt = true;
+            animator.SetTrigger("DotHurtTrigger");
+            // Anim ngắn, quái vẫn di chuyển
+        }
+        else
+        {
+            isHurt = true;
+            animator.SetTrigger("HurtTrigger");
+            // Quái bị cứng ngắn
+        }        
 
         if (currentHealth <= 0)
             Die();

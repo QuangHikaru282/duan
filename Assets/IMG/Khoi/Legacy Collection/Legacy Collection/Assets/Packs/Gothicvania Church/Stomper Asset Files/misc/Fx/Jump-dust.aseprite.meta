@@ -8,7 +8,6 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
-  importerVersion: 1
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -122,7 +121,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Frame_0
+  - name: Jump-dust_Frame_0
     originalName: 
     pivot: {x: 0.125, y: 0}
     alignment: 9
@@ -133,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 16
       height: 29
-    spriteID: da4de0fd45b339c48926b32b638aa22b
+    spriteID: 0eb3b5cd9460b354fad585f5216c3970
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,7 +141,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Frame_1
+  - name: Jump-dust_Frame_1
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -153,7 +152,7 @@ ScriptedImporter:
       y: 25
       width: 12
       height: 11
-    spriteID: bc0414e79de4c0e4bac0b9d1bddf936f
+    spriteID: 031424178cd28884caa5c6a1230856fd
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -162,7 +161,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 28, y: 25}
-  - name: Frame_2
+  - name: Jump-dust_Frame_2
     originalName: 
     pivot: {x: 0.5625, y: 0}
     alignment: 9
@@ -173,7 +172,7 @@ ScriptedImporter:
       y: 41
       width: 16
       height: 14
-    spriteID: b81b7c289b6dcf74d9f5127a7e9eada9
+    spriteID: 4bd16303eb40d1f4487c1918ccdd7ea3
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -182,7 +181,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 41}
-  - name: Frame_3
+  - name: Jump-dust_Frame_3
     originalName: 
     pivot: {x: 0.5294118, y: 0}
     alignment: 9
@@ -193,7 +192,7 @@ ScriptedImporter:
       y: 4
       width: 17
       height: 13
-    spriteID: e99a2cc81f576b54e9f9ea2c4cb7d30d
+    spriteID: b884c273d3203614da7602d28396c1ff
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -205,13 +204,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1118774239
+    guid: -1771741395
     name: Jump-dust
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Frame_0
+    - name: Jump-dust_Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -219,8 +218,8 @@ ScriptedImporter:
         y: 0
         width: 16
         height: 29
-      spriteId: da4de0fd45b339c48926b32b638aa22b
-    - name: Frame_1
+      spriteId: 0eb3b5cd9460b354fad585f5216c3970
+    - name: Jump-dust_Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -228,8 +227,8 @@ ScriptedImporter:
         y: 0
         width: 12
         height: 11
-      spriteId: bc0414e79de4c0e4bac0b9d1bddf936f
-    - name: Frame_2
+      spriteId: 031424178cd28884caa5c6a1230856fd
+    - name: Jump-dust_Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -237,8 +236,8 @@ ScriptedImporter:
         y: 0
         width: 16
         height: 14
-      spriteId: b81b7c289b6dcf74d9f5127a7e9eada9
-    - name: Frame_3
+      spriteId: 4bd16303eb40d1f4487c1918ccdd7ea3
+    - name: Jump-dust_Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -246,7 +245,7 @@ ScriptedImporter:
         y: 0
         width: 17
         height: 13
-      spriteId: e99a2cc81f576b54e9f9ea2c4cb7d30d
+      spriteId: b884c273d3203614da7602d28396c1ff
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -266,4 +265,3 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 32, y: 16}
-  previousTextureSize: {x: 64, y: 64}

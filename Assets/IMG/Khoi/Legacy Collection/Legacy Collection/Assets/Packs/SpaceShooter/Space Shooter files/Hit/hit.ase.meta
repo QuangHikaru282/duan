@@ -8,7 +8,6 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
-  importerVersion: 1
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -122,7 +121,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Frame_0
+  - name: hit_Frame_0
     originalName: 
     pivot: {x: 0.5, y: -0.5}
     alignment: 9
@@ -133,7 +132,7 @@ ScriptedImporter:
       y: 49
       width: 8
       height: 8
-    spriteID: 769feb41a5ce04d41b190d35b45873e5
+    spriteID: 6eef30b9b2b4bf147867a56ba999c5d0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,7 +141,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 49}
-  - name: Frame_1
+  - name: hit_Frame_1
     originalName: 
     pivot: {x: 0.5, y: -0.071428575}
     alignment: 9
@@ -153,7 +152,7 @@ ScriptedImporter:
       y: 27
       width: 14
       height: 14
-    spriteID: 49b7008ebb409754ba69aeaaf78d33f5
+    spriteID: d1deac31a6a5b06498ac5092cf54e70c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -162,7 +161,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 27}
-  - name: Frame_2
+  - name: hit_Frame_2
     originalName: 
     pivot: {x: 0.5, y: -0.071428575}
     alignment: 9
@@ -173,7 +172,7 @@ ScriptedImporter:
       y: 4
       width: 14
       height: 14
-    spriteID: 13f1182524b66a242935c441dfc2260f
+    spriteID: c35308c8732008c4abba2ea0bb0f6b84
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -182,7 +181,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 27, y: 4}
-  - name: Frame_3
+  - name: hit_Frame_3
     originalName: 
     pivot: {x: 0.4666667, y: 0}
     alignment: 9
@@ -193,7 +192,7 @@ ScriptedImporter:
       y: 4
       width: 15
       height: 15
-    spriteID: b7a101e72a3a96c469613a1894202d6b
+    spriteID: f884b01ae0bd0484390ad2d337df40fa
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -205,13 +204,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 339799189
+    guid: 1756291857
     name: hit
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Frame_0
+    - name: hit_Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -219,8 +218,8 @@ ScriptedImporter:
         y: 4
         width: 8
         height: 8
-      spriteId: 769feb41a5ce04d41b190d35b45873e5
-    - name: Frame_1
+      spriteId: 6eef30b9b2b4bf147867a56ba999c5d0
+    - name: hit_Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -228,8 +227,8 @@ ScriptedImporter:
         y: 1
         width: 14
         height: 14
-      spriteId: 49b7008ebb409754ba69aeaaf78d33f5
-    - name: Frame_2
+      spriteId: d1deac31a6a5b06498ac5092cf54e70c
+    - name: hit_Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -237,8 +236,8 @@ ScriptedImporter:
         y: 1
         width: 14
         height: 14
-      spriteId: 13f1182524b66a242935c441dfc2260f
-    - name: Frame_3
+      spriteId: c35308c8732008c4abba2ea0bb0f6b84
+    - name: hit_Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -246,7 +245,7 @@ ScriptedImporter:
         y: 0
         width: 15
         height: 15
-      spriteId: b7a101e72a3a96c469613a1894202d6b
+      spriteId: f884b01ae0bd0484390ad2d337df40fa
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -266,4 +265,3 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 16, y: 16}
-  previousTextureSize: {x: 64, y: 64}

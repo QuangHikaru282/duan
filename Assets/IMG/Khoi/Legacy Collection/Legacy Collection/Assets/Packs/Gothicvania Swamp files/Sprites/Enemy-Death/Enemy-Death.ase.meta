@@ -8,7 +8,6 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
-  importerVersion: 1
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -122,7 +121,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Frame_0
+  - name: Enemy-Death_Frame_0
     originalName: 
     pivot: {x: 0.5322581, y: -0.021739129}
     alignment: 9
@@ -133,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 31
       height: 46
-    spriteID: 2021d6a588c397d4bba156bf209b9dc2
+    spriteID: 6431b7edb049b0c4c9671d5136d3c85b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,7 +141,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 51, y: 4}
-  - name: Frame_1
+  - name: Enemy-Death_Frame_1
     originalName: 
     pivot: {x: 0.55, y: -0.022727273}
     alignment: 9
@@ -153,7 +152,7 @@ ScriptedImporter:
       y: 58
       width: 30
       height: 44
-    spriteID: 64002389c84d6f34ebb419fed7858a23
+    spriteID: 35bc4b5ef53b1fc4ca810a540188e2b8
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -162,7 +161,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 51, y: 58}
-  - name: Frame_2
+  - name: Enemy-Death_Frame_2
     originalName: 
     pivot: {x: 0.48684213, y: 0}
     alignment: 9
@@ -173,7 +172,7 @@ ScriptedImporter:
       y: 173
       width: 38
       height: 48
-    spriteID: db02be04ccb1f9942a079b430b1a2b8e
+    spriteID: 21ca8e23b1abc0c43ada3ed201f383f7
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -182,7 +181,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 173}
-  - name: Frame_3
+  - name: Enemy-Death_Frame_3
     originalName: 
     pivot: {x: 0.5131579, y: 0}
     alignment: 9
@@ -193,7 +192,7 @@ ScriptedImporter:
       y: 61
       width: 38
       height: 49
-    spriteID: 4bf854e8de2f42c4bbf867eb043088fd
+    spriteID: 58b0939eb8273804082ded0d61e6663f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -202,7 +201,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 61}
-  - name: Frame_4
+  - name: Enemy-Death_Frame_4
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -213,7 +212,7 @@ ScriptedImporter:
       y: 4
       width: 39
       height: 49
-    spriteID: 0207aeb6816f58a498bcfe5c654cfd73
+    spriteID: 4f648ea382f50fc42bcca10b38e53953
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -222,7 +221,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Frame_5
+  - name: Enemy-Death_Frame_5
     originalName: 
     pivot: {x: 0.5, y: -0.04255319}
     alignment: 9
@@ -233,7 +232,7 @@ ScriptedImporter:
       y: 118
       width: 39
       height: 47
-    spriteID: d68bb40711fbde04dbebd20032ce96fd
+    spriteID: a1e8481843fa14f4cb24f2b6e8129d03
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -245,13 +244,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -969008269
+    guid: 1850773847
     name: Enemy-Death
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Frame_0
+    - name: Enemy-Death_Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -259,8 +258,8 @@ ScriptedImporter:
         y: 1
         width: 31
         height: 46
-      spriteId: 2021d6a588c397d4bba156bf209b9dc2
-    - name: Frame_1
+      spriteId: 6431b7edb049b0c4c9671d5136d3c85b
+    - name: Enemy-Death_Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -268,8 +267,8 @@ ScriptedImporter:
         y: 1
         width: 30
         height: 44
-      spriteId: 64002389c84d6f34ebb419fed7858a23
-    - name: Frame_2
+      spriteId: 35bc4b5ef53b1fc4ca810a540188e2b8
+    - name: Enemy-Death_Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -277,8 +276,8 @@ ScriptedImporter:
         y: 0
         width: 38
         height: 48
-      spriteId: db02be04ccb1f9942a079b430b1a2b8e
-    - name: Frame_3
+      spriteId: 21ca8e23b1abc0c43ada3ed201f383f7
+    - name: Enemy-Death_Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -286,8 +285,8 @@ ScriptedImporter:
         y: 0
         width: 38
         height: 49
-      spriteId: 4bf854e8de2f42c4bbf867eb043088fd
-    - name: Frame_4
+      spriteId: 58b0939eb8273804082ded0d61e6663f
+    - name: Enemy-Death_Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -295,8 +294,8 @@ ScriptedImporter:
         y: 0
         width: 39
         height: 49
-      spriteId: 0207aeb6816f58a498bcfe5c654cfd73
-    - name: Frame_5
+      spriteId: 4f648ea382f50fc42bcca10b38e53953
+    - name: Enemy-Death_Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -304,7 +303,7 @@ ScriptedImporter:
         y: 2
         width: 39
         height: 47
-      spriteId: d68bb40711fbde04dbebd20032ce96fd
+      spriteId: a1e8481843fa14f4cb24f2b6e8129d03
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -324,4 +323,3 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 39, y: 49}
-  previousTextureSize: {x: 128, y: 256}

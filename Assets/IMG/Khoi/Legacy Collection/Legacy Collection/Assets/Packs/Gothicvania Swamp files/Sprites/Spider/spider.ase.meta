@@ -8,7 +8,6 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
-  importerVersion: 1
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -122,7 +121,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Frame_0
+  - name: spider_Frame_0
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -133,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 28
       height: 19
-    spriteID: f977260716cb51940afbd8876d3cf6de
+    spriteID: a6c2b304f2e229447b0893609a0905f9
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,7 +141,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Frame_1
+  - name: spider_Frame_1
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -153,7 +152,7 @@ ScriptedImporter:
       y: 57
       width: 24
       height: 19
-    spriteID: 0a3a3ec227f426f468aadd269b21e9a8
+    spriteID: 10bf4822b11503149a6e350030e6951c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -162,7 +161,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 57}
-  - name: Frame_2
+  - name: spider_Frame_2
     originalName: 
     pivot: {x: 0.5909091, y: 0}
     alignment: 9
@@ -173,7 +172,7 @@ ScriptedImporter:
       y: 84
       width: 22
       height: 19
-    spriteID: c831f2b83475dfb43a9a7621fab9ca6b
+    spriteID: 8b8b7557d0364954d9500abc5546be67
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -182,7 +181,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 84}
-  - name: Frame_3
+  - name: spider_Frame_3
     originalName: 
     pivot: {x: 0.5357143, y: 0}
     alignment: 9
@@ -193,7 +192,7 @@ ScriptedImporter:
       y: 31
       width: 28
       height: 18
-    spriteID: b9129f8cc0a67d64a8abca700ec95769
+    spriteID: 4e343db93bd3a14409ef6a5c242a4aa5
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -205,13 +204,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1056307671
+    guid: 1552649621
     name: spider
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Frame_0
+    - name: spider_Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -219,8 +218,8 @@ ScriptedImporter:
         y: 0
         width: 28
         height: 19
-      spriteId: f977260716cb51940afbd8876d3cf6de
-    - name: Frame_1
+      spriteId: a6c2b304f2e229447b0893609a0905f9
+    - name: spider_Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -228,8 +227,8 @@ ScriptedImporter:
         y: 0
         width: 24
         height: 19
-      spriteId: 0a3a3ec227f426f468aadd269b21e9a8
-    - name: Frame_2
+      spriteId: 10bf4822b11503149a6e350030e6951c
+    - name: spider_Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -237,8 +236,8 @@ ScriptedImporter:
         y: 0
         width: 22
         height: 19
-      spriteId: c831f2b83475dfb43a9a7621fab9ca6b
-    - name: Frame_3
+      spriteId: 8b8b7557d0364954d9500abc5546be67
+    - name: spider_Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -246,7 +245,7 @@ ScriptedImporter:
         y: 0
         width: 28
         height: 18
-      spriteId: b9129f8cc0a67d64a8abca700ec95769
+      spriteId: 4e343db93bd3a14409ef6a5c242a4aa5
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -266,4 +265,3 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 32, y: 21}
-  previousTextureSize: {x: 64, y: 128}

@@ -8,7 +8,6 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
-  importerVersion: 1
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -122,7 +121,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Frame_0
+  - name: vehicle-1_Frame_0
     originalName: 
     pivot: {x: 0.5234899, y: -0.19672132}
     alignment: 9
@@ -133,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 149
       height: 61
-    spriteID: 79b9394ae399b194995afa569f4fb7ce
+    spriteID: d4b7683215ec72141a5b555d662a5847
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,7 +141,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Frame_1
+  - name: vehicle-1_Frame_1
     originalName: 
     pivot: {x: 0.48175183, y: -0.2}
     alignment: 9
@@ -153,7 +152,7 @@ ScriptedImporter:
       y: 141
       width: 137
       height: 60
-    spriteID: e442539e79a3ed34e8830a85a4093819
+    spriteID: 3eb1f1fd3a3cc5a4b87460e0069b21b1
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -162,7 +161,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 141}
-  - name: Frame_2
+  - name: vehicle-1_Frame_2
     originalName: 
     pivot: {x: 0.5298013, y: -0.2}
     alignment: 9
@@ -173,7 +172,7 @@ ScriptedImporter:
       y: 73
       width: 151
       height: 60
-    spriteID: 5106adb35e946ea4aab385dc7c19f891
+    spriteID: 447ec676ac41056498ebba57e0c33969
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -185,13 +184,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1330733684
+    guid: 20295140
     name: vehicle-1
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Frame_0
+    - name: vehicle-1_Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -199,8 +198,8 @@ ScriptedImporter:
         y: 12
         width: 149
         height: 61
-      spriteId: 79b9394ae399b194995afa569f4fb7ce
-    - name: Frame_1
+      spriteId: d4b7683215ec72141a5b555d662a5847
+    - name: vehicle-1_Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -208,8 +207,8 @@ ScriptedImporter:
         y: 12
         width: 137
         height: 60
-      spriteId: e442539e79a3ed34e8830a85a4093819
-    - name: Frame_2
+      spriteId: 3eb1f1fd3a3cc5a4b87460e0069b21b1
+    - name: vehicle-1_Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -217,7 +216,7 @@ ScriptedImporter:
         y: 12
         width: 151
         height: 60
-      spriteId: 5106adb35e946ea4aab385dc7c19f891
+      spriteId: 447ec676ac41056498ebba57e0c33969
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -237,4 +236,3 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 176, y: 96}
-  previousTextureSize: {x: 256, y: 256}

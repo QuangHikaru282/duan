@@ -8,7 +8,6 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
-  importerVersion: 1
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -122,7 +121,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Frame_0
+  - name: explosion_Frame_0
     originalName: 
     pivot: {x: 0.5, y: -1.1}
     alignment: 9
@@ -133,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 10
       height: 10
-    spriteID: 322f57779d7e082499cd2cf0586b9afe
+    spriteID: f48bef41466efca4d930ccd78e281ee7
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,7 +141,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 114, y: 4}
-  - name: Frame_1
+  - name: explosion_Frame_1
     originalName: 
     pivot: {x: 0.48, y: -0.03846154}
     alignment: 9
@@ -153,7 +152,7 @@ ScriptedImporter:
       y: 39
       width: 25
       height: 26
-    spriteID: 6cccdcc81e0aace4581c4c95987e4b2a
+    spriteID: 1ca88cebdd157e646be58db3a85ef5c2
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -162,7 +161,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 39}
-  - name: Frame_2
+  - name: explosion_Frame_2
     originalName: 
     pivot: {x: 0.51724136, y: -0.074074075}
     alignment: 9
@@ -173,7 +172,7 @@ ScriptedImporter:
       y: 4
       width: 29
       height: 27
-    spriteID: d1b354d2ea5f7dc48a8933d5892a7159
+    spriteID: 007724e35b7268f49aa4090feb288883
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -182,7 +181,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Frame_3
+  - name: explosion_Frame_3
     originalName: 
     pivot: {x: 0.4827586, y: -0.074074075}
     alignment: 9
@@ -193,7 +192,7 @@ ScriptedImporter:
       y: 4
       width: 29
       height: 27
-    spriteID: 05f5e44d9dd68814a82000df820289c4
+    spriteID: d173c8b0b548c224789314b9174ffd81
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -202,7 +201,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 41, y: 4}
-  - name: Frame_4
+  - name: explosion_Frame_4
     originalName: 
     pivot: {x: 0.5, y: -0.074074075}
     alignment: 9
@@ -213,7 +212,7 @@ ScriptedImporter:
       y: 4
       width: 28
       height: 27
-    spriteID: fdaa2ce9a5a20e244851ca687d9e1bfc
+    spriteID: 74db29b76df6ca24484f3c85ef5c4525
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -225,13 +224,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 339848825
+    guid: 1775997349
     name: explosion
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Frame_0
+    - name: explosion_Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -239,8 +238,8 @@ ScriptedImporter:
         y: 11
         width: 10
         height: 10
-      spriteId: 322f57779d7e082499cd2cf0586b9afe
-    - name: Frame_1
+      spriteId: f48bef41466efca4d930ccd78e281ee7
+    - name: explosion_Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -248,8 +247,8 @@ ScriptedImporter:
         y: 1
         width: 25
         height: 26
-      spriteId: 6cccdcc81e0aace4581c4c95987e4b2a
-    - name: Frame_2
+      spriteId: 1ca88cebdd157e646be58db3a85ef5c2
+    - name: explosion_Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -257,8 +256,8 @@ ScriptedImporter:
         y: 2
         width: 29
         height: 27
-      spriteId: d1b354d2ea5f7dc48a8933d5892a7159
-    - name: Frame_3
+      spriteId: 007724e35b7268f49aa4090feb288883
+    - name: explosion_Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -266,8 +265,8 @@ ScriptedImporter:
         y: 2
         width: 29
         height: 27
-      spriteId: 05f5e44d9dd68814a82000df820289c4
-    - name: Frame_4
+      spriteId: d173c8b0b548c224789314b9174ffd81
+    - name: explosion_Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -275,7 +274,7 @@ ScriptedImporter:
         y: 2
         width: 28
         height: 27
-      spriteId: fdaa2ce9a5a20e244851ca687d9e1bfc
+      spriteId: 74db29b76df6ca24484f3c85ef5c4525
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -295,4 +294,3 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 32, y: 32}
-  previousTextureSize: {x: 128, y: 128}

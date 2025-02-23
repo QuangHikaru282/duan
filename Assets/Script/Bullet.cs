@@ -65,7 +65,6 @@ public class Bullet : MonoBehaviour
             // Chạm sàn hoặc chướng ngại => hủy đạn
             Destroy(gameObject);
         }
-        // Ngược lại, nếu collider không phải Enemy / Ground / Obstacle:
-        // => không hủy đạn, cho nó bay xuyên
+
     }
 }

@@ -8,7 +8,6 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
-  importerVersion: 1
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -122,7 +121,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Frame_0
+  - name: bolt_Frame_0
     originalName: 
     pivot: {x: 0.4810126, y: 0.33333334}
     alignment: 9
@@ -133,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 79
       height: 60
-    spriteID: 25e74f76b60762d48ad3973c614adaab
+    spriteID: 9f5e97a06ec9b024685825b4a0ce29f0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,7 +141,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Frame_1
+  - name: bolt_Frame_1
     originalName: 
     pivot: {x: 0.4810126, y: 0.33333334}
     alignment: 9
@@ -153,7 +152,7 @@ ScriptedImporter:
       y: 4
       width: 79
       height: 60
-    spriteID: 066587260e857e54fb9354c91da478df
+    spriteID: 916ccf11f88bcd747bc8569ece5c29b2
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -162,7 +161,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 91, y: 4}
-  - name: Frame_2
+  - name: bolt_Frame_2
     originalName: 
     pivot: {x: 0.4810126, y: 0.33333334}
     alignment: 9
@@ -173,7 +172,7 @@ ScriptedImporter:
       y: 72
       width: 79
       height: 60
-    spriteID: f4af64f7bf9403949be883298f5cd6f2
+    spriteID: b5959fd3b7f849348a505130f9181c2c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -182,7 +181,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 72}
-  - name: Frame_3
+  - name: bolt_Frame_3
     originalName: 
     pivot: {x: 0.4810126, y: 0.33333334}
     alignment: 9
@@ -193,7 +192,7 @@ ScriptedImporter:
       y: 72
       width: 79
       height: 60
-    spriteID: d0247564b3e7b4549a251064998c0400
+    spriteID: 4ade5c69e20bac949b22e5644d767e26
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -205,13 +204,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -864299647
+    guid: 470423821
     name: bolt
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Frame_0
+    - name: bolt_Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -219,8 +218,8 @@ ScriptedImporter:
         y: -20
         width: 79
         height: 60
-      spriteId: 25e74f76b60762d48ad3973c614adaab
-    - name: Frame_1
+      spriteId: 9f5e97a06ec9b024685825b4a0ce29f0
+    - name: bolt_Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -228,8 +227,8 @@ ScriptedImporter:
         y: -20
         width: 79
         height: 60
-      spriteId: 066587260e857e54fb9354c91da478df
-    - name: Frame_2
+      spriteId: 916ccf11f88bcd747bc8569ece5c29b2
+    - name: bolt_Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -237,8 +236,8 @@ ScriptedImporter:
         y: -20
         width: 79
         height: 60
-      spriteId: f4af64f7bf9403949be883298f5cd6f2
-    - name: Frame_3
+      spriteId: b5959fd3b7f849348a505130f9181c2c
+    - name: bolt_Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -246,7 +245,7 @@ ScriptedImporter:
         y: -20
         width: 79
         height: 60
-      spriteId: d0247564b3e7b4549a251064998c0400
+      spriteId: 4ade5c69e20bac949b22e5644d767e26
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -266,4 +265,3 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 48, y: 32}
-  previousTextureSize: {x: 256, y: 256}

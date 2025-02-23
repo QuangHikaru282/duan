@@ -8,7 +8,6 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
-  importerVersion: 1
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -122,7 +121,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Frame_0
+  - name: animated-water_Frame_0
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -133,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 16
       height: 48
-    spriteID: 44d9ac679f9e3f94693ccbff1495cba1
+    spriteID: 69a2adeec5e333a47ad13e65d2bc12b2
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,7 +141,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Frame_1
+  - name: animated-water_Frame_1
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -153,7 +152,7 @@ ScriptedImporter:
       y: 60
       width: 16
       height: 48
-    spriteID: 20762287b24227c45b4fe66c511e8fed
+    spriteID: a770c615f71ccc44d9b64ecdc51ae923
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -162,7 +161,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 60}
-  - name: Frame_2
+  - name: animated-water_Frame_2
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -173,7 +172,7 @@ ScriptedImporter:
       y: 4
       width: 16
       height: 48
-    spriteID: 9066ada21d0eebf4cad5efbeae8f9ef7
+    spriteID: 8bc84e857b032814db64496e01a271de
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -182,7 +181,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 28, y: 4}
-  - name: Frame_3
+  - name: animated-water_Frame_3
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -193,7 +192,7 @@ ScriptedImporter:
       y: 60
       width: 16
       height: 48
-    spriteID: e1c1aba6c2f282c49a59c5d70ea28984
+    spriteID: 2f8a60002cd389a4b97612c26807ca0e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -205,13 +204,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1170151997
+    guid: -693874841
     name: animated-water
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Frame_0
+    - name: animated-water_Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -219,8 +218,8 @@ ScriptedImporter:
         y: 0
         width: 16
         height: 48
-      spriteId: 44d9ac679f9e3f94693ccbff1495cba1
-    - name: Frame_1
+      spriteId: 69a2adeec5e333a47ad13e65d2bc12b2
+    - name: animated-water_Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -228,8 +227,8 @@ ScriptedImporter:
         y: 0
         width: 16
         height: 48
-      spriteId: 20762287b24227c45b4fe66c511e8fed
-    - name: Frame_2
+      spriteId: a770c615f71ccc44d9b64ecdc51ae923
+    - name: animated-water_Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -237,8 +236,8 @@ ScriptedImporter:
         y: 0
         width: 16
         height: 48
-      spriteId: 9066ada21d0eebf4cad5efbeae8f9ef7
-    - name: Frame_3
+      spriteId: 8bc84e857b032814db64496e01a271de
+    - name: animated-water_Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -246,7 +245,7 @@ ScriptedImporter:
         y: 0
         width: 16
         height: 48
-      spriteId: e1c1aba6c2f282c49a59c5d70ea28984
+      spriteId: 2f8a60002cd389a4b97612c26807ca0e
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -266,4 +265,3 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 16, y: 60}
-  previousTextureSize: {x: 64, y: 128}

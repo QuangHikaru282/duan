@@ -194,8 +194,18 @@ public class BatNormal : MonoBehaviour, IEnemy
 
         ShowHitEffect(damageType, attackDirection);
 
-        if (animator != null) animator.SetTrigger("HurtTrigger");
-        isHurt = true;
+        if (animator != null && damageType == "DOT")
+        {
+            isHurt = true;
+            animator.SetTrigger("DotHurtTrigger");
+            // Anim ngắn, quái vẫn di chuyển
+        }
+        else
+        {
+            isHurt = true;
+            animator.SetTrigger("HurtTrigger");
+            // Quái bị cứng ngắn
+        }
 
         if (currentHealth <= 0) Die();
         else StartCoroutine(EndHurt(0.5f));

@@ -8,7 +8,6 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
-  importerVersion: 1
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -122,7 +121,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Frame_0
+  - name: flying-demon_Frame_0
     originalName: 
     pivot: {x: 0.54545456, y: -0.39285716}
     alignment: 9
@@ -133,7 +132,7 @@ ScriptedImporter:
       y: 40
       width: 22
       height: 28
-    spriteID: e365bc9117456e24f9db2f1a3bad92ce
+    spriteID: f5087967b4eca3740bbcf2ab1480f3a5
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,7 +141,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 40}
-  - name: Frame_1
+  - name: flying-demon_Frame_1
     originalName: 
     pivot: {x: 0.46428567, y: -0.42857143}
     alignment: 9
@@ -153,7 +152,7 @@ ScriptedImporter:
       y: 4
       width: 28
       height: 28
-    spriteID: ae86577fc5ecb534f89b3fe58e0c525d
+    spriteID: 618024b753a059c428ff4b63fe3cf598
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -162,7 +161,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Frame_2
+  - name: flying-demon_Frame_2
     originalName: 
     pivot: {x: 0.54545456, y: -0.45454547}
     alignment: 9
@@ -173,7 +172,7 @@ ScriptedImporter:
       y: 76
       width: 22
       height: 22
-    spriteID: d7fb4ecaa11938c44b7bd073d8330dd5
+    spriteID: f59a5c58469a03043aa04c48903ce878
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -182,7 +181,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 76}
-  - name: Frame_3
+  - name: flying-demon_Frame_3
     originalName: 
     pivot: {x: 0.46153846, y: -0.5909091}
     alignment: 9
@@ -193,7 +192,7 @@ ScriptedImporter:
       y: 40
       width: 26
       height: 22
-    spriteID: cca5ef491812bf04fb3d068d6e903f92
+    spriteID: cd8850050b334d145b70a03181d19b17
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -205,13 +204,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1093855693
+    guid: -469013225
     name: flying-demon
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Frame_0
+    - name: flying-demon_Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -219,8 +218,8 @@ ScriptedImporter:
         y: 11
         width: 22
         height: 28
-      spriteId: e365bc9117456e24f9db2f1a3bad92ce
-    - name: Frame_1
+      spriteId: f5087967b4eca3740bbcf2ab1480f3a5
+    - name: flying-demon_Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -228,8 +227,8 @@ ScriptedImporter:
         y: 12
         width: 28
         height: 28
-      spriteId: ae86577fc5ecb534f89b3fe58e0c525d
-    - name: Frame_2
+      spriteId: 618024b753a059c428ff4b63fe3cf598
+    - name: flying-demon_Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -237,8 +236,8 @@ ScriptedImporter:
         y: 10
         width: 22
         height: 22
-      spriteId: d7fb4ecaa11938c44b7bd073d8330dd5
-    - name: Frame_3
+      spriteId: f59a5c58469a03043aa04c48903ce878
+    - name: flying-demon_Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -246,7 +245,7 @@ ScriptedImporter:
         y: 13
         width: 26
         height: 22
-      spriteId: cca5ef491812bf04fb3d068d6e903f92
+      spriteId: cd8850050b334d145b70a03181d19b17
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -266,4 +265,3 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 48, y: 48}
-  previousTextureSize: {x: 64, y: 128}
