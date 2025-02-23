@@ -48,10 +48,12 @@ public class playerScript : MonoBehaviour
 
     [Header("Flamethrower")]
     public GameObject flameThrowerPrefab;   // Prefab vùng lửa (FlameThrowerZone)
+    private Vector2 originalColliderOffset;
     private GameObject flameInstance = null;
     bool isFlamethrowerActive = false;
     private bool isCastLooping = false;
     public float manaCostPerSec = 15f;
+    private float manaAccum = 0f;
 
     [Header("Key Settings")]
     public int keyCount = 0;
@@ -129,6 +131,30 @@ public class playerScript : MonoBehaviour
 
         UpdateAttackPointPosition();
 
+        // Cập nhật vị trí và hướng của flameInstance nếu tồn tại
+        if (flameInstance != null && skillShotPoint != null)
+        {
+            flameInstance.transform.position = skillShotPoint.position;
+
+            // Kiểm tra điều kiện flip dựa vào skillShotPoint (ví dụ: nếu localPosition.x < 0 => hướng trái)
+            bool flip = (skillShotPoint.localPosition.x < 0);
+
+            // Cập nhật flip cho sprite
+            SpriteRenderer flameSprite = flameInstance.GetComponent<SpriteRenderer>();
+            if (flameSprite != null)
+            {
+                flameSprite.flipX = flip;
+            }
+
+            // Cập nhật collider offset để đảm bảo box collider lật theo cùng
+            BoxCollider2D flameCollider = flameInstance.GetComponent<BoxCollider2D>();
+            if (flameCollider != null)
+            {
+                // Nếu flip thì đảo ngược giá trị offset.x, còn không thì dùng giá trị gốc
+                flameCollider.offset = new Vector2(flip ? -originalColliderOffset.x : originalColliderOffset.x, originalColliderOffset.y);
+            }
+        }
+
         if (transform.position.y < fallThresholdY)
         {
             currentHealth = 0;
@@ -136,6 +162,7 @@ public class playerScript : MonoBehaviour
             Die();
         }
     }
+
 
     void FixedUpdate()
     {
@@ -286,13 +313,50 @@ public class playerScript : MonoBehaviour
         Instantiate(homingBulletPrefab, skillShotPoint.position, skillShotPoint.rotation);
     }
 
+    // Đặt các biến này ở đầu class, ví dụ:
+
+
     public void OnCastSpawnFlamethrower()
     {
         if (flameThrowerPrefab == null) return;
-        // Nếu đã tồn tại flameInstance thì không spawn thêm
         if (flameInstance != null) return;
 
-        flameInstance = Instantiate(flameThrowerPrefab, skillShotPoint.position, skillShotPoint.rotation, this.transform);
+        flameInstance = Instantiate(flameThrowerPrefab, skillShotPoint.position, Quaternion.identity);
+
+        BoxCollider2D flameCollider = flameInstance.GetComponent<BoxCollider2D>();
+        if (flameCollider != null)
+        {
+            originalColliderOffset = flameCollider.offset;
+        }
+    }
+
+
+
+
+
+    bool ConsumeFlameMana()
+    {
+        float dt = Time.deltaTime;
+        float manaToAdd = manaCostPerSec * dt;
+        manaAccum += manaToAdd; // tích lũy dần
+
+        // Số mana integer sẽ trừ lần này:
+        int manaToConsume = Mathf.FloorToInt(manaAccum);
+
+        if (manaToConsume > 0)
+        {
+            // Trừ mana
+            bool success = SkillManager.Instance.UseMana(manaToConsume);
+            if (!success)
+            {
+                // Không đủ mana để trừ => tắt skill
+                return false;
+            }
+            // Giảm bớt trong "kho" tạm
+            manaAccum -= manaToConsume;
+        }
+
+        return true;
     }
 
 
@@ -311,12 +375,7 @@ public class playerScript : MonoBehaviour
         
     }
 
-    bool ConsumeFlameMana()
-    {
-        float dt = Time.deltaTime;
-        int cost = Mathf.FloorToInt(manaCostPerSec * dt);
-        return SkillManager.Instance.UseMana(cost);
-    }
+    
 
     // ------------------------ Group 4: Các hàm nhận sát thương, die và respawn ------------------------
     public void TakeDamage(int damage)

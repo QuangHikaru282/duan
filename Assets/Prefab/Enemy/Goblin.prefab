@@ -341,7 +341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e91fcc6a1e6e9748a44ac0d5b543c6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 100
   healthBar: {fileID: 1678934242339855294}
   enablePatrol: 1
   speed: 2
@@ -607,12 +607,12 @@ PrefabInstance:
     - target: {fileID: 9113194238188284092, guid: abdeb6ad9447d9147bc92428ebef7456,
         type: 3}
       propertyPath: m_Value
-      value: 3
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 9113194238188284092, guid: abdeb6ad9447d9147bc92428ebef7456,
         type: 3}
       propertyPath: m_MaxValue
-      value: 3
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
