@@ -2985,6 +2985,18 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &112864658 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1113211473581028024, guid: b14cb57dca062314984993ac85507a92,
+    type: 3}
+  m_PrefabInstance: {fileID: 3838444668405295292}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &114189338
 GameObject:
   m_ObjectHideFlags: 0
@@ -27277,6 +27289,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3838444668405295292}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &999043400 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5085567891975155602, guid: b14cb57dca062314984993ac85507a92,
+    type: 3}
+  m_PrefabInstance: {fileID: 3838444668405295292}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1018622638
 GameObject:
   m_ObjectHideFlags: 0
@@ -52046,6 +52070,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: LogicManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7481983218929678788, guid: d98b35bc3baa05e4282650b68c239755,
+        type: 3}
+      propertyPath: manaText
+      value: 
+      objectReference: {fileID: 999043400}
+    - target: {fileID: 7481983218929678788, guid: d98b35bc3baa05e4282650b68c239755,
+        type: 3}
+      propertyPath: manaSlider
+      value: 
+      objectReference: {fileID: 112864658}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
