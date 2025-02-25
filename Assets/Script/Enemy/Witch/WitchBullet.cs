@@ -6,7 +6,7 @@ public class WitchBullet : MonoBehaviour
     [Header("Bullet Settings")]
     public float speed = 5f;       // Tốc độ bay của đạn
     public float lifeTime = 5f;     // Thời gian tồn tại của đạn trước khi tự hủy
-    public int damage = 0;          // Sát thương của đạn
+    public int damage = 3;          // Sát thương của đạn
 
 
     private SpriteRenderer spriteRenderer;

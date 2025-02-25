@@ -21,6 +21,11 @@ public class BatNormal : MonoBehaviour, IEnemy
     private Vector2 pointA;            // Vị trí gốc (Point A)
     private Vector2 currentTarget;     // Mục tiêu di chuyển (có thể là pointA hoặc pointB)
 
+    private Transform chaseTarget;      // Target trung gian cho chase
+    private Transform chasePlayerTarget;  // Lưu lại tham chiếu đến player mà bat đang theo dõi
+    private Vector2 chaseOffset;          // Offset ngẫu nhiên
+    private Vector2 offset;
+
     private Rigidbody2D rb;
     private Collider2D enemyCollider;
     private SpriteRenderer spriteRenderer;
@@ -112,18 +117,23 @@ public class BatNormal : MonoBehaviour, IEnemy
         if (isDead) return;
         if (isHurt) return;
 
+        // Nếu bat đang chase, cập nhật vị trí của chaseTarget
+        if (isChasing && chaseTarget != null && chasePlayerTarget != null)
+        {
+            
+            chaseTarget.position = new Vector3(chasePlayerTarget.position.x + offset.x, chasePlayerTarget.position.y, chaseTarget.position.z);
+
+        }
+
         if (isChasing)
         {
             FlipSpriteByAiPath();
-            float distToPlayer = 999f;
-            if (aiDestination != null && aiDestination.target != null)
-            {
-                distToPlayer = Vector2.Distance(transform.position, aiDestination.target.position);
-            }
+            float distToPlayer = Vector2.Distance(transform.position, chasePlayerTarget.position);
             if (distToPlayer < 1.0f)
             {
                 BatAttack();
             }
+
         }
         else
         {
@@ -131,6 +141,7 @@ public class BatNormal : MonoBehaviour, IEnemy
             PatrolMovement();
         }
     }
+
 
     // ----------------------------- 
     // CƠ CHẾ TUẦN TRA
@@ -246,6 +257,7 @@ public class BatNormal : MonoBehaviour, IEnemy
         {
             animator.SetBool("isDead", true);
         }
+        StopChase();
 
         // Mở khoá platform (nếu có)
         if (linkedPlatform != null)
@@ -255,17 +267,8 @@ public class BatNormal : MonoBehaviour, IEnemy
 
         // Bật vật lý rơi
         rb.bodyType = RigidbodyType2D.Dynamic;
-        rb.gravityScale = 1f;
-        if (enemyCollider != null)
-        {
-            enemyCollider.enabled = false;
-        }
+        rb.gravityScale = 2f;
 
-        if (aiPath != null)
-        {
-            aiPath.canMove = false;
-            aiPath.enabled = false;
-        }
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -302,15 +305,25 @@ public class BatNormal : MonoBehaviour, IEnemy
             aiPath.enabled = true;
             aiPath.canMove = true;
         }
+        // Lưu lại tham chiếu đến player
+        chasePlayerTarget = playerTransform;
+        // Sinh một offset ngẫu nhiên, ví dụ trong khoảng (-1, 1) theo X và Y
+        chaseOffset = new Vector2(Random.Range(-3f, 3f), 0f);
+
+        // Tạo target trung gian
+        GameObject chaseTargetObj = new GameObject("BatChaseTarget");
+        chaseTargetObj.transform.position = playerTransform.position + (Vector3)chaseOffset;
+        chaseTarget = chaseTargetObj.transform;
+
         if (aiDestination != null)
         {
-            aiDestination.target = playerTransform;
+            aiDestination.target = chaseTarget;
         }
     }
 
+
     public void StopChase()
     {
-        Debug.Log("StopChase dc goi!");
         isChasing = false;
         if (aiPath != null)
         {
@@ -322,11 +335,18 @@ public class BatNormal : MonoBehaviour, IEnemy
             aiDestination.target = null;
         }
 
-        // Quay lại pointA
+        if (chaseTarget != null)
+        {
+            Destroy(chaseTarget.gameObject);
+            chaseTarget = null;
+        }
+
+        // Quay lại pointA (trong chế độ tuần tra)
         currentTarget = pointA;
     }
 
-    
+
+
 
 
 
@@ -364,6 +384,7 @@ public class BatNormal : MonoBehaviour, IEnemy
 
         if (aiPath != null) aiPath.canMove = false;
         if (animator != null) animator.SetTrigger("AttackTrigger");
+
     }
 
     public void BatDealDamage()

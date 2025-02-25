@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 3239863438361519144}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.258, y: -0.035, z: 0}
+  m_LocalPosition: {x: 0.258, y: 0.009, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -173,14 +173,14 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1608947629
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -754179710, guid: 31d56779ef97c0f4abe8d02202f8c912, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.1875, y: 1.8125}
+  m_Size: {x: 0.359375, y: 0.359375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -231,7 +231,7 @@ MonoBehaviour:
   maxSpeed: 5
   movementSmoothing: 0.05
   maxHealth: 15
-  currentHealth: 13
+  currentHealth: 15
   respawnPosition: {x: 0, y: 0}
   jumpForce: 13
   maxJumpCount: 2
@@ -246,9 +246,9 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5782915061162433134, guid: 0d56e02de889b3e429707c3ef2f55888,
     type: 3}
   firePoint: {fileID: 6400186554282854516}
-  arrowDamage: 3
+  arrowDamage: 25
   bulletCount: 0
-  meleeDamage: 1
+  meleeDamage: 15
   attackRange: 0.5
   attackPointOffset: 0.5
   attackPoint: {fileID: 60749791631562182}
@@ -259,10 +259,12 @@ MonoBehaviour:
     type: 3}
   skillShotPoint: {fileID: 1489403092757980732}
   castTrigger: CastTrigger
-  homingBulletCost: 10
+  homingBulletCost: 12
   flameThrowerPrefab: {fileID: 1218876806488606494, guid: c367d7ce4ecf7e242ae6e2b3d4331673,
     type: 3}
-  manaCostPerSec: 15
+  manaCostPerSec: 20
+  dashForce: 15
+  dashCooldown: 0.3
   keyCount: 0
   fallThresholdY: -10
   knockbackForce: 3
@@ -432,6 +434,46 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 9197168839062050672}
+    - target: {fileID: 6820003743611104113, guid: 0cb06e2e97b60ac48b706c9c0ba4b94c,
+        type: 3}
+      propertyPath: playerRb
+      value: 
+      objectReference: {fileID: 8684801942403279725}
+    - target: {fileID: 6820003743611104113, guid: 0cb06e2e97b60ac48b706c9c0ba4b94c,
+        type: 3}
+      propertyPath: followSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6820003743611104113, guid: 0cb06e2e97b60ac48b706c9c0ba4b94c,
+        type: 3}
+      propertyPath: fastXDamping
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6820003743611104113, guid: 0cb06e2e97b60ac48b706c9c0ba4b94c,
+        type: 3}
+      propertyPath: fastYDamping
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6820003743611104113, guid: 0cb06e2e97b60ac48b706c9c0ba4b94c,
+        type: 3}
+      propertyPath: leadDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6820003743611104113, guid: 0cb06e2e97b60ac48b706c9c0ba4b94c,
+        type: 3}
+      propertyPath: moveThreshold
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6820003743611104113, guid: 0cb06e2e97b60ac48b706c9c0ba4b94c,
+        type: 3}
+      propertyPath: normalXDamping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6820003743611104113, guid: 0cb06e2e97b60ac48b706c9c0ba4b94c,
+        type: 3}
+      propertyPath: normalYDamping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8549838728629548315, guid: 0cb06e2e97b60ac48b706c9c0ba4b94c,
         type: 3}
       propertyPath: m_Name

@@ -19,6 +19,7 @@ public class MonsterSpawner : MonoBehaviour
     public float spawnAreaWidth = 15f;
     [Tooltip("Chiều cao của vùng spawn quanh player")]
     public float spawnAreaHeight = 6f;
+    public LayerMask groundLayer;
 
     [Header("Spawnable Monster Prefabs and Weights")]
     [Tooltip("Danh sách các prefab monster có thể spawn (ví dụ: bat, goblin, witch, …)")]
@@ -99,8 +100,35 @@ public class MonsterSpawner : MonoBehaviour
         Vector2 spawnPos = GetRandomSpawnPosition();
         // Chọn prefab theo trọng số
         GameObject monsterPrefab = ChooseWeightedMonsterPrefab();
-        Instantiate(monsterPrefab, spawnPos, Quaternion.identity);
+        GameObject monster = Instantiate(monsterPrefab, spawnPos, Quaternion.identity);
+
+        // Kiểm tra xem monster có component GoblinNormal không
+        if (monster.GetComponent<GoblinNormal>() != null)
+        {
+            // Snap chỉ riêng goblin xuống ground
+            RaycastHit2D hit = Physics2D.Raycast(monster.transform.position, Vector2.down, 100f, groundLayer);
+            if (hit.collider != null)
+            {
+                Vector2 groundPos = hit.point;
+                // Điều chỉnh Y của goblin sao cho nó nằm ngay trên mặt đất (offset nhỏ để tránh cấn collider)
+                monster.transform.position = new Vector3(monster.transform.position.x, groundPos.y + 0.25f, monster.transform.position.z);
+            }
+        }
     }
+
+
+    /*void SpawnMonster()
+    {
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj == null || monsterPrefabs == null || monsterPrefabs.Length == 0)
+            return;
+
+        // Tính vị trí spawn an toàn xung quanh player
+        Vector2 spawnPos = GetRandomSpawnPosition();
+        // Chọn prefab theo trọng số
+        GameObject monsterPrefab = ChooseWeightedMonsterPrefab();
+        Instantiate(monsterPrefab, spawnPos, Quaternion.identity);
+    }*/
 
     // Hàm lựa chọn monster prefab dựa trên trọng số
     GameObject ChooseWeightedMonsterPrefab()

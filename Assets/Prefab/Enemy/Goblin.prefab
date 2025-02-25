@@ -31,6 +31,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1460995964715906288}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3381334245052240851
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4876675841975293731}
+  m_Layer: 8
+  m_Name: PointB
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4876675841975293731
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3381334245052240851}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.69, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1460995964715906288}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5366953077510155559
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,7 +177,7 @@ Transform:
   m_GameObject: {fileID: 6699971276365902236}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.359, y: 0.025, z: 0}
+  m_LocalPosition: {x: -0.465, y: -0.028, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -192,6 +223,7 @@ Transform:
   - {fileID: 629322103252422591}
   - {fileID: 7001007328844649939}
   - {fileID: 6537838883264366810}
+  - {fileID: 4876675841975293731}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &778918731324350229
@@ -347,7 +379,7 @@ MonoBehaviour:
   speed: 2
   patrolDistance: 100
   isChasing: 0
-  chaseSpeed: 4
+  chaseSpeed: 3.5
   detectRange: 5
   groundDetector: {fileID: 7001007328844649939}
   groundDetectDistance: 0.2
@@ -361,13 +393,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   goblinDamage: 1
-  attackCooldown: 1.5
+  attackCooldown: 2
   freezeDuration: 1
   killBelowY: -20
   meleeEffect: {fileID: 6645803334524371341, guid: e81943fd38df03449abca6069b9f48b4,
     type: 3}
   rangeEffect: {fileID: 4281637207453206883, guid: e1e23abb60bad9a41bccb526b0654f7c,
     type: 3}
+  pointBTransform: {fileID: 4876675841975293731}
 --- !u!114 &-7982994356744104800
 MonoBehaviour:
   m_ObjectHideFlags: 0

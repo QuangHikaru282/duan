@@ -12,7 +12,7 @@ public class GoblinNormal : MonoBehaviour, IEnemy
     [Header("Patrol Settings")]
     public bool enablePatrol = true;
     public float speed = 2f;
-    public float patrolDistance = 5f;
+    public float patrolDistance = 5f; // Dùng nếu không có pointBTransform
     private Vector2 pointA, pointB;
     private Vector2 targetPosition;
 
@@ -41,21 +41,23 @@ public class GoblinNormal : MonoBehaviour, IEnemy
     private bool isHurt = false;
     private bool isAttacking = false;
 
-    // NEW: Biến để "freeze" chuyển động khi attack
     [Header("Freeze Settings")]
-    [Tooltip("Thời gian đóng băng (freeze) khi goblin tấn công, tính bằng giây.")]
+    [Tooltip("Thời gian đóng băng khi goblin tấn công, tính bằng giây.")]
     public float freezeDuration = 1f;
-    private bool isFrozen = false;  // Kiểm soát trạng thái đóng băng
+    private bool isFrozen = false;
 
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
 
     [Header("Misc Settings")]
-    public float killBelowY = -20f;  // nếu rơi xuống dưới này thì chết
+    public float killBelowY = -20f;
 
     [Header("Prefabs & Effects")]
     public GameObject meleeEffect, rangeEffect;
+
+    // NEW: Dùng để tách điểm patrol thứ B (nếu có)
+    public Transform pointBTransform;
 
     void Start()
     {
@@ -70,10 +72,23 @@ public class GoblinNormal : MonoBehaviour, IEnemy
             healthBar.value = currentHealth;
         }
 
-        // Thiết lập pointA, pointB đối xứng quanh vị trí ban đầu
+        // Thiết lập điểm A là vị trí ban đầu của goblin
         Vector2 startPos = transform.position;
-        pointA = new Vector2(startPos.x - patrolDistance, startPos.y);
-        pointB = new Vector2(startPos.x + patrolDistance, startPos.y);
+        pointA = startPos;
+
+        // Nếu có pointBTransform, tách nó ra khỏi goblin để giữ vị trí thế giới
+        if (pointBTransform != null)
+        {
+            Vector3 wPos = pointBTransform.position;
+            pointBTransform.SetParent(null);
+            pointBTransform.position = wPos;
+            pointB = pointBTransform.position;
+        }
+        else
+        {
+            // Nếu không có pointBTransform, tính điểm B dựa trên patrolDistance
+            pointB = new Vector2(startPos.x + patrolDistance, startPos.y);
+        }
         targetPosition = pointB;
 
         facingDirection = 1;
@@ -86,14 +101,14 @@ public class GoblinNormal : MonoBehaviour, IEnemy
 
     void FixedUpdate()
     {
+        if (isDead || isHurt) return;
+
         // Nếu goblin đang bị freeze (đang attack) thì không cho di chuyển
         if (isFrozen)
         {
             rb.velocity = new Vector2(0f, rb.velocity.y);
             return;
         }
-
-        if (isDead || isHurt) return;
 
         // Nếu rơi khỏi map, goblin chết
         if (transform.position.y < killBelowY)
@@ -115,20 +130,35 @@ public class GoblinNormal : MonoBehaviour, IEnemy
     void PatrolMovement()
     {
         Vector2 currentPos = rb.position;
+        // Tính vector chỉ hướng đến targetPosition
         Vector2 dir = (targetPosition - currentPos).normalized;
-        float moveX = dir.x * speed;
-        rb.velocity = new Vector2(moveX, rb.velocity.y);
+        // Tính khoảng cách di chuyển trong frame này
+        float distanceThisFrame = speed * Time.fixedDeltaTime;
+        Vector2 newPosition = currentPos + dir * distanceThisFrame;
+        // Sử dụng MovePosition để di chuyển mượt
+        rb.MovePosition(newPosition);
 
-        animator.SetFloat("moveSpeed", Mathf.Abs(moveX));
+        // Cập nhật animation di chuyển
+        animator.SetFloat("moveSpeed", Mathf.Abs(dir.x * speed));
 
-        if (moveX > 0.11f)
-            SetFacingDirection(1);
-        else if (moveX < -0.11f)
-            SetFacingDirection(-1);
-
-        if (Vector2.Distance(currentPos, targetPosition) < 0.1f)
+        // Cập nhật hướng (flip sprite và atkPoint)
+        if (dir.x > 0.01f)
         {
-            targetPosition = (targetPosition == pointA) ? pointB : pointA;
+            SetFacingDirection(1);
+        }
+        else if (dir.x < -0.01f)
+        {
+            SetFacingDirection(-1);
+        }
+
+        // Khi gần targetPosition, đổi mục tiêu
+        if (Vector2.Distance(newPosition, targetPosition) < 0.1f)
+        {
+            // Nếu hiện tại đang hướng đến pointB, chuyển sang pointA; ngược lại chuyển sang pointB.
+            if (targetPosition == pointB)
+                targetPosition = pointA;
+            else
+                targetPosition = pointB;
         }
     }
 
@@ -202,7 +232,6 @@ public class GoblinNormal : MonoBehaviour, IEnemy
 
         facingDirection = dir;
         spriteRenderer.flipX = (dir < 0);
-
         if (atkPoint != null)
         {
             atkPoint.localPosition = new Vector3(0.3f * dir, atkPoint.localPosition.y, 0f);
@@ -223,6 +252,8 @@ public class GoblinNormal : MonoBehaviour, IEnemy
         if (isDead) return;
         isChasing = false;
         player = null;
+        // Khi dừng chase, quay lại patrol tại pointA (hoặc giữ nguyên mục tiêu hiện tại)
+        targetPosition = pointA;
     }
 
     // ------------------- ATTACK -------------------
@@ -234,22 +265,17 @@ public class GoblinNormal : MonoBehaviour, IEnemy
         isAttacking = true;
         lastAttackTime = Time.time;
 
-        // Freeze chuyển động: đặt isFrozen = true và dừng vận tốc
         isFrozen = true;
         rb.velocity = new Vector2(0f, rb.velocity.y);
 
         animator.SetTrigger("AttackTrigger");
 
-        // Bắt đầu coroutine freeze: giữ goblin đứng yên trong thời gian attack
         StartCoroutine(FreezeAndAttackRoutine(freezeDuration));
     }
 
     IEnumerator FreezeAndAttackRoutine(float duration)
     {
-        // Trong khoảng thời gian này, goblin sẽ không di chuyển.
         yield return new WaitForSeconds(duration);
-
-        // Kết thúc trạng thái freeze, cho phép goblin di chuyển lại.
         isFrozen = false;
         ResetAttack();
     }
@@ -268,7 +294,6 @@ public class GoblinNormal : MonoBehaviour, IEnemy
     public void ResetAttack()
     {
         isAttacking = false;
-        // Có thể thực hiện các logic khác sau khi attack xong, ví dụ: chuyển sang trạng thái chase hoặc patrol
     }
 
     // ------------------- TAKE DAMAGE (IEnemy) -------------------
@@ -291,14 +316,12 @@ public class GoblinNormal : MonoBehaviour, IEnemy
         {
             isHurt = true;
             animator.SetTrigger("DotHurtTrigger");
-            // Anim ngắn, quái vẫn di chuyển
         }
         else
         {
             isHurt = true;
             animator.SetTrigger("HurtTrigger");
-            // Quái bị cứng ngắn
-        }        
+        }
 
         if (currentHealth <= 0)
             Die();
@@ -319,7 +342,6 @@ public class GoblinNormal : MonoBehaviour, IEnemy
             Vector3 offset = new Vector3(0.3f * dir, 0f, 0f);
             Vector3 effectPos = transform.position + offset;
             GameObject effect = Instantiate(effectPrefab, effectPos, Quaternion.identity);
-
             Vector3 scale = effect.transform.localScale;
             scale.x = (dir < 0) ? -Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
             effect.transform.localScale = scale;
@@ -347,7 +369,6 @@ public class GoblinNormal : MonoBehaviour, IEnemy
         {
             dropper.DropItems();
         }
-
     }
 
     IEnumerator DieVanish(float delay)

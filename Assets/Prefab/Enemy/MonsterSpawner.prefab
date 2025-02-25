@@ -93,16 +93,19 @@ MonoBehaviour:
   spawnDuration: 10
   spawnInterval: 2
   monstersPerInterval: 2
-  maximumSpawn: 7
+  maximumSpawn: 8
   spawnAreaWidth: 15
   spawnAreaHeight: 6
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
   monsterPrefabs:
   - {fileID: 9220092957517445129, guid: 22f9b0698fd170148979f72fe6b7eb26, type: 3}
   - {fileID: 458885630010988881, guid: 6a4968e59503d47408d2f9874d067e87, type: 3}
   - {fileID: 1632722150886002613, guid: daa3930af04632c41ba59cc86990a441, type: 3}
   spawnWeights:
-  - 50
-  - 30
+  - 60
+  - 20
   - 20
   monsterZoneUIPrefab: {fileID: 9039621177948048763, guid: 546d694cf0be1eb4486f6c22147c79da,
     type: 3}
