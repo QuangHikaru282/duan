@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class SceneChanger_2 : MonoBehaviour
 {
     //[SerializeField]
-    public static string NEXT_SCENE = "Scene_3";
+    public static string NEXT_SCENE = "scene2";
     
     private float fixedLoadingTime = 3f;
 
@@ -20,7 +20,7 @@ public class SceneChanger_2 : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(LoadSceneFixedTime("Scene_3"));
+        StartCoroutine(LoadSceneFixedTime("scene2"));
     }
 
     public IEnumerator LoadSceneFixedTime(string sceneName)

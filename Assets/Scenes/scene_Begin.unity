@@ -3344,9 +3344,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "CH\u01A0I TI\u1EBEP"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e23fbe64256d014468d3e720e35b2ebc, type: 2}
-  m_sharedMaterial: {fileID: 2184283336863355444, guid: e23fbe64256d014468d3e720e35b2ebc,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9907,7 +9906,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &810406339
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16097,17 +16096,22 @@ PrefabInstance:
     - target: {fileID: 102585573389657752, guid: b14cb57dca062314984993ac85507a92,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 102585573389657752, guid: b14cb57dca062314984993ac85507a92,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 929058431412228568, guid: b14cb57dca062314984993ac85507a92,
         type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 929058431412228568, guid: b14cb57dca062314984993ac85507a92,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1932237214851123263, guid: b14cb57dca062314984993ac85507a92,
         type: 3}
