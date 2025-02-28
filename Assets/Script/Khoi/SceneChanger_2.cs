@@ -1,41 +1,61 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class SceneChanger_2 : MonoBehaviour
 {
-    //[SerializeField]
     public static string NEXT_SCENE = "scene2";
-    
-    private float fixedLoadingTime = 3f;
-
-    [SerializeField]
-    private GameObject outro;
-    [SerializeField]
-    private Animator outroAnimator;
-    [SerializeField]
-    private float transitionTime = 1f; // Thời gian chạy animation
+    [SerializeField] private GameObject outro;
+    [SerializeField] private Animator outroAnimator;
 
     private void Start()
     {
-        StartCoroutine(LoadSceneFixedTime("scene2"));
+        StartCoroutine(LoadSceneWhenAnimationEnds("scene2"));
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    public IEnumerator LoadSceneFixedTime(string sceneName)
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Chạy animation outro
+        StartCoroutine(ShowIntroAnimation());
+    }
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    public IEnumerator LoadSceneWhenAnimationEnds(string sceneName)
+    {
         if (outroAnimator != null)
         {
             outro.SetActive(true);
             outroAnimator.SetBool("isOutro", true);
+            
+
+            // Chờ animation hoàn thành
+            yield return new WaitUntil(() => outroAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
+            outroAnimator.SetBool("isOutro", false);
+            outro.SetActive(false);
+            SceneManager.LoadScene(sceneName);
+        }
+    }
+    private IEnumerator ShowIntroAnimation()
+    {
+        if (outro == null || outroAnimator == null)
+        {
+            Debug.LogError("Outro hoặc OutroAnimator chưa được thiết lập trong scene mới!");
+            yield break;
         }
 
-        // Chờ cho animation chạy xong
-        yield return new WaitForSeconds(transitionTime);
+        outro.SetActive(true);
+        outroAnimator.SetBool("isIntro", true);
+
+        yield return new WaitUntil(() => outroAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
         outro.SetActive(false);
-        // Chuyển scene
-        SceneManager.LoadScene(sceneName);
+        Destroy(gameObject);
     }
 }
