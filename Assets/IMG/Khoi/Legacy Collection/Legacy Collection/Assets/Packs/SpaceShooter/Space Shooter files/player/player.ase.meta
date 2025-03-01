@@ -8,7 +8,6 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
-  importerVersion: 1
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -133,7 +132,7 @@ ScriptedImporter:
       y: 62
       width: 26
       height: 12
-    spriteID: 9882b224afd49154cbfd2413639c55f6
+    spriteID: 29210b03e6f04fc499b689f965246420
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -153,7 +152,7 @@ ScriptedImporter:
       y: 4
       width: 26
       height: 21
-    spriteID: d8b90d10b62c9b24b9dad38d25b822cd
+    spriteID: ae4090782c82be14bbfccc84c9b5683e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -173,7 +172,7 @@ ScriptedImporter:
       y: 33
       width: 25
       height: 21
-    spriteID: 89681e6de8da337409549b4c5c253919
+    spriteID: e4132ffdef688f64fafd8e0ad14ee3ab
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -185,13 +184,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1875821083
+    guid: 1671627743
     name: player
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Frame_0
+    - name: player_Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -199,8 +198,8 @@ ScriptedImporter:
         y: 6
         width: 26
         height: 12
-      spriteId: 9882b224afd49154cbfd2413639c55f6
-    - name: Frame_1
+      spriteId: 29210b03e6f04fc499b689f965246420
+    - name: player_Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -208,8 +207,8 @@ ScriptedImporter:
         y: 0
         width: 26
         height: 21
-      spriteId: d8b90d10b62c9b24b9dad38d25b822cd
-    - name: Frame_2
+      spriteId: ae4090782c82be14bbfccc84c9b5683e
+    - name: player_Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -217,7 +216,7 @@ ScriptedImporter:
         y: 0
         width: 25
         height: 21
-      spriteId: 89681e6de8da337409549b4c5c253919
+      spriteId: e4132ffdef688f64fafd8e0ad14ee3ab
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -237,4 +236,3 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 26, y: 21}
-  previousTextureSize: {x: 64, y: 128}

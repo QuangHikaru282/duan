@@ -56,6 +56,7 @@ public class GameOverManager : MonoBehaviour
     // Hàm để tiếp tục game
     public void ResumeGame()
     {
+        Debug.Log("resume game dc goi!");
         if (pauseMenuPanel != null)
         {
             pauseMenuPanel.SetActive(false);

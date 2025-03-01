@@ -309,7 +309,7 @@ public class WitchNormal : MonoBehaviour, IEnemy
         }
         accumulatedDamage += dmg;
         animator.ResetTrigger("AttackTrigger");
-       
+
         if (accumulatedDamage >= emergencyDamageThreshold && currentState == WitchState.Attack)
         {
             accumulatedDamage = 0;
@@ -367,6 +367,7 @@ public class WitchNormal : MonoBehaviour, IEnemy
     {
         if (!isDead && other.CompareTag("Trap"))
             Die();
+           
     }
 
     // Hàm cập nhật flip sprite và FirePoint

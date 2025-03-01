@@ -269,20 +269,20 @@ public class BatNormal : MonoBehaviour, IEnemy
         rb.bodyType = RigidbodyType2D.Dynamic;
         rb.gravityScale = 2f;
 
+        ItemDropper dropper = GetComponent<ItemDropper>();
+        if (dropper != null)
+        {
+            dropper.DropItems();
+        }
+
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
 
-        if (isDead && col.collider.CompareTag("Ground"))
+        if (isDead && col.collider.CompareTag("Ground") || col.collider.CompareTag("MovingPlaform"))
         {
             StartCoroutine(DestroyAfter(0.5f));
-        }
-
-        ItemDropper dropper = GetComponent<ItemDropper>();
-        if (dropper != null)
-        {
-            dropper.DropItems();
         }
     }
 

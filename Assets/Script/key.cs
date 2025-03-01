@@ -21,6 +21,8 @@ public class Key : MonoBehaviour
             {
                 player.AddKey();
 
+                Destroy(gameObject);
+
                 // Hiển thị thông báo thu thập chìa khóa
                 if (collectionNotificationUI != null)
                 {
@@ -38,9 +40,6 @@ public class Key : MonoBehaviour
         if (collectionNotificationUI != null)
         {
             collectionNotificationUI.SetActive(false);
-
-        }
-
-            Destroy(gameObject);
+        }       
     }
 }

@@ -80,7 +80,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 639351157
-  m_SortingLayer: 7
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -1037947981, guid: a42dd874114840641a6abaebe7f9a112, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -163,10 +163,10 @@ MonoBehaviour:
     type: 3}
   rangeEffect: {fileID: 4281637207453206883, guid: e1e23abb60bad9a41bccb526b0654f7c,
     type: 3}
-  detectionAreaWidth: 12
-  detectionAreaHeight: 6
+  detectionAreaWidth: 6
+  detectionAreaHeight: 8
   teleportDelay: 0.5
-  emergencyDamageThreshold: 30
+  emergencyDamageThreshold: 25
   alertMarkPrefab: {fileID: 2879550769798472158, guid: 7ec5ade9583831144adf66abe91b25c7,
     type: 3}
 --- !u!61 &4641329636389137380
@@ -289,7 +289,7 @@ GameObject:
   - component: {fileID: 2434625857280859478}
   - component: {fileID: 8681869539818085228}
   - component: {fileID: 9095834555766163882}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: WitchDetectionArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.6495993}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -354,7 +354,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 12, y: 6}
+  m_Size: {x: 12, y: 7.2991986}
   m_EdgeRadius: 0
 --- !u!114 &9095834555766163882
 MonoBehaviour:

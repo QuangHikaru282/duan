@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dbf8cd1040496694c9f033ce5f421c46, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a110f386e0595814f9a7baf43e983c5d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,7 +97,6 @@ GameObject:
   - component: {fileID: 4553778587539852831}
   - component: {fileID: 2206271665078281823}
   - component: {fileID: 8517602110667609618}
-  - component: {fileID: 4360620404028273206}
   m_Layer: 10
   m_Name: FreeDirectionPlatform
   m_TagString: MovingPlaform
@@ -274,20 +273,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &4360620404028273206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3971317588286906462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a42f1b5d35f2e0408d56eef5ab995c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pointB: {x: 16, y: -1}
-  speed: 2
 --- !u!1 &6537884476375061658
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,7 +346,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dbf8cd1040496694c9f033ce5f421c46, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 09b06b5dc3e987748b8c8651a8363e05, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

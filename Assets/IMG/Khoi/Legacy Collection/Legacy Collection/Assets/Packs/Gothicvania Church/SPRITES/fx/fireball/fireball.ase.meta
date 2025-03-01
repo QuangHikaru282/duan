@@ -8,7 +8,6 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
-  importerVersion: 1
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -133,7 +132,7 @@ ScriptedImporter:
       y: 33
       width: 20
       height: 22
-    spriteID: 8ff69943ddc74ac45ac2f6193d8089b6
+    spriteID: 264edfe263ae28e41830f48f796eb38d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -153,7 +152,7 @@ ScriptedImporter:
       y: 33
       width: 19
       height: 23
-    spriteID: 0632c3e84cc63bb459291b635951321f
+    spriteID: f28f54a13c5598e40a23e77699417a22
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -173,7 +172,7 @@ ScriptedImporter:
       y: 4
       width: 23
       height: 21
-    spriteID: b775451536d30d74c85ef0cf92879098
+    spriteID: 49aa6c701b7c1f64487cb6d3591bfb0c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -185,13 +184,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -911155725
+    guid: -951569961
     name: fireball
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Frame_0
+    - name: fireball_Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -199,8 +198,8 @@ ScriptedImporter:
         y: 2
         width: 20
         height: 22
-      spriteId: 8ff69943ddc74ac45ac2f6193d8089b6
-    - name: Frame_1
+      spriteId: 264edfe263ae28e41830f48f796eb38d
+    - name: fireball_Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -208,8 +207,8 @@ ScriptedImporter:
         y: 2
         width: 19
         height: 23
-      spriteId: 0632c3e84cc63bb459291b635951321f
-    - name: Frame_2
+      spriteId: f28f54a13c5598e40a23e77699417a22
+    - name: fireball_Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -217,7 +216,7 @@ ScriptedImporter:
         y: 2
         width: 23
         height: 21
-      spriteId: b775451536d30d74c85ef0cf92879098
+      spriteId: 49aa6c701b7c1f64487cb6d3591bfb0c
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -237,4 +236,3 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 26, y: 26}
-  previousTextureSize: {x: 64, y: 64}
