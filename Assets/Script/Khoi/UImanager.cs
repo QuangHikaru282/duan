@@ -23,6 +23,10 @@ public class UImanager : MonoBehaviour
     private GameObject playerUI;
     [SerializeField]
     private GameObject cameraUI;
+    [SerializeField]
+    private GameObject AudioPlay;
+    [SerializeField]
+    private GameObject AudioGame;
     public void OnRestartPress()
     {
         if (Time.timeScale == 0)
@@ -57,5 +61,7 @@ public class UImanager : MonoBehaviour
         stopUI.SetActive(true);
         playerUI.SetActive(true);
         cameraUI.SetActive(true);
+        AudioPlay.SetActive(false);
+        AudioGame.SetActive(true);
     }
 }
