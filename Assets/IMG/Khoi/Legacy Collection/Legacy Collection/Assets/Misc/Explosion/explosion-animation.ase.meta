@@ -8,7 +8,6 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
-  importerVersion: 1
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -133,7 +132,7 @@ ScriptedImporter:
       y: 441
       width: 32
       height: 32
-    spriteID: 57d6793fbe70d604aa75739af87ef247
+    spriteID: b5c4a03297264534487daec44bbc4ced
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -153,7 +152,7 @@ ScriptedImporter:
       y: 441
       width: 56
       height: 51
-    spriteID: 9976eff8ad18b174d989c0e38a9104ff
+    spriteID: a56f7a7523ed56747a0270a5d0ec00d9
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -173,7 +172,7 @@ ScriptedImporter:
       y: 364
       width: 79
       height: 69
-    spriteID: 396cf7f4d31f08c45b5d2ef9608db924
+    spriteID: ee7095f37c0988542a000c4340dce3ed
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -193,7 +192,7 @@ ScriptedImporter:
       y: 284
       width: 94
       height: 72
-    spriteID: 6073a9d04b5c7424fa37e9a9717165f2
+    spriteID: fb6267f4afb64be4286ff78bf14f3294
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -213,7 +212,7 @@ ScriptedImporter:
       y: 201
       width: 102
       height: 75
-    spriteID: 8ea1972ea99042e4db9a5bd5379deb03
+    spriteID: 2132c243987c50a48aedb08e28486192
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -233,7 +232,7 @@ ScriptedImporter:
       y: 96
       width: 108
       height: 83
-    spriteID: 01fbaaf2facab924aaaf9ccee2d38c59
+    spriteID: 96c94e5fcd0557d47895168cfe935f18
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -253,7 +252,7 @@ ScriptedImporter:
       y: 101
       width: 98
       height: 92
-    spriteID: 9c6bb874095e41142b64725e41ce0f05
+    spriteID: 5274d4c2894b4bb4c85fbe5e645f81f9
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -273,7 +272,7 @@ ScriptedImporter:
       y: 4
       width: 107
       height: 89
-    spriteID: 2ce20c4e6eab2c247bfb6f2dc4d86b0e
+    spriteID: da11cf8f5293ee947bf93ad4bcad6bea
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -293,7 +292,7 @@ ScriptedImporter:
       y: 4
       width: 109
       height: 84
-    spriteID: af2e423c8b4ffb74f81333695ed1d794
+    spriteID: 7b308264efb578742b882082c56b18cb
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -305,13 +304,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 481182254
+    guid: 2050793814
     name: explosion-animation
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Frame_0
+    - name: explosion-animation_Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -319,8 +318,8 @@ ScriptedImporter:
         y: 0
         width: 112
         height: 128
-      spriteId: 57d6793fbe70d604aa75739af87ef247
-    - name: Frame_1
+      spriteId: b5c4a03297264534487daec44bbc4ced
+    - name: explosion-animation_Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -328,8 +327,8 @@ ScriptedImporter:
         y: 0
         width: 112
         height: 128
-      spriteId: 9976eff8ad18b174d989c0e38a9104ff
-    - name: Frame_2
+      spriteId: a56f7a7523ed56747a0270a5d0ec00d9
+    - name: explosion-animation_Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -337,8 +336,8 @@ ScriptedImporter:
         y: 0
         width: 112
         height: 128
-      spriteId: 396cf7f4d31f08c45b5d2ef9608db924
-    - name: Frame_3
+      spriteId: ee7095f37c0988542a000c4340dce3ed
+    - name: explosion-animation_Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -346,8 +345,8 @@ ScriptedImporter:
         y: 0
         width: 112
         height: 128
-      spriteId: 6073a9d04b5c7424fa37e9a9717165f2
-    - name: Frame_4
+      spriteId: fb6267f4afb64be4286ff78bf14f3294
+    - name: explosion-animation_Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -355,8 +354,8 @@ ScriptedImporter:
         y: 0
         width: 112
         height: 128
-      spriteId: 8ea1972ea99042e4db9a5bd5379deb03
-    - name: Frame_5
+      spriteId: 2132c243987c50a48aedb08e28486192
+    - name: explosion-animation_Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -364,8 +363,8 @@ ScriptedImporter:
         y: 0
         width: 112
         height: 128
-      spriteId: 01fbaaf2facab924aaaf9ccee2d38c59
-    - name: Frame_6
+      spriteId: 96c94e5fcd0557d47895168cfe935f18
+    - name: explosion-animation_Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -373,8 +372,8 @@ ScriptedImporter:
         y: 0
         width: 112
         height: 128
-      spriteId: 9c6bb874095e41142b64725e41ce0f05
-    - name: Frame_7
+      spriteId: 5274d4c2894b4bb4c85fbe5e645f81f9
+    - name: explosion-animation_Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -382,8 +381,8 @@ ScriptedImporter:
         y: 0
         width: 112
         height: 128
-      spriteId: 2ce20c4e6eab2c247bfb6f2dc4d86b0e
-    - name: Frame_8
+      spriteId: da11cf8f5293ee947bf93ad4bcad6bea
+    - name: explosion-animation_Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -391,7 +390,7 @@ ScriptedImporter:
         y: 0
         width: 112
         height: 128
-      spriteId: af2e423c8b4ffb74f81333695ed1d794
+      spriteId: 7b308264efb578742b882082c56b18cb
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -411,4 +410,3 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 112, y: 128}
-  previousTextureSize: {x: 256, y: 512}
