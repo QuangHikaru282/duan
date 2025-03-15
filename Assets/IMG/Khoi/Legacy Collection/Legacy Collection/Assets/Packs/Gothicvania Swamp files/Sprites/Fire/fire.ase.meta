@@ -8,7 +8,6 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
-  importerVersion: 1
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -133,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 60
       height: 10
-    spriteID: 1af603127b0eaa9459feb30fbf146bd5
+    spriteID: 0ec3cb2b61b8d1b458069b822f1f95b7
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -153,7 +152,7 @@ ScriptedImporter:
       y: 22
       width: 60
       height: 10
-    spriteID: 0666ea52f04a3db4d9633edac6c6087c
+    spriteID: c5877a497cea9e749b73910bc253e4bc
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -165,13 +164,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -837448578
+    guid: -1754603674
     name: fire
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Frame_0
+    - name: fire_Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -179,8 +178,8 @@ ScriptedImporter:
         y: -5
         width: 60
         height: 10
-      spriteId: 1af603127b0eaa9459feb30fbf146bd5
-    - name: Frame_1
+      spriteId: 0ec3cb2b61b8d1b458069b822f1f95b7
+    - name: fire_Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -188,7 +187,7 @@ ScriptedImporter:
         y: -5
         width: 60
         height: 10
-      spriteId: 0666ea52f04a3db4d9633edac6c6087c
+      spriteId: c5877a497cea9e749b73910bc253e4bc
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -208,4 +207,3 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 25, y: 6}
-  previousTextureSize: {x: 128, y: 64}
