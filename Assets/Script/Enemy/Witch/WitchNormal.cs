@@ -42,6 +42,8 @@ public class WitchNormal : MonoBehaviour, IEnemy
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private int facingDirection = 1; // 1: hướng phải, -1: hướng trái
+    public AudioSource audioSource; // Âm thanh bắn
+    public AudioClip shootSound;    // File âm thanh
 
     void Start()
     {
@@ -166,6 +168,10 @@ public class WitchNormal : MonoBehaviour, IEnemy
         // Instantiate WitchBullet với Quaternion.Euler(0,0,angle)
         GameObject bulletObj = Instantiate(witchBulletPrefab, firePoint.position, Quaternion.Euler(0, 0, angle));
         WitchBullet bullet = bulletObj.GetComponent<WitchBullet>();
+          if (shootSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(shootSound);
+        }
     }
 
 
