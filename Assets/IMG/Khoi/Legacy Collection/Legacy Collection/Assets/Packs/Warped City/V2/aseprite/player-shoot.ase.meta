@@ -8,7 +8,6 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
-  importerVersion: 1
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -133,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 19
       height: 5
-    spriteID: 5e018a8fb88e13f4e90fc3c9dbcc09c5
+    spriteID: 30a250fb85b971e44821807fad375100
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -153,7 +152,7 @@ ScriptedImporter:
       y: 17
       width: 18
       height: 5
-    spriteID: 9d7c4f54cdb636141845ae0f99a55805
+    spriteID: 6d85a09b8166a974485865e7290cf920
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -173,7 +172,7 @@ ScriptedImporter:
       y: 43
       width: 16
       height: 5
-    spriteID: eb8448a954823f24ba735a8946d95148
+    spriteID: 1ae82ca8beb2d034abc9584119f4e409
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -193,7 +192,7 @@ ScriptedImporter:
       y: 30
       width: 17
       height: 5
-    spriteID: 6f5ebac059ef61844bdc266bb12601ee
+    spriteID: 1b97c7d39c4ac2949b79339c36cd1095
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -205,13 +204,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1188235699
+    guid: 716830057
     name: player-shoot
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Frame_0
+    - name: player-shoot_Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -219,8 +218,8 @@ ScriptedImporter:
         y: 0
         width: 19
         height: 5
-      spriteId: 5e018a8fb88e13f4e90fc3c9dbcc09c5
-    - name: Frame_1
+      spriteId: 30a250fb85b971e44821807fad375100
+    - name: player-shoot_Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -228,8 +227,8 @@ ScriptedImporter:
         y: 0
         width: 18
         height: 5
-      spriteId: 9d7c4f54cdb636141845ae0f99a55805
-    - name: Frame_2
+      spriteId: 6d85a09b8166a974485865e7290cf920
+    - name: player-shoot_Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -237,8 +236,8 @@ ScriptedImporter:
         y: 0
         width: 16
         height: 5
-      spriteId: eb8448a954823f24ba735a8946d95148
-    - name: Frame_3
+      spriteId: 1ae82ca8beb2d034abc9584119f4e409
+    - name: player-shoot_Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -246,7 +245,7 @@ ScriptedImporter:
         y: 0
         width: 17
         height: 5
-      spriteId: 6f5ebac059ef61844bdc266bb12601ee
+      spriteId: 1b97c7d39c4ac2949b79339c36cd1095
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -266,4 +265,3 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 20, y: 5}
-  previousTextureSize: {x: 32, y: 64}
