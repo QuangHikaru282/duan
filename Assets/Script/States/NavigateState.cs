@@ -4,16 +4,17 @@ public class NavigateState : State
 {
     public Vector2 destination;
     public float speed = 2f;
-    public float threshold = 1f;
+    public float threshold = 0.1f;
 
     public AnimationClip runClip;
-    private bool hasPlayedRun = false;
+    private bool playedRun = false;
 
     public override void Enter()
     {
         base.Enter();
         isComplete = false;
-        hasPlayedRun = false;
+        exitReason = StateExitReason.None;
+        playedRun = false;
     }
 
     public override void Do()
@@ -24,13 +25,14 @@ public class NavigateState : State
         if (dist < threshold)
         {
             isComplete = true;
+            exitReason = StateExitReason.NormalComplete;
             return;
         }
 
-        if (!hasPlayedRun && runClip && animator)
+        if (!playedRun && runClip && animator)
         {
             animator.Play(runClip.name);
-            hasPlayedRun = true;
+            playedRun = true;
         }
 
         float dirX = (destination.x < core.transform.position.x) ? -1f : 1f;
@@ -42,7 +44,6 @@ public class NavigateState : State
     public override void FixedDo()
     {
         base.FixedDo();
-
         Vector2 current = core.transform.position;
         Vector2 dir = (destination - current).normalized;
         body.velocity = new Vector2(dir.x * speed, body.velocity.y);

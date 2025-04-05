@@ -2,88 +2,84 @@
 
 public class EnemyCore : MonoBehaviour
 {
-    // Các thành phần chung (blackboard)
+    [Header("Common Components")]
     public Rigidbody2D body;
     public Animator animator;
     public GroundSensor groundSensor;
-
-    // State machine quản lý các state của đối tượng
-    public StateMachine machine;
-
-    // Wrapper để truy cập state hiện tại
-    public State state => machine.state;
 
     [Header("Player Reference")]
     public Transform player;
     public Vector2 lastKnownPosition;
 
+    [Header("Shared States")]
+    public IdleState idleState;
+    public PatrolState patrolState;
+    public NavigateState navigateState;
+    public ChaseState chaseState;
+    public SearchState searchState;
+    public AttackState attackState;
+    public HurtState hurtState;
+    public DieState dieState;
+
+    // State machine
+    public StateMachine machine;
+    public State state => machine.state;
+    [HideInInspector] public float lastAttackTime = -Mathf.Infinity;
+
     void Start()
     {
-        // Khởi tạo machine và gán cho các state con
         SetupInstances();
-
-        // Tuỳ ý: Chọn state khởi đầu (vd: ChaseState, PatrolState,...)
-        // Ở đây ví dụ load sẵn "ChaseState"
-        ChaseState chase = GetComponentInChildren<ChaseState>();
-        if (chase != null)
-        {
-            machine.Set(chase);
-        }
-        // Hoặc bạn có thể Set một state khác
+        machine.Set(idleState);
     }
 
-    // Thiết lập EnemyCore cho tất cả các state con
     public void SetupInstances()
     {
         machine = new StateMachine();
 
-        // Lấy tất cả State trong children
-        State[] allChildStates = GetComponentsInChildren<State>();
-        foreach (State st in allChildStates)
+        State[] allStates = GetComponentsInChildren<State>();
+        foreach (var st in allStates)
         {
-            // Nếu là ChaseState => tạo sub-machine
-            if (st is ChaseState)
-            {
-                st.SetCore(this, true);
-            }
-            else
-            {
-                st.SetCore(this, false);
-            }
+            bool hasSubMachine = st is ChaseState;
+            st.SetCore(this, hasSubMachine);
         }
     }
-
     void Update()
     {
         if (machine.state != null)
         {
+            if (machine.state.isComplete)
+            {
+                var next = machine.state.GetNextState();
+                if (next != null)
+                    machine.Set(next);
+            }
+
             machine.state.DoBranch();
         }
     }
 
+
     void FixedUpdate()
     {
         if (machine.state != null)
-        {
             machine.state.FixedDoBranch();
-        }
     }
 
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
-#if UNITY_EDITOR
         if (Application.isPlaying && state != null)
         {
             var activeStates = machine.GetActiveStateBranch();
-            string stateNames = "";
+            string path = "";
             foreach (var s in activeStates)
-            {
-                stateNames += s.GetType().Name + " > ";
-            }
-            if (stateNames.Length > 3)
-                stateNames = stateNames.Substring(0, stateNames.Length - 3);
-            UnityEditor.Handles.Label(transform.position, "Active States: " + stateNames);
+                path += s.GetType().Name + " > ";
+
+            if (path.Length > 3)
+                path = path.Substring(0, path.Length - 3);
+
+            UnityEditor.Handles.Label(transform.position, "Active States: " + path);
         }
-#endif
     }
+#endif
 }

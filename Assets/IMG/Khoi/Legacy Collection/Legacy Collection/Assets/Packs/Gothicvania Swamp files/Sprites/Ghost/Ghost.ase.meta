@@ -8,7 +8,6 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
-  importerVersion: 1
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -133,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 27
       height: 40
-    spriteID: 740c636de337b624aa86ec39321ff781
+    spriteID: edf766f18c084f64bbc1f4b7cb007d67
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -153,7 +152,7 @@ ScriptedImporter:
       y: 4
       width: 23
       height: 40
-    spriteID: c46f6cef84031564db1b1ba240b7c6f3
+    spriteID: 8f3349fc71203e643a5bcb443a01236f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -173,7 +172,7 @@ ScriptedImporter:
       y: 4
       width: 23
       height: 40
-    spriteID: 265ad97acda2354418eb212356c4f79e
+    spriteID: eaea9173fabe14b4d93f4a095195254a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -193,7 +192,7 @@ ScriptedImporter:
       y: 52
       width: 25
       height: 43
-    spriteID: 45080be85d3822d47943d8f5005b31c1
+    spriteID: e37aebec1db44f342b8b375bbc235a33
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -205,13 +204,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -696918929
+    guid: -1798907869
     name: Ghost
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Frame_0
+    - name: Ghost_Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -219,8 +218,8 @@ ScriptedImporter:
         y: 1
         width: 27
         height: 40
-      spriteId: 740c636de337b624aa86ec39321ff781
-    - name: Frame_1
+      spriteId: edf766f18c084f64bbc1f4b7cb007d67
+    - name: Ghost_Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -228,8 +227,8 @@ ScriptedImporter:
         y: 2
         width: 23
         height: 40
-      spriteId: c46f6cef84031564db1b1ba240b7c6f3
-    - name: Frame_2
+      spriteId: 8f3349fc71203e643a5bcb443a01236f
+    - name: Ghost_Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -237,8 +236,8 @@ ScriptedImporter:
         y: 4
         width: 23
         height: 40
-      spriteId: 265ad97acda2354418eb212356c4f79e
-    - name: Frame_3
+      spriteId: eaea9173fabe14b4d93f4a095195254a
+    - name: Ghost_Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -246,7 +245,7 @@ ScriptedImporter:
         y: 0
         width: 25
         height: 43
-      spriteId: 45080be85d3822d47943d8f5005b31c1
+      spriteId: e37aebec1db44f342b8b375bbc235a33
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -266,4 +265,3 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 31, y: 44}
-  previousTextureSize: {x: 128, y: 128}

@@ -339,6 +339,8 @@ public class playerScript : MonoBehaviour
 
     public void DealDamage()
     {
+        
+
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(
             attackPoint.position,
             attackRange,
@@ -352,6 +354,7 @@ public class playerScript : MonoBehaviour
                 enemyScript.TakeDamage(meleeDamage, "Melee", facingDirection);
             }
         }
+        //if (enemy.CompareTag("Shield")) continue;
     }
 
     public void OnCastSpawnHomingBullet()
