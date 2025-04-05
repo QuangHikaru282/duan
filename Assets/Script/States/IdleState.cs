@@ -2,40 +2,61 @@
 
 public class IdleState : State
 {
-    // Animation clip cho trạng thái Idle
+    [Header("Idle Settings")]
     public AnimationClip idleAnim;
+    [SerializeField] private float idleDuration = 2f;
+    [SerializeField] public float idleOverride = -1f;
+    [SerializeField] public bool isCooldownIdle = false;
 
-    // Thời gian quái sẽ idle trước khi tự complete
-    [SerializeField] private float idleDuration = 1f;
     private float timer = 0f;
 
     public override void Enter()
     {
         base.Enter();
+        isComplete = false;
+        exitReason = StateExitReason.None;
+        timer = 0f;
+
         if (idleAnim)
         {
             animator.Play(idleAnim.name);
         }
-        timer = 0f;
-        isComplete = false;
+
+        if (idleOverride > 0f)
+        {
+            idleDuration = idleOverride;
+            idleOverride = -1f;
+        }
     }
 
     public override void Do()
     {
         base.Do();
-
         timer += Time.deltaTime;
 
-        // Nếu quái không còn grounded hoặc đã idle đủ thời gian, coi như xong
-        if (!core.groundSensor.grounded || timer >= idleDuration)
+        if (timer >= idleDuration || !core.groundSensor.grounded)
         {
             isComplete = true;
+            exitReason = StateExitReason.NormalComplete;
         }
     }
 
     public override void Exit()
     {
         base.Exit();
-        // Dọn dẹp hoặc reset biến nếu cần
     }
+
+    public override State GetNextState()
+    {
+        if (!isComplete) return null;
+
+        if (isCooldownIdle)
+        {
+            isCooldownIdle = false;
+            return los.isSeeingTarget ? core.chaseState : core.patrolState;
+        }
+
+        return core.patrolState;
+    }
+
 }

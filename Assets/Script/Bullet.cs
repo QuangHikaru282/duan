@@ -60,7 +60,7 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
 
-        else if (collision.CompareTag("Ground") || collision.CompareTag("Obstacle"))
+        else if (collision.CompareTag("Ground") || collision.CompareTag("MovingPlaform"))
         {
             // Chạm sàn hoặc chướng ngại => hủy đạn
             Destroy(gameObject);

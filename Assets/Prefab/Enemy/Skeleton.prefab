@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 125955495635150518}
   - component: {fileID: 3700226799137050401}
   - component: {fileID: 3812865014833690234}
+  - component: {fileID: 2827623174625926195}
   m_Layer: 8
   m_Name: SkeletonSprite
   m_TagString: Untagged
@@ -106,6 +107,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2827623174625926195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222319987790244901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b85a9f879e3c242b8ffb5ca9c085d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackState: {fileID: 3644124480914682637}
 --- !u!1 &930147378742106227
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,8 +164,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 722fb58088c76b34e8eae102af8a4323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dieAnim: {fileID: 7400000, guid: 786730554b7c5b5498a9c61a3f5c566f, type: 2}
-  vanishDelay: 1
+  _priority: 999
+  _forceInterrupt: 0
+  vanishTime: 1
 --- !u!1 &1038731327172790515
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +191,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1038731327172790515}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -215,7 +230,7 @@ Transform:
   m_GameObject: {fileID: 1099870299083860799}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.94, y: -1.78, z: 0.042225532}
+  m_LocalPosition: {x: -6.9, y: -0.9, z: 0.042225532}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -266,21 +281,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69fcf61b80cebda4e8fc8e10e887e29b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _priority: 20
+  _forceInterrupt: 0
   navigate: {fileID: 6215228650707789901}
   idle: {fileID: 3392284953296248433}
   anchor1: {fileID: 2726049281871256613}
   anchor2: {fileID: 9103062300815158581}
+  chase: {fileID: 2634937817363086784}
   checkAreaSize: {x: 0.3, y: 0.2}
   checkAreaOffset: {x: 0.3, y: -0.75}
   wallCheckOffset: {x: 0, y: 0}
   wallCheckDistance: 0.5
-  losCheckInterval: 1
-  detectRange: 5
-  visionAngle: 45
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 128
-  chase: {fileID: 2634937817363086784}
 --- !u!114 &6215228650707789901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,10 +304,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2734147fce065f498664157b2d9a99f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _priority: 25
+  _forceInterrupt: 0
   destination: {x: 0, y: 0}
   speed: 3
-  threshold: 0.3
+  threshold: 1
   runClip: {fileID: 7400000, guid: 6983f0387faa7b243923387c90a058db, type: 2}
+--- !u!1 &3533233806220700735
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8658107329915073115}
+  m_Layer: 8
+  m_Name: atkPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8658107329915073115
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3533233806220700735}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.532, y: -0.216, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2111270952086959648}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4545402062486859820
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,16 +385,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a2910b1c211cc74dac1a08537ee8b69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseSpeed: 3
-  loseSightInterval: 0.5
-  detectRange: 6
-  visionAngle: 30
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 128
-  attackRange: 1.2
-  attack: {fileID: 0}
-  search: {fileID: 3229373548232141120}
+  _priority: 40
+  _forceInterrupt: 0
+  chaseSpeed: 3.5
+  searchState: {fileID: 3229373548232141120}
+  attackState: {fileID: 3644124480914682637}
+  runClip: {fileID: 7400000, guid: 6983f0387faa7b243923387c90a058db, type: 2}
 --- !u!1 &5240266709230350294
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,7 +435,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 983b5dccebb3ce4449e0f86ae8fc5374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hurtAnim: {fileID: 7400000, guid: e007e276a9869fe428ad01c07e3767d7, type: 2}
+  _priority: 80
+  _forceInterrupt: 0
   hurtDuration: 0.3
 --- !u!1 &5839737897529797038
 GameObject:
@@ -441,8 +482,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5cc4cde4db01ed42ad3f6cd5c2b410b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackAnim: {fileID: 7400000, guid: 2e89a7570c324a5438059a72d198e79b, type: 2}
+  _priority: 60
+  _forceInterrupt: 0
+  atkAnim: {fileID: 7400000, guid: 2e89a7570c324a5438059a72d198e79b, type: 2}
+  atkPoint: {fileID: 8658107329915073115}
+  attackOffset: {x: 0.5, y: 0}
   attackRange: 1
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  damage: 1
+  attackCooldown: 1
+--- !u!1 &5868603317845335274
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2111270952086959648}
+  m_Layer: 8
+  m_Name: atkPointParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2111270952086959648
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5868603317845335274}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.108, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8658107329915073115}
+  m_Father: {fileID: 9116551320705053319}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6932606822120281566
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,17 +569,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 480c678d9af824b418468d65035924c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
-  searchDuration: 5
+  _priority: 35
+  _forceInterrupt: 0
+  searchDuration: 4
   flipInterval: 1
-  patrol: {fileID: 4137515996568563493}
-  chase: {fileID: 2634937817363086784}
-  losCheckInterval: 0.5
-  detectRange: 6
-  visionAngle: 30
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!1 &7839703056387439131
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,7 +694,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef5908224f28dc40a13af0ac157da59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _priority: 10
+  _forceInterrupt: 0
   idleAnim: {fileID: 7400000, guid: 13a28963bd93fcc4d8c0e7dc95594bd5, type: 2}
+  idleDuration: 2
+  idleOverride: 1
+  isCooldownIdle: 0
 --- !u!1 &8720836327746400133
 GameObject:
   m_ObjectHideFlags: 0
@@ -730,6 +810,7 @@ GameObject:
   - component: {fileID: 5647239885191226240}
   - component: {fileID: 836634751151432481}
   - component: {fileID: 6397541514529753329}
+  - component: {fileID: 61576702036410194}
   m_Layer: 8
   m_Name: Skeleton
   m_TagString: Enemy
@@ -750,12 +831,13 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1440851250986346459}
   - {fileID: 3762723936591852108}
   - {fileID: 125955495635150518}
   - {fileID: 5201267449961938089}
   - {fileID: 2726049281871256613}
   - {fileID: 9103062300815158581}
-  - {fileID: 1440851250986346459}
+  - {fileID: 2111270952086959648}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &5647239885191226240
@@ -819,10 +901,34 @@ MonoBehaviour:
   body: {fileID: 5647239885191226240}
   animator: {fileID: 3812865014833690234}
   groundSensor: {fileID: 836634751151432481}
+  lastAttackTime: -Infinity
   player: {fileID: 0}
   lastKnownPosition: {x: 0, y: 0}
   patrolState: {fileID: 4137515996568563493}
+  navigateState: {fileID: 6215228650707789901}
   idleState: {fileID: 3392284953296248433}
+  chaseState: {fileID: 2634937817363086784}
+  searchState: {fileID: 3229373548232141120}
   attackState: {fileID: 3644124480914682637}
   hurtState: {fileID: 9195631122180847026}
   dieState: {fileID: 3890027388448984320}
+--- !u!114 &61576702036410194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9118355762941802076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03fdd92b7c573714b90901cba30197e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectRange: 5
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 128
+  target: {fileID: 0}
+  raycastOffset: {x: 0, y: -0.3}
+  memoryDuration: 1.5
+  enableDebug: 1

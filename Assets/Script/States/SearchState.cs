@@ -2,60 +2,69 @@
 
 public class SearchState : State
 {
-
-    [Header("Search Settings")]
-    [Tooltip("Thời gian search trước khi quái bỏ cuộc.")]
     public float searchDuration = 3f;
     private float searchTimer = 0f;
 
-    [Tooltip("Phạm vi quái 'thấy lại' player khi đang search.")]
-    public float detectRangeDuringSearch = 3f;
-
-    [Tooltip("Góc tầm nhìn trong search (0 = không check).")]
-    public float visionAngle = 0f;
-
-    [Tooltip("Layer obstacles để raycast.")]
-    public LayerMask obstacleMask;
+    public float flipInterval = 1f;
+    private float flipTimer = 0f;
 
     public override void Enter()
     {
         base.Enter();
         isComplete = false;
+        exitReason = StateExitReason.None;
         searchTimer = 0f;
+        flipTimer = 0f;
+
+        body.velocity = new Vector2(0f, body.velocity.y);
     }
 
     public override void Do()
     {
         base.Do();
 
-        searchTimer += Time.deltaTime;
-
-        // 1) Thử check line-of-sight lại
-        bool canSee = Helpers.CheckLineOfSight2D(
-            from: core.transform,
-            target: core.player,
-            maxRange: detectRangeDuringSearch,
-            obstacleMask: obstacleMask,
-            maxAngle: visionAngle,
-            debugRay: true
-        );
-
-        if (canSee)
+        // Nếu thấy lại player → kết thúc state
+        if (los.isSeeingTarget)
         {
-            // Thấy lại player => quái 'xong' search => isComplete => quay lên cha
             isComplete = true;
+            exitReason = StateExitReason.SawPlayer;
             return;
         }
 
+        // Nếu hết thời gian tìm kiếm → thoát state
+        searchTimer += Time.deltaTime;
         if (searchTimer >= searchDuration)
         {
             isComplete = true;
+            exitReason = StateExitReason.NormalComplete;
+            return;
+        }
+
+        // Đảo hướng mỗi khoảng thời gian nhất định
+        flipTimer += Time.deltaTime;
+        if (flipTimer >= flipInterval)
+        {
+            flipTimer = 0f;
+            Vector3 scale = core.transform.localScale;
+            scale.x *= -1;
+            core.transform.localScale = scale;
         }
     }
 
     public override void Exit()
     {
         base.Exit();
-        // Reset logic
+        body.velocity = new Vector2(0f, body.velocity.y);
     }
+
+    public override State GetNextState()
+    {
+        if (!isComplete) return null;
+
+        if (exitReason == StateExitReason.SawPlayer)
+            return core.chaseState;
+
+        return core.patrolState;
+    }
+
 }

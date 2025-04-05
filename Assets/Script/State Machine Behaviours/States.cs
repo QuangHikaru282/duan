@@ -1,21 +1,24 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// Lớp trừu tượng đại diện cho một State trong mô hình HSM.
-/// </summary>
+public enum StateExitReason
+{
+    None,
+    NormalComplete,
+    SawPlayer,
+    LostPlayer
+}
+
 public abstract class State : MonoBehaviour
 {
     [Header("Priority & Interrupt")]
-    [Tooltip("Độ ưu tiên của state. State mới với priority >= sẽ interrupt state hiện tại.")]
     [SerializeField] protected int _priority = 0;
-
-    [Tooltip("Nếu true, state này sẽ chen ngang bất kỳ state nào.")]
     [SerializeField] protected bool _forceInterrupt = false;
 
     public virtual int priority => _priority;
     public virtual bool forceInterrupt => _forceInterrupt;
 
     public bool isComplete { get; set; }
+    public StateExitReason exitReason { get; set; } = StateExitReason.None;
 
     protected float startTime;
     public float time => Time.time - startTime;
@@ -25,8 +28,11 @@ public abstract class State : MonoBehaviour
     protected Animator animator => core.animator;
 
     public StateMachine machine;
-
     protected StateMachine parent;
+
+    // Cung cấp truy cập nhanh đến Skeleton
+    protected Skeleton skeleton => core as Skeleton;
+    protected LOSController los => core.GetComponent<LOSController>();
 
 
     protected void Set(State newState, bool forceReset = false)
@@ -37,27 +43,24 @@ public abstract class State : MonoBehaviour
         }
     }
 
-
     public virtual void SetCore(EnemyCore _core, bool createSubMachine = false)
     {
         core = _core;
         machine = createSubMachine ? new StateMachine() : null;
     }
 
-
     public void Initialise(StateMachine _parent)
     {
         parent = _parent;
         isComplete = false;
+        exitReason = StateExitReason.None;
         startTime = Time.time;
     }
 
-    // Vòng đời cơ bản
     public virtual void Enter() { }
     public virtual void Do() { }
     public virtual void FixedDo() { }
     public virtual void Exit() { }
-
 
     public void DoBranch()
     {
@@ -76,4 +79,6 @@ public abstract class State : MonoBehaviour
             machine.state.FixedDoBranch();
         }
     }
+
+    public virtual State GetNextState() => null;
 }
