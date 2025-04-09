@@ -40,7 +40,7 @@ public class ChaseState : State
         {
             float distanceToPlayer = Vector2.Distance(core.transform.position, core.player.position);
             if (distanceToPlayer <= attackState.attackRange &&
-                Time.time >= core.lastAttackTime + attackState.attackCooldown)
+                Time.time >= attackState.lastAttackTime + attackState.attackCooldown)
             {
                 parent.TrySet(attackState);
                 return;
@@ -117,6 +117,11 @@ public class ChaseState : State
                 animator.Play(runClip.name);
                 playedRun = true;
             }
+
+            /*var sep = core.GetComponent<EnemySeparationHandler>();
+            if (sep != null)
+                sep.ApplySeparation();*/
+
         }
     }
 

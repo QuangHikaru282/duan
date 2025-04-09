@@ -99,7 +99,7 @@ public class HomingBullet : MonoBehaviour
         // Va chạm Enemy => gây damage + nổ
         else if (col.collider.CompareTag("Enemy"))
         {
-            IEnemy enemy = col.collider.GetComponent<IEnemy>();
+            IEnemy enemy = col.collider.GetComponentInParent<IEnemy>();
             if (enemy != null)
             {
                 // Tính hướng va chạm => hiển thị effect Range

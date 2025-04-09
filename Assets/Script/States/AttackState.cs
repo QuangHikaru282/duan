@@ -5,9 +5,10 @@ public class AttackState : State
     public AnimationClip atkAnim;
     public Transform atkPoint;
     public Vector2 attackOffset = new Vector2(0.5f, 0f);
-    public float attackRange = 0.5f;
+    public float attackRange = 1f;
     public LayerMask playerLayer;
     public int damage = 1;
+    public float lastAttackTime = -Mathf.Infinity;
 
     [Header("Cooldown")]
     public float attackCooldown = 1.5f;
@@ -84,7 +85,7 @@ public class AttackState : State
 
     public void EndAttack()
     {
-        core.lastAttackTime = Time.time;
+        lastAttackTime = Time.time;
         isComplete = true;
         exitReason = StateExitReason.NormalComplete;
     }

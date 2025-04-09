@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
 
     private Vector2 direction;
     private int facingDirection;
+    private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
 
     public int damage = 3;       // Sát thương của đạn
@@ -16,8 +17,16 @@ public class Bullet : MonoBehaviour
         // Hủy đạn sau khi hết thời gian tồn tại
         Destroy(gameObject, lifeTime);
 
-        // Lấy SpriteRenderer
+        // Lấy Rigidbody và SpriteRenderer
+        rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        // Đảm bảo đạn không bị rơi do trọng lực
+        if (rb != null)
+        {
+            rb.gravityScale = 0f;
+            rb.velocity = direction * speed; // Set velocity
+        }
 
         // Lật sprite dựa trên hướng
         if (direction.x < 0)
@@ -32,15 +41,15 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        // Di chuyển đạn
-        transform.Translate(direction * speed * Time.deltaTime, Space.World);
-    }
-
     public void SetDirection(Vector2 dir)
     {
         direction = dir.normalized;
+
+        // Nếu rb đã tồn tại, có thể cập nhật velocity ngay khi SetDirection được gọi
+        if (rb != null)
+        {
+            rb.velocity = direction * speed;
+        }
     }
 
     public void SetDamage(int damageValue)
@@ -52,19 +61,18 @@ public class Bullet : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            IEnemy enemyScript = collision.GetComponent<IEnemy>();
+            IEnemy enemyScript = collision.GetComponentInParent<IEnemy>();
             if (enemyScript != null)
             {
                 enemyScript.TakeDamage(damage, "Range", facingDirection);
             }
+
             Destroy(gameObject);
         }
-
         else if (collision.CompareTag("Ground") || collision.CompareTag("MovingPlaform"))
         {
-            // Chạm sàn hoặc chướng ngại => hủy đạn
             Destroy(gameObject);
         }
-
     }
+
 }

@@ -22,7 +22,7 @@ public class StatusEffectHandler : MonoBehaviour
 
     void Awake()
     {
-        enemy = GetComponent<IEnemy>();
+        enemy = GetComponentInParent<IEnemy>();
     }
 
     public void StartContinuousBurn(float dps, float tickInterval, int dmgPerTick, float remainTime)
@@ -54,10 +54,6 @@ public class StatusEffectHandler : MonoBehaviour
         // Nếu enemy vẫn trong vùng, không cần thay đổi gì.
     }
 
-    /// <summary>
-    /// Gọi khi enemy rời khỏi vùng flame (hoặc player ngắt skill).
-    /// Chuyển từ continuous mode sang DOT mode (tick damage theo chế độ gốc).
-    /// </summary>
     public void StopContinuousBurnAndStartDOT()
     {
         isContinuousBurning = false;
@@ -66,13 +62,12 @@ public class StatusEffectHandler : MonoBehaviour
         // dotRemainTime đã được thiết lập khi bắt đầu continuous burn.
     }
 
-    /// <summary>
-    /// Dừng hoàn toàn hiệu ứng burn.
-    /// </summary>
     public void StopAllBurn()
     {
         isContinuousBurning = false;
         isDOTBurning = false;
+        dotRemainTime = 0f;
+        dotTickTimer = 0f; // Reset để không bị tick tiếp
         StopBurnEffect();
     }
 
@@ -88,10 +83,11 @@ public class StatusEffectHandler : MonoBehaviour
             {
                 int dmg = Mathf.FloorToInt(continuousDamageBuffer);
                 continuousDamageBuffer -= dmg;
-                enemy.TakeDamage(dmg, "ContinuousBurn", 0);
-                // Mỗi khi nhận damage với tag "ContinuousBurn", enemy có thể phát animation DotHurt (hoặc Hurt) theo thiết kế.
+                enemy?.TakeDamage(dmg, "ContinuousBurn", 0);
+
             }
         }
+
         // --- DOT Burn Mode
         else if (isDOTBurning)
         {
@@ -99,7 +95,7 @@ public class StatusEffectHandler : MonoBehaviour
             if (dotTickTimer >= dotTickInterval)
             {
                 dotTickTimer = 0f;
-                enemy.TakeDamage(dotDamagePerTick, "DOT", 0);
+                enemy?.TakeDamage(dotDamagePerTick, "DOT", 0);
             }
             dotRemainTime -= Time.deltaTime;
             if (dotRemainTime <= 0f)
@@ -107,6 +103,7 @@ public class StatusEffectHandler : MonoBehaviour
                 StopAllBurn();
             }
         }
+
     }
 
     void StartBurnEffect()
