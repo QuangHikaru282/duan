@@ -140,4 +140,21 @@ public class PatrolState : State
             }
         }
     }
+
+    void OnDrawGizmosSelected()
+    {
+        if (core == null) return;
+
+        Gizmos.color = Color.green;
+        Vector2 facingOffset = new Vector2(checkAreaOffset.x * Mathf.Sign(core.transform.localScale.x), checkAreaOffset.y);
+        Vector2 areaCenter = (Vector2)core.transform.position + facingOffset;
+        Gizmos.DrawWireCube(areaCenter, checkAreaSize);
+
+        Gizmos.color = Color.red;
+        Vector2 wallStart = (Vector2)core.transform.position
+            + new Vector2(wallCheckOffset.x * Mathf.Sign(core.transform.localScale.x), wallCheckOffset.y);
+        Vector2 wallDir = Vector2.right * Mathf.Sign(core.transform.localScale.x);
+        Gizmos.DrawLine(wallStart, wallStart + wallDir * wallCheckDistance);
+    }
+
 }
