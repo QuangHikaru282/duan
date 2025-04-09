@@ -3,6 +3,7 @@ using UnityEngine;
 public class AnimationEventRelay : MonoBehaviour
 {
     public AttackState attackState;
+    public HurtState hurtState;
 
     public void DealDamage()
     {
@@ -14,5 +15,10 @@ public class AnimationEventRelay : MonoBehaviour
     {
         if (attackState != null)
             attackState.EndAttack();
+    }
+    public void GetNextState()
+    {
+        if (hurtState != null)
+            hurtState.GetNextState();
     }
 }

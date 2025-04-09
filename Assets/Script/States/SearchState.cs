@@ -2,6 +2,7 @@
 
 public class SearchState : State
 {
+    public AnimationClip idleAnim;
     public float searchDuration = 3f;
     private float searchTimer = 0f;
 
@@ -15,6 +16,11 @@ public class SearchState : State
         exitReason = StateExitReason.None;
         searchTimer = 0f;
         flipTimer = 0f;
+
+        if (idleAnim)
+        {
+            animator.Play(idleAnim.name);
+        }
 
         body.velocity = new Vector2(0f, body.velocity.y);
     }
