@@ -3,6 +3,9 @@
 public class ChaseState : State
 {
     public float chaseSpeed = 3f;
+
+    public SearchState searchState;
+    public AttackState attackState;
     public AnimationClip runClip;
 
     private Vector2 lastTimeSeenPlayerPos;
@@ -11,8 +14,7 @@ public class ChaseState : State
 
     public override void SetCore(EnemyCore _core, bool createSubMachine = false)
     {
-        // Nếu EnemyCore có SearchState thì bật sub-state machine
-        base.SetCore(_core, _core.searchState != null);
+        base.SetCore(_core, searchState != null);
     }
 
     public override void Enter()
@@ -37,10 +39,10 @@ public class ChaseState : State
         if (core.player)
         {
             float distanceToPlayer = Vector2.Distance(core.transform.position, core.player.position);
-            if (distanceToPlayer <= core.attackState.attackRange &&
-                Time.time >= core.attackState.lastAttackTime + core.attackState.attackCooldown)
+            if (distanceToPlayer <= attackState.attackRange &&
+                Time.time >= attackState.lastAttackTime + attackState.attackCooldown)
             {
-                parent.TrySet(core.attackState);
+                parent.TrySet(attackState);
                 return;
             }
         }
@@ -70,13 +72,13 @@ public class ChaseState : State
             return;
         }
 
-        // Nếu mất sight → chuyển sang search (nội tại)
+        // Nếu mất sight → chuyển sang search
         if (!los.isSeeingTarget)
         {
             core.lastKnownPosition = lastTimeSeenPlayerPos;
-            if (core.searchState != null)
+            if (searchState != null)
             {
-                machine.Set(core.searchState);
+                machine.Set(searchState);
             }
             else
             {
@@ -89,17 +91,17 @@ public class ChaseState : State
         // Tiếp tục đuổi
         if (core.player)
         {
-            Vector2 enemyPos = core.transform.position;
+            Vector2 skelePos = core.transform.position;
             Vector2 playerPos = core.player.position;
             lastTimeSeenPlayerPos = playerPos;
 
-            float dirX = (playerPos.x < enemyPos.x) ? -1f : 1f;
+            float dirX = (playerPos.x < skelePos.x) ? -1f : 1f;
             Vector3 scale = core.transform.localScale;
             scale.x = (dirX > 0) ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
             core.transform.localScale = scale;
 
-            float distance = Mathf.Abs(playerPos.x - enemyPos.x);
-            float stopDistance = core.attackState.attackRange - 0.1f;
+            float distance = Mathf.Abs(playerPos.x - skelePos.x);
+            float stopDistance = attackState.attackRange - 0.1f;
 
             if (distance > stopDistance)
             {
@@ -115,8 +117,14 @@ public class ChaseState : State
                 animator.Play(runClip.name);
                 playedRun = true;
             }
+
+            /*var sep = core.GetComponent<EnemySeparationHandler>();
+            if (sep != null)
+                sep.ApplySeparation();*/
+
         }
     }
+
 
     public override void Exit()
     {
@@ -129,6 +137,8 @@ public class ChaseState : State
     public override State GetNextState()
     {
         if (!isComplete) return null;
+
         return core.patrolState;
     }
+
 }
