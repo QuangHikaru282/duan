@@ -8,7 +8,6 @@ public class ManaPickup : MonoBehaviour
     private bool isPickedUp = false;
 
     private Animator animator;
-    public AudioClip pickupSound;
 
     void Awake()
     {
@@ -23,7 +22,6 @@ public class ManaPickup : MonoBehaviour
 
             // Gọi AddMana
             SkillManager.Instance.AddMana(manaAmount);
-            AudioSource.PlayClipAtPoint(pickupSound, transform.position);
 
             // Chuyển animation sang "collected"
             if (animator != null)

@@ -15,6 +15,7 @@ public class BatNormal : MonoBehaviour, IEnemy
 
     [Header("Patrol Settings")]
     public float speed = 2f;
+    // [NEW] Transform của object con chỉ tọa độ B
     public Transform pointBTransform;
 
     private Vector2 pointA;            // Vị trí gốc (Point A)
@@ -34,6 +35,11 @@ public class BatNormal : MonoBehaviour, IEnemy
     private bool isHurt = false;
     private bool isAttacking = false;
     private int facingDirection = -1; // Mặc định quái nhìn trái
+
+    [Header("Platform Unlock Settings")]
+    public CustomMovingPlatform linkedPlatform;
+    public NotiUIScript notificationUI;
+    public string platformUnlockedMessage = "Platform has been unlocked!";
 
     [Header("Chase (A* Pathfinding)")]
     public bool isChasing = false;
@@ -63,8 +69,11 @@ public class BatNormal : MonoBehaviour, IEnemy
             pointBTransform.position = wPos;    // Giữ nguyên vị trí thế giới
         }
 
+        // pointA = vị trí ban đầu (transform.position)
         pointA = transform.position;
 
+        // Nếu pointBTransform != null => currentTarget = pointBTransform.position
+        // Không thì quái đứng yên tại A
         if (pointBTransform != null)
         {
             currentTarget = pointBTransform.position;
@@ -87,6 +96,8 @@ public class BatNormal : MonoBehaviour, IEnemy
         {
             currentHealth = 5;
         }
+
+        if (notificationUI != null) notificationUI.gameObject.SetActive(false);
 
         if (aiPath != null)
         {
@@ -247,7 +258,13 @@ public class BatNormal : MonoBehaviour, IEnemy
             animator.SetBool("isDead", true);
         }
         StopChase();
-     
+
+        // Mở khoá platform (nếu có)
+        if (linkedPlatform != null)
+        {
+            linkedPlatform.UnlockPlatform();
+        }
+
         // Bật vật lý rơi
         rb.bodyType = RigidbodyType2D.Dynamic;
         rb.gravityScale = 2f;
@@ -328,6 +345,14 @@ public class BatNormal : MonoBehaviour, IEnemy
         currentTarget = pointA;
     }
 
+
+
+
+
+
+    // -----------------------------
+    // AI PATH FLIP
+    // -----------------------------
     void FlipSpriteByAiPath()
     {
         if (aiPath == null) return;
@@ -346,6 +371,9 @@ public class BatNormal : MonoBehaviour, IEnemy
         }
     }
 
+    // -----------------------------
+    // ATTACK
+    // -----------------------------
     public void BatAttack()
     {
         if (Time.time < lastAttackTime + attackCooldown) return;
@@ -378,6 +406,9 @@ public class BatNormal : MonoBehaviour, IEnemy
         if (aiPath != null) aiPath.canMove = true;
     }
 
+    // -----------------------------
+    // GIZMOS
+    // -----------------------------
     void OnDrawGizmosSelected()
     {
         if (atk_point != null)
