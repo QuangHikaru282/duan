@@ -851,18 +851,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &531340822 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4532351549543059077, guid: b14cb57dca062314984993ac85507a92,
-    type: 3}
-  m_PrefabInstance: {fileID: 3838444668405295292}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &596367334 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5025116646019096586, guid: b14cb57dca062314984993ac85507a92,
@@ -1152,7 +1140,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkpointUI: {fileID: 322992878}
-  checkpointSound: {fileID: 0}
 --- !u!95 &726633031
 Animator:
   serializedVersion: 5
@@ -1280,7 +1267,7 @@ Transform:
   m_GameObject: {fileID: 726633029}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.1499996, y: 3.68, z: -0.14381118}
+  m_LocalPosition: {x: -8.23, y: -1.53, z: -0.14381118}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3421,8 +3408,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2231344315787137532, guid: 89956d91f54961745b8c94f795233c1a,
         type: 3}
-      propertyPath: bulletAmount
-      value: 10
+      propertyPath: audioSource
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4193686906945447352, guid: 89956d91f54961745b8c94f795233c1a,
         type: 3}
@@ -3473,16 +3460,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7577293072393696841, guid: 89956d91f54961745b8c94f795233c1a,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7577293072393696841, guid: 89956d91f54961745b8c94f795233c1a,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 827175799
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3896,18 +3873,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a4968e59503d47408d2f9874d067e87, type: 3}
---- !u!114 &1745991587 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7826157420580726422, guid: b14cb57dca062314984993ac85507a92,
-    type: 3}
-  m_PrefabInstance: {fileID: 3838444668405295292}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1749865855
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4892,16 +4857,6 @@ PrefabInstance:
       propertyPath: heartCountText
       value: 
       objectReference: {fileID: 1072397847}
-    - target: {fileID: 4997750434991424553, guid: d98b35bc3baa05e4282650b68c239755,
-        type: 3}
-      propertyPath: maxMana
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 4997750434991424553, guid: d98b35bc3baa05e4282650b68c239755,
-        type: 3}
-      propertyPath: currentMana
-      value: 1000
-      objectReference: {fileID: 0}
     - target: {fileID: 5104931357920553467, guid: d98b35bc3baa05e4282650b68c239755,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4959,16 +4914,6 @@ PrefabInstance:
       objectReference: {fileID: 530017170}
     - target: {fileID: 5859572531422788385, guid: d98b35bc3baa05e4282650b68c239755,
         type: 3}
-      propertyPath: keyText
-      value: 
-      objectReference: {fileID: 531340822}
-    - target: {fileID: 5859572531422788385, guid: d98b35bc3baa05e4282650b68c239755,
-        type: 3}
-      propertyPath: coinText
-      value: 
-      objectReference: {fileID: 1745991587}
-    - target: {fileID: 5859572531422788385, guid: d98b35bc3baa05e4282650b68c239755,
-        type: 3}
       propertyPath: arrowText
       value: 
       objectReference: {fileID: 1620162716}
@@ -4987,13 +4932,7 @@ PrefabInstance:
       propertyPath: manaSlider
       value: 
       objectReference: {fileID: 1545719993}
-    - target: {fileID: 9157918803233696832, guid: d98b35bc3baa05e4282650b68c239755,
-        type: 3}
-      propertyPath: data.dataString
-      value: UEsDBBQAAAgIAAA4IexLRW/TegIAADcFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMty2jAU/RVG68LYYPPornUI6SIJE9rJxhshXWMNsuSR5ADJ8O+VZBm7lA3yua9zjq79hZjQNRAj1UYx+iwpoO8j5M7o26gPPsEZH6TYsU/oct4ZNaVLwj7nDRsmLR67Mi0rMIqRH+LAXXJkwUawQqpqTQ+QSW20hQvMNdiQksZVCwt9jdDZ/o1XruRiT9OFO33a0yoaXe2RgDCg+tRkkqzsbxny08l8mcyS6XocJ6FwPJ/EyyRdLdLYob5LIwjHVQ3USeqbpbPQJqQJKzZkOGFEcs50YIrMpfZOZLjWjdVpEyjDVrmnF09crxLYoTROx7D8tSg0mGCMwpcHpqyFbV/0U7a+VlgfW2YfmDeeQjRtabVdn/9LGMc+XChZPXWD48gNMSUjxzd8IVibgfND+GHA3Tt0wvyI9xzeSxAvcqNkI6gNGtW40kbD9KF/vGnLSiDHHm+p3oFN3VveXXR3zU7D1cs/Z5xVexeaJC2w49Jb7rcDlL2cX5aw3x0dWljUsfij4Tc+DJcsBB6Z0saGgkrh6O1lo1wqWnvPnJrGZFIJ8HAgXYPA3Fy2to25v8O72GDsXeQRu9cpDA+x7i25K/Fwnx9Fd6GtPN0uS5fy9Ay6fG0MZwJ60i7wYn3KpBDtig096cp2jSowGZQdGkb/XS20WO4jOi9mKV4QMqNknE7nKZ3jaE72s7iIl8jvHhNWJ+bblmiwx96a6JsLu2fdV2a0Ubj2604VPm3YZyWHBJko5I4oAPHatrgxB2Wn2DeTrimzDu3AGCb8haOvHHFJjkDz28zcS12fjcJ53yVHNfuQxiE5yvx3JUcOvi3zVsEHg5Mbfqu7outfUEsDBBQAAAgIAAA4IexpGcD7bQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM011FQSi9KLMgoBooYgjilmSkgdrSSuUWSQYpZmrFponlysnFKsq6pkZlpilmigVlykrFhmqGFUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAAA4IexLRW/TegIAADcFAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAAA4IexpGcD7bQAAAHgAAAAJACQAAAAAAAAAAAAAAMcCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAfwMAAAAA
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 9157918803233696832, guid: d98b35bc3baa05e4282650b68c239755, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -5298,16 +5237,6 @@ PrefabInstance:
       propertyPath: virtualCamera
       value: 
       objectReference: {fileID: 530017170}
-    - target: {fileID: 5139273196307627580, guid: 5af87249c16785c4f95194d0201eb23a,
-        type: 3}
-      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
-      value: 0.336
-      objectReference: {fileID: 0}
-    - target: {fileID: 5842618632751574620, guid: 5af87249c16785c4f95194d0201eb23a,
-        type: 3}
-      propertyPath: currentHealth
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 5842618632751574620, guid: 5af87249c16785c4f95194d0201eb23a,
         type: 3}
       propertyPath: gameOverManager

@@ -3,23 +3,13 @@
 public class Checkpoint : MonoBehaviour
 {
     private bool isActive = false;
-
-    // Tham chiếu đến UI thông báo
     public GameObject checkpointUI;
-     public AudioClip checkpointSound; // Gắn file âm thanh vào đây trong Inspector
-    private AudioSource audioSource;
-
-    // Tham chiếu đến Animator của Checkpoint
     private Animator animator;
 
     void Start()
     {
         // Lấy component Animator
         animator = GetComponent<Animator>();
-        audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.playOnAwake = false;
-
-        // Đảm bảo UI thông báo tắt ban đầu
         if (checkpointUI != null)
         {
             checkpointUI.SetActive(false);
@@ -52,10 +42,6 @@ public class Checkpoint : MonoBehaviour
                 if (animator != null)
                 {
                     animator.SetBool("isSaved", true);
-                }
-                  if (checkpointSound != null)
-                {
-                audioSource.PlayOneShot(checkpointSound);
                 }
             }
         }

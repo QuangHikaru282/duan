@@ -62,9 +62,6 @@ public class playerScript : MonoBehaviour
     private float dashTimer = 0f;
     private int airDashRemaining;
 
-    [Header("Key Settings")]
-    public int keyCount = 0;
-
     [Header("Force Settings")]
     public float fallThresholdY = -5f;
     public float knockbackForce = 5f;
@@ -111,7 +108,6 @@ public class playerScript : MonoBehaviour
 
             bulletCount = 0;
             UIUpdateLogic.Instance.UpdateArrowUI(bulletCount);
-            UIUpdateLogic.Instance.UpdateKeyUI(keyCount);
 
             PlayerPrefs.DeleteKey("HasCheckpoint");
             PlayerPrefs.DeleteKey("CheckpointX");
@@ -461,7 +457,6 @@ public class playerScript : MonoBehaviour
 
         bulletCount = 0;
         UIUpdateLogic.Instance.UpdateArrowUI(bulletCount);
-        UIUpdateLogic.Instance.UpdateKeyUI(keyCount);
     }
 
     public void SetCheckpoint(Vector2 newCheckpointPosition)
@@ -565,22 +560,5 @@ public class playerScript : MonoBehaviour
     {
         bulletCount += amount;
         UIUpdateLogic.Instance.UpdateArrowUI(bulletCount);
-    }
-
-    public void AddKey()
-    {
-        keyCount++;
-        UIUpdateLogic.Instance.UpdateKeyUI(keyCount);
-    }
-
-    public bool UseKey()
-    {
-        if (keyCount > 0)
-        {
-            keyCount--;
-            UIUpdateLogic.Instance.UpdateKeyUI(keyCount);
-            return true;
-        }
-        return false;
     }
 }
