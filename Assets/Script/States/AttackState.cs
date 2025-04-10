@@ -2,16 +2,17 @@
 
 public class AttackState : State
 {
+    [Header("Attack Settings")]
     public AnimationClip atkAnim;
     public Transform atkPoint;
     public Vector2 attackOffset = new Vector2(0.5f, 0f);
     public float attackRange = 1f;
     public LayerMask playerLayer;
     public int damage = 1;
-    public float lastAttackTime = -Mathf.Infinity;
 
     [Header("Cooldown")]
     public float attackCooldown = 1.5f;
+    public float lastAttackTime = -Mathf.Infinity;
 
     public override int priority => 60;
     public override bool forceInterrupt => false;
@@ -20,7 +21,6 @@ public class AttackState : State
 
     public override void Enter()
     {
-        base.Enter();
         isComplete = false;
         exitReason = StateExitReason.None;
 
@@ -39,33 +39,10 @@ public class AttackState : State
         }
     }
 
-    public override void Do()
-    {
-        base.Do();
-        body.velocity = new Vector2(0f, body.velocity.y);
-    }
-
-    public override void FixedDo()
-    {
-        base.FixedDo();
-        body.velocity = new Vector2(0f, body.velocity.y);
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-        body.velocity = new Vector2(0f, body.velocity.y);
-    }
-
     public override State GetNextState()
     {
-        if (!isComplete) return null;
-
-            core.idleState.idleOverride = attackCooldown;
-            core.idleState.isCooldownIdle = true;
-            return core.idleState;
+        return los.isSeeingTarget ? core.chaseState : core.patrolState;
     }
-
 
     // Gọi từ animation event
     public void DealDamage()
@@ -97,7 +74,7 @@ public class AttackState : State
         {
             float facing = Application.isPlaying
                 ? Mathf.Sign(core.transform.localScale.x)
-                : Mathf.Sign(transform.root.localScale.x); // Fallback trong editor
+                : Mathf.Sign(transform.root.localScale.x);
 
             Vector2 offset = new Vector2(attackOffset.x * facing, attackOffset.y);
             Vector2 drawPos = (Vector2)atkPoint.position + offset;

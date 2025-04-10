@@ -296,7 +296,7 @@ Transform:
   m_GameObject: {fileID: 2400914532546961288}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.37, y: 1.28, z: 0}
+  m_LocalPosition: {x: 0.77, y: 1.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -349,7 +349,7 @@ MonoBehaviour:
   _priority: 999
   _forceInterrupt: 0
   dieAnim: {fileID: 7400000, guid: 5edfebab804bf1a4883a01685b6ec2e8, type: 2}
-  destroyDelay: 1.5
+  destroyDelay: 3
 --- !u!1 &3293938464221983971
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,7 +520,7 @@ MonoBehaviour:
   lastKnownPosition: {x: 0, y: 0}
   hpCanvasObj: {fileID: 7194732915006923908}
   hpSlider: {fileID: 1870218372820262182}
-  maxHP: 1000
+  maxHP: 100
   hpHideDelay: 15
   meleeEffect: {fileID: 6645803334524371341, guid: e81943fd38df03449abca6069b9f48b4,
     type: 3}
@@ -573,6 +573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _priority: 35
   _forceInterrupt: 0
+  idleAnim: {fileID: 7400000, guid: 196536a31799ffb49a7ba77450a47e18, type: 2}
   searchDuration: 4
   flipInterval: 1
 --- !u!1 &5218549940319277843
@@ -785,8 +786,8 @@ MonoBehaviour:
   _forceInterrupt: 0
   atkAnim: {fileID: 7400000, guid: b06e77986d33f074a9b6382463ee8f4e, type: 2}
   atkPoint: {fileID: 5745883245612945302}
-  attackOffset: {x: 1, y: -0.4}
-  attackRange: 2
+  attackOffset: {x: 1, y: 0}
+  attackRange: 2.8
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -985,10 +986,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 413910926469554072}
     m_Modifications:
+    - target: {fileID: 1525621389381668307, guid: 4febfb02390f79244b9271f11d66ffd7,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1668d61180ce33c4d80de54226953271,
+        type: 3}
     - target: {fileID: 2530675018686306169, guid: 4febfb02390f79244b9271f11d66ffd7,
         type: 3}
       propertyPath: m_Name
-      value: Fixed HP Canvas
+      value: BossHPCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 5145306385927947486, guid: 4febfb02390f79244b9271f11d66ffd7,
         type: 3}
@@ -1105,6 +1112,36 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5622036704824616064, guid: 4febfb02390f79244b9271f11d66ffd7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5622036704824616064, guid: 4febfb02390f79244b9271f11d66ffd7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5622036704824616064, guid: 4febfb02390f79244b9271f11d66ffd7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5622036704824616064, guid: 4febfb02390f79244b9271f11d66ffd7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 5622036704824616064, guid: 4febfb02390f79244b9271f11d66ffd7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5622036704824616064, guid: 4febfb02390f79244b9271f11d66ffd7,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6301928665714183152, guid: 4febfb02390f79244b9271f11d66ffd7,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -1135,10 +1172,29 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7275913688678734629, guid: 4febfb02390f79244b9271f11d66ffd7,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.11070844
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275913688678734629, guid: 4febfb02390f79244b9271f11d66ffd7,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.11070844
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275913688678734629, guid: 4febfb02390f79244b9271f11d66ffd7,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.82641506
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2530675018686306169, guid: 4febfb02390f79244b9271f11d66ffd7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8287231301530668656}
   m_SourcePrefab: {fileID: 100100000, guid: 4febfb02390f79244b9271f11d66ffd7, type: 3}
 --- !u!224 &549962622464964387 stripped
 RectTransform:
@@ -1164,3 +1220,15 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4667436699646489597}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8287231301530668656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7194732915006923908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82e25e556f538fe499eeff7a98a0d1df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
