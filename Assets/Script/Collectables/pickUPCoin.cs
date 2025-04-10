@@ -11,6 +11,8 @@ public class PickUpCoin : MonoBehaviour
 
     private Animator animator;
     private bool isPickedUp = false;
+    public AudioSource audioSource;
+    public AudioClip coinSound;
 
     void Start()
     {
@@ -31,18 +33,26 @@ public class PickUpCoin : MonoBehaviour
                 animator.SetBool("isPickedUp", true);
 
             }
+            if (coinSound != null && audioSource != null)
+            {
+            audioSource.PlayOneShot(coinSound);
+            }
 
             // Thêm coin qua hệ thống CoinManager
             if (CoinManager.Instance != null)
             {
                 CoinManager.Instance.AddCoin(coinValue);
             }
+           
 
 
             // Hủy coin sau khi delay để hiệu ứng pickUpEffect được phát đủ thời gian
             StartCoroutine(DestroyAfterDelay(destroyDelay));
         }
+       
     }
+    
+    
 
     IEnumerator DestroyAfterDelay(float delay)
     {

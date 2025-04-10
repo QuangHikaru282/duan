@@ -11,6 +11,7 @@ public class Key : MonoBehaviour
 
     [Header("Display Settings")]
     public float displayDuration = 2f;              // Thời gian hiển thị thông báo (nếu muốn thông báo tự động tắt sau thời gian)
+    public AudioClip pickupSound;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -22,6 +23,7 @@ public class Key : MonoBehaviour
                 player.AddKey();
 
                 Destroy(gameObject);
+                AudioSource.PlayClipAtPoint(pickupSound, transform.position);
 
                 // Hiển thị thông báo thu thập chìa khóa
                 if (collectionNotificationUI != null)
