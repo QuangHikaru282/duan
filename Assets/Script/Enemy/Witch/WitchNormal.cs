@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -42,14 +42,15 @@ public class WitchNormal : MonoBehaviour, IEnemy
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private int facingDirection = 1; // 1: hướng phải, -1: hướng trái
-    public AudioSource audioSource; // Âm thanh bắn
-    public AudioClip shootSound;    // File âm thanh
+   
+    
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        
 
         // HP từ Slider (giả sử maxValue đã được set trong Inspector)
         if (hpSlider != null)
@@ -168,10 +169,7 @@ public class WitchNormal : MonoBehaviour, IEnemy
         // Instantiate WitchBullet với Quaternion.Euler(0,0,angle)
         GameObject bulletObj = Instantiate(witchBulletPrefab, firePoint.position, Quaternion.Euler(0, 0, angle));
         WitchBullet bullet = bulletObj.GetComponent<WitchBullet>();
-          if (shootSound != null && audioSource != null)
-        {
-            audioSource.PlayOneShot(shootSound);
-        }
+         
     }
 
 
@@ -190,6 +188,7 @@ public class WitchNormal : MonoBehaviour, IEnemy
         Vector2 newPos = GetSafeTeleportPosition();
         transform.position = newPos;
         currentState = WitchState.Idle;
+       
     }
 
     Vector2 GetSafeTeleportPosition()

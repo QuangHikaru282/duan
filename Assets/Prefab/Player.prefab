@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 7819183367309133686}
   - component: {fileID: 4212507223269064425}
   - component: {fileID: 5139273196307627580}
+  - component: {fileID: 213860833576634538}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -270,7 +271,8 @@ MonoBehaviour:
   keyCount: 0
   fallThresholdY: -10
   knockbackForce: 3
-  gameOverManager: {fileID: 0}
+  gameOverManager: {fileID: 5035586130573048178, guid: 61702f6165820fb40b8346d49b72f617,
+    type: 3}
 --- !u!70 &2042731921359690349
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -353,7 +355,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 703c7a15e085b7141b8f2e776fb660a9, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b71f02e6026c9f04199b2a692ee7657e, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -439,6 +441,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &213860833576634538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6309806426050705749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344535b500c9bda4999d0d06be00747a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentCoins: 0
 --- !u!1 &8585652565296317362
 GameObject:
   m_ObjectHideFlags: 0
