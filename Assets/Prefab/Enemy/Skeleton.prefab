@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackState: {fileID: 3644124480914682637}
+  hurtState: {fileID: 9195631122180847026}
 --- !u!1 &930147378742106227
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,8 +291,8 @@ MonoBehaviour:
   anchor1: {fileID: 2726049281871256613}
   anchor2: {fileID: 9103062300815158581}
   chase: {fileID: 2634937817363086784}
-  checkAreaSize: {x: 0.3, y: 0.2}
-  checkAreaOffset: {x: 0.3, y: -0.75}
+  checkAreaSize: {x: 0.5, y: 0.5}
+  checkAreaOffset: {x: 0.75, y: -0.75}
   wallCheckOffset: {x: 0, y: 0}
   wallCheckDistance: 0.5
 --- !u!114 &6215228650707789901
@@ -479,9 +480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _priority: 40
   _forceInterrupt: 0
-  chaseSpeed: 3.5
-  searchState: {fileID: 3229373548232141120}
-  attackState: {fileID: 3644124480914682637}
+  chaseSpeed: 4
   runClip: {fileID: 7400000, guid: 6983f0387faa7b243923387c90a058db, type: 2}
 --- !u!1 &5240266709230350294
 GameObject:
@@ -584,8 +583,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   damage: 1
-  lastAttackTime: -Infinity
   attackCooldown: 1
+  lastAttackTime: -Infinity
 --- !u!1 &5868603317845335274
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,6 +663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _priority: 35
   _forceInterrupt: 0
+  idleAnim: {fileID: 7400000, guid: 13a28963bd93fcc4d8c0e7dc95594bd5, type: 2}
   searchDuration: 4
   flipInterval: 1
 --- !u!1 &7839703056387439131
@@ -789,10 +789,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _priority: 10
   _forceInterrupt: 0
+  idleDuration: 1.5
   idleAnim: {fileID: 7400000, guid: 13a28963bd93fcc4d8c0e7dc95594bd5, type: 2}
-  idleDuration: 1
-  idleOverride: 1
-  isCooldownIdle: 0
 --- !u!1 &8038255302862494385
 GameObject:
   m_ObjectHideFlags: 0
@@ -1001,6 +999,7 @@ GameObject:
   - component: {fileID: 6000790162670042811}
   - component: {fileID: 8596676691814650727}
   - component: {fileID: 3848813956891101876}
+  - component: {fileID: 4406434333380116016}
   m_Layer: 8
   m_Name: Skeleton
   m_TagString: Enemy
@@ -1183,6 +1182,26 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
+--- !u!114 &4406434333380116016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9118355762941802076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6767230be35f2846a8ad51c9f308fd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectRange: 5
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 136
+  playerTag: Player
+  memoryDuration: 1.5
+  raycastOffset: {x: 0, y: -0.3}
+  debugRay: 1
 --- !u!1001 &558769910744308818
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1299,12 +1318,12 @@ PrefabInstance:
     - target: {fileID: 5195720854151082296, guid: 4febfb02390f79244b9271f11d66ffd7,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5195720854151082296, guid: 4febfb02390f79244b9271f11d66ffd7,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8314760291852886760, guid: 4febfb02390f79244b9271f11d66ffd7,
         type: 3}

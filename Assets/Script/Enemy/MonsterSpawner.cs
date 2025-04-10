@@ -102,7 +102,7 @@ public class MonsterSpawner : MonoBehaviour
         GameObject monsterPrefab = ChooseWeightedMonsterPrefab();
         GameObject monster = Instantiate(monsterPrefab, spawnPos, Quaternion.identity);
 
-        // Kiểm tra xem monster có component GoblinNormal không
+     /*   // Kiểm tra xem monster có component GoblinNormal không
         if (monster.GetComponent<GoblinNormal>() != null)
         {
             // Snap chỉ riêng goblin xuống ground
@@ -113,7 +113,7 @@ public class MonsterSpawner : MonoBehaviour
                 // Điều chỉnh Y của goblin sao cho nó nằm ngay trên mặt đất (offset nhỏ để tránh cấn collider)
                 monster.transform.position = new Vector3(monster.transform.position.x, groundPos.y + 0.25f, monster.transform.position.z);
             }
-        }
+        }*/
     }
 
 
