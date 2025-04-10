@@ -175,7 +175,7 @@ public class playerScript : MonoBehaviour
     {
         // Nếu đang dash, bỏ qua xử lý di chuyển thông thường
         if (!isDashing)
-           HandleMovement();
+            HandleMovement();
         HandleJump();
     }
 
@@ -253,9 +253,6 @@ public class playerScript : MonoBehaviour
                 airDashRemaining--; // giảm số dash còn lại trong không
             }
         }
-
-
-
 
         // HomingBullet skill (E)
         if (Input.GetKeyDown(KeyCode.E))
@@ -339,8 +336,6 @@ public class playerScript : MonoBehaviour
 
     public void DealDamage()
     {
-        
-
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(
             attackPoint.position,
             attackRange,
@@ -348,13 +343,13 @@ public class playerScript : MonoBehaviour
         );
         foreach (Collider2D enemy in hitEnemies)
         {
-            IEnemy enemyScript = enemy.GetComponent<IEnemy>();
+            // Ưu tiên dùng interface
+            IEnemy enemyScript = enemy.GetComponentInParent<IEnemy>();
             if (enemyScript != null)
             {
                 enemyScript.TakeDamage(meleeDamage, "Melee", facingDirection);
             }
         }
-        //if (enemy.CompareTag("Shield")) continue;
     }
 
     public void OnCastSpawnHomingBullet()

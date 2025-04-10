@@ -14,7 +14,7 @@ public class FlameThrowerZone : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            StatusEffectHandler seh = other.GetComponent<StatusEffectHandler>();
+            StatusEffectHandler seh = other.GetComponentInParent<StatusEffectHandler>();
             if (seh != null)
             {
                 // Khi enemy bước vào vùng, bắt đầu chế độ continuous burn
@@ -25,6 +25,15 @@ public class FlameThrowerZone : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
+        if (other.CompareTag("Shield"))
+        {
+            StatusEffectHandler seh = other.GetComponentInParent<StatusEffectHandler>();
+            if (seh != null)
+            {
+                seh.StopAllBurn(); // Dừng mọi hiệu ứng
+            }
+            return;
+        }
         if (other.CompareTag("Enemy"))
         {
             // Nếu enemy vẫn trong vùng, làm mới trạng thái continuous burn
@@ -41,7 +50,7 @@ public class FlameThrowerZone : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             // Khi enemy rời khỏi vùng, chuyển sang chế độ DOT burn (tick damage theo cơ chế gốc)
-            StatusEffectHandler seh = other.GetComponent<StatusEffectHandler>();
+            StatusEffectHandler seh = other.GetComponentInParent<StatusEffectHandler>();
             if (seh != null)
             {
                 seh.StopContinuousBurnAndStartDOT();

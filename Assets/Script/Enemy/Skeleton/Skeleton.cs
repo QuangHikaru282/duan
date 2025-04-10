@@ -1,12 +1,20 @@
 ﻿using UnityEngine;
 
-public class Skeleton : EnemyCore, IEnemy
+public class Skeleton : EnemyCore
 {
-    //public ShieldState shieldState; // Đây là state đặc biệt của Skeleton
+    [Header("Private States")]
+    public ShieldState shieldState;
+    public BoxCollider2D colliderBlock;
 
-    public void TakeDamage(int damage, string damageType, int attackDirection)
+    void Awake()
     {
-        Debug.Log("Skeleton nhận damage: " + damage);
-        machine.Set(hurtState, true);
+        if (colliderBlock != null)
+            colliderBlock.enabled = false;
+    }
+
+    public void OnProjectileDetected()
+    {
+        if (state is ShieldState || state.priority >= shieldState.priority) return;
+        machine.TrySet(shieldState, true);
     }
 }
