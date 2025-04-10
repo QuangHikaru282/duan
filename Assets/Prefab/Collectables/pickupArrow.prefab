@@ -99,7 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d265fcd6684f994bbb403185647fa11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletAmount: 100
+  bulletAmount: 10
+  pickupSound: {fileID: 8300000, guid: 5db322aeb0763b041a21b79251c123eb, type: 3}
+  audioSource: {fileID: 0}
 --- !u!61 &3228475987279863178
 BoxCollider2D:
   m_ObjectHideFlags: 0

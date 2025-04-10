@@ -13,10 +13,12 @@ public class BulletPickup : MonoBehaviour
             if (player != null)
             {
                 player.AddBullets(bulletAmount);
+
             }
 
             // Hủy vật phẩm sau khi nhặt
             Destroy(gameObject);
+
         }
     }
 }

@@ -20,7 +20,6 @@ public class Trap : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log($"Collided with: {collision.gameObject.name}");
         StartCoroutine(ResetWithKinematic()); // Bắt đầu coroutine khi va chạm
     }
 

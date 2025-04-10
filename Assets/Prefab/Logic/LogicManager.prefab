@@ -1,50 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &993712156315885594
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7389694583939888100}
-  - component: {fileID: 4411158738537435340}
-  m_Layer: 0
-  m_Name: CoinManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7389694583939888100
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 993712156315885594}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5104931357920553467}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4411158738537435340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 993712156315885594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 308e602077268784ca999c838946f808, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coinCount: 0
 --- !u!1 &1429600265524623470
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,8 +91,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrowText: {fileID: 0}
-  keyText: {fileID: 0}
-  coinText: {fileID: 0}
 --- !u!1 &4302455550791247131
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,7 +171,6 @@ Transform:
   - {fileID: 7827676032023667478}
   - {fileID: 3860790031203710696}
   - {fileID: 3403617219124586494}
-  - {fileID: 7389694583939888100}
   - {fileID: 3667919714187755976}
   - {fileID: 7221561083529082281}
   m_Father: {fileID: 0}
@@ -233,8 +185,13 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 339397474505318729, guid: cb975b447f484f448acfaf5ebbd2536c,
         type: 3}
+      propertyPath: maxMana
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 339397474505318729, guid: cb975b447f484f448acfaf5ebbd2536c,
+        type: 3}
       propertyPath: currentMana
-      value: 100
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 3667371055769547271, guid: cb975b447f484f448acfaf5ebbd2536c,
         type: 3}
@@ -359,6 +316,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5035586130573048178, guid: 61702f6165820fb40b8346d49b72f617,
+        type: 3}
+      propertyPath: gameOverPanel
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5035586130573048178, guid: 61702f6165820fb40b8346d49b72f617,
+        type: 3}
+      propertyPath: pauseMenuPanel
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 9190640320153165702, guid: 61702f6165820fb40b8346d49b72f617,
         type: 3}
