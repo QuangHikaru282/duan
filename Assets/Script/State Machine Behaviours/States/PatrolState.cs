@@ -7,6 +7,7 @@ public class PatrolState : State
     public Transform anchor1;
     public Transform anchor2;
     public ChaseState chase;
+    private Vector2 patrolTarget;
 
     public Vector2 checkAreaSize = new Vector2(1f, 0.2f);
     public Vector2 checkAreaOffset = new Vector2(0.5f, -0.5f);
@@ -22,7 +23,6 @@ public class PatrolState : State
 
     public override void Enter()
     {
-        base.Enter();
         isComplete = false;
         exitReason = StateExitReason.None;
 
@@ -34,7 +34,6 @@ public class PatrolState : State
 
     public override void Do()
     {
-        base.Do();
 
         // Đã thấy player → chuyển sang chase
         if (los.isSeeingTarget)
@@ -75,12 +74,6 @@ public class PatrolState : State
         }
     }
 
-    public override void Exit()
-    {
-        base.Exit();
-        body.velocity = Vector2.zero;
-    }
-
     public override State GetNextState()
     {
         if (!isComplete) return null;
@@ -101,7 +94,30 @@ public class PatrolState : State
         anchorsDetached = true;
     }
 
+    private Vector2 GetRandomPatrolTarget()
+    {
+        if (!anchor1 || !anchor2)
+            return core.transform.position;
+
+        float minX = Mathf.Min(anchor1.position.x, anchor2.position.x);
+        float maxX = Mathf.Max(anchor1.position.x, anchor2.position.x);
+        float randomX = Random.Range(minX, maxX);
+        float y = core.transform.position.y;
+
+        return new Vector2(randomX, y);
+    }
+
     void GoToNextDestination()
+    {
+        if (!navigate) return;
+
+        patrolTarget = GetRandomPatrolTarget();
+        navigate.destination = patrolTarget;
+        machine.Set(navigate, true);
+    }
+
+
+    /*void GoToNextDestination()
     {
         if (!navigate) return;
 
@@ -111,7 +127,7 @@ public class PatrolState : State
 
         navigate.destination = (curr == a1) ? a2 : a1;
         machine.Set(navigate, true);
-    }
+    }*/
 
     void CheckForFlip()
     {

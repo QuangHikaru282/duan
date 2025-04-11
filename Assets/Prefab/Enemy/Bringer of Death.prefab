@@ -529,7 +529,7 @@ Transform:
   m_GameObject: {fileID: 3334642764464034366}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.9940004, y: -0.3029995, z: 0.042225532}
+  m_LocalPosition: {x: -14.01, y: -0.3029995, z: 0.042225532}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -774,7 +774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6a83182788ff114bb215b152761b55b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  burnEffectPrefab: {fileID: 7203417775670867246, guid: 3a8040a652d6c264eb4d85855e0da9fa,
+  burnEffectPrefab: {fileID: 2917821658047728425, guid: 16abeeea2835c6640bde6e02855db06a,
     type: 3}
 --- !u!114 &5971921859274091093
 MonoBehaviour:
@@ -842,11 +842,13 @@ MonoBehaviour:
   lastKnownPosition: {x: 0, y: 0}
   hpCanvasObj: {fileID: 8007048610773966869}
   hpSlider: {fileID: 1527365196587702711}
-  maxHP: 250
+  maxHP: 500
   hpHideDelay: 15
   meleeEffect: {fileID: 6645803334524371341, guid: e81943fd38df03449abca6069b9f48b4,
     type: 3}
   rangeEffect: {fileID: 4281637207453206883, guid: e1e23abb60bad9a41bccb526b0654f7c,
+    type: 3}
+  floatingTextPrefab: {fileID: 5931283188717562354, guid: 20a3c8059b87aec49934585639f05ca0,
     type: 3}
   fallBelowOffsetY: -20
 --- !u!1 &7790065811454858571
@@ -874,7 +876,7 @@ Transform:
   m_GameObject: {fileID: 7790065811454858571}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.02, y: -0.39299965, z: 0.042225532}
+  m_LocalPosition: {x: 15.75, y: -0.39299965, z: 0.042225532}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -983,10 +985,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5882143696395611743}
     m_Modifications:
+    - target: {fileID: 775017161325920739, guid: 4febfb02390f79244b9271f11d66ffd7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2530675018686306169, guid: 4febfb02390f79244b9271f11d66ffd7,
         type: 3}
       propertyPath: m_Name
       value: Fixed HP Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 2530675018686306169, guid: 4febfb02390f79244b9271f11d66ffd7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3445587285358748945, guid: 4febfb02390f79244b9271f11d66ffd7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523799966136665557, guid: 4febfb02390f79244b9271f11d66ffd7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5145306385927947486, guid: 4febfb02390f79244b9271f11d66ffd7,
         type: 3}
@@ -1027,6 +1049,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 449.99997
+      objectReference: {fileID: 0}
+    - target: {fileID: 5145306385927947486, guid: 4febfb02390f79244b9271f11d66ffd7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.005
       objectReference: {fileID: 0}
     - target: {fileID: 5145306385927947486, guid: 4febfb02390f79244b9271f11d66ffd7,
         type: 3}
@@ -1097,6 +1124,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098702434132546479, guid: 4febfb02390f79244b9271f11d66ffd7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

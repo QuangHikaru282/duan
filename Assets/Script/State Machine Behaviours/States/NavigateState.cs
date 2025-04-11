@@ -11,7 +11,6 @@ public class NavigateState : State
 
     public override void Enter()
     {
-        base.Enter();
         isComplete = false;
         exitReason = StateExitReason.None;
         playedRun = false;
@@ -19,8 +18,6 @@ public class NavigateState : State
 
     public override void Do()
     {
-        base.Do();
-
         float dist = Vector2.Distance(core.transform.position, destination);
         if (dist < threshold)
         {
@@ -43,7 +40,6 @@ public class NavigateState : State
 
     public override void FixedDo()
     {
-        base.FixedDo();
         Vector2 current = core.transform.position;
         Vector2 dir = (destination - current).normalized;
         body.velocity = new Vector2(dir.x * speed, body.velocity.y);
@@ -51,7 +47,6 @@ public class NavigateState : State
 
     public override void Exit()
     {
-        base.Exit();
         body.velocity = new Vector2(0f, body.velocity.y);
     }
 }

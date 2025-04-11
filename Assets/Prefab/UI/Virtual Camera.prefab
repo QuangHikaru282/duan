@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 723085932448970892}
   - component: {fileID: 4790026417023293659}
   - component: {fileID: 502763887494677212}
+  - component: {fileID: 6327326292688146875}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -88,6 +89,19 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
+--- !u!114 &6327326292688146875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2809873346243094063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4c41ac9245b87c4192012080077d830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Damping: 0
 --- !u!1 &3275148280813928038
 GameObject:
   m_ObjectHideFlags: 0

@@ -33,6 +33,7 @@ public class EnemyCore : MonoBehaviour, IEnemy
     [Header("Effect Prefabs")]
     public GameObject meleeEffect;
     public GameObject rangeEffect;
+    public GameObject floatingTextPrefab; // Prefab hiển thị số damage
 
     [Header("Die Settings")]
     public float fallBelowOffsetY = -20f;
@@ -49,6 +50,7 @@ public class EnemyCore : MonoBehaviour, IEnemy
             if (playerObj != null)
                 player = playerObj.transform;
         }
+
         currentHP = maxHP;
 
         if (hpSlider != null)
@@ -88,7 +90,6 @@ public class EnemyCore : MonoBehaviour, IEnemy
             machine.state.DoBranch();
         }
 
-        // Countdown ẩn HP
         if (hpCanvasObj != null && hpCanvasObj.activeSelf)
         {
             hpTimer += Time.deltaTime;
@@ -96,7 +97,6 @@ public class EnemyCore : MonoBehaviour, IEnemy
                 HideHPAndReset();
         }
 
-        // Die nếu rơi khỏi vực
         if (transform.position.y < fallBelowOffsetY && state != dieState)
         {
             machine.TrySet(dieState, true);
@@ -116,6 +116,10 @@ public class EnemyCore : MonoBehaviour, IEnemy
         currentHP -= dmg;
         currentHP = Mathf.Max(currentHP, 0);
 
+/*#if UNITY_EDITOR
+    Debug.Log($"[TakeDamage] {name} took {dmg} damage ({dmgType}) → Remaining HP: {currentHP}");
+#endif*/
+
         if (hpSlider != null)
             hpSlider.value = currentHP;
 
@@ -125,6 +129,7 @@ public class EnemyCore : MonoBehaviour, IEnemy
         hpTimer = 0f;
 
         ShowHitEffect(dmgType, attackDir);
+        ShowFloatingText(dmg);
 
         if (currentHP <= 0)
         {
@@ -148,12 +153,20 @@ public class EnemyCore : MonoBehaviour, IEnemy
         if (effectPrefab == null) return;
 
         Vector3 offset = new Vector3(0.3f * dir, 0f, 0f);
-        Vector3 spawnPos = transform.position + offset;
-
-        GameObject effect = Instantiate(effectPrefab, spawnPos, Quaternion.identity);
+        GameObject effect = Instantiate(effectPrefab, transform.position + offset, Quaternion.identity);
         Vector3 scale = effect.transform.localScale;
         scale.x = (dir < 0) ? -Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
         effect.transform.localScale = scale;
+    }
+
+    void ShowFloatingText(int dmg)
+    {
+        if (floatingTextPrefab == null || currentHP <= 0 || hpCanvasObj == null) return;
+
+        GameObject go = Instantiate(floatingTextPrefab, hpCanvasObj.transform, false);
+        FloatingText ft = go.GetComponent<FloatingText>();
+        if (ft != null)
+            ft.SetText($"-{dmg}");
     }
 
     public void HideHPAndReset()

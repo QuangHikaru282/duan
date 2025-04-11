@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class playerScript : MonoBehaviour
 {
@@ -335,12 +336,15 @@ public class playerScript : MonoBehaviour
             attackRange,
             enemyLayers
         );
-        foreach (Collider2D enemy in hitEnemies)
+
+        HashSet<IEnemy> damagedEnemies = new HashSet<IEnemy>();
+
+        foreach (Collider2D col in hitEnemies)
         {
-            // Ưu tiên dùng interface
-            IEnemy enemyScript = enemy.GetComponentInParent<IEnemy>();
-            if (enemyScript != null)
+            IEnemy enemyScript = col.GetComponentInParent<IEnemy>();
+            if (enemyScript != null && !damagedEnemies.Contains(enemyScript))
             {
+                damagedEnemies.Add(enemyScript);
                 enemyScript.TakeDamage(meleeDamage, "Melee", facingDirection);
             }
         }

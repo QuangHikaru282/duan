@@ -271,6 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackState: {fileID: 9045516579223178668}
+  hurtState: {fileID: 0}
 --- !u!1 &2400914532546961288
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,7 +453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6a83182788ff114bb215b152761b55b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  burnEffectPrefab: {fileID: 7203417775670867246, guid: 3a8040a652d6c264eb4d85855e0da9fa,
+  burnEffectPrefab: {fileID: 125071332633842950, guid: c20ac8b07d7b16347afea5258fc94a5b,
     type: 3}
 --- !u!114 &1302333324926695165
 MonoBehaviour:
@@ -525,6 +526,8 @@ MonoBehaviour:
   meleeEffect: {fileID: 6645803334524371341, guid: e81943fd38df03449abca6069b9f48b4,
     type: 3}
   rangeEffect: {fileID: 4281637207453206883, guid: e1e23abb60bad9a41bccb526b0654f7c,
+    type: 3}
+  floatingTextPrefab: {fileID: 3401359377353481794, guid: 755c279acff3e8947b1e17a2161886fe,
     type: 3}
   fallBelowOffsetY: -20
 --- !u!1 &3693588510062466995
@@ -654,8 +657,6 @@ MonoBehaviour:
   _priority: 40
   _forceInterrupt: 0
   chaseSpeed: 4
-  searchState: {fileID: 7639377780451558945}
-  attackState: {fileID: 9045516579223178668}
   runClip: {fileID: 7400000, guid: 29aec9f0676d9f84dbb10ba8504744dd, type: 2}
 --- !u!1 &6017628958644927887
 GameObject:
@@ -734,10 +735,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _priority: 10
   _forceInterrupt: 0
-  idleAnim: {fileID: 7400000, guid: 196536a31799ffb49a7ba77450a47e18, type: 2}
   idleDuration: 1
-  idleOverride: 1
-  isCooldownIdle: 0
+  idleAnim: {fileID: 7400000, guid: 196536a31799ffb49a7ba77450a47e18, type: 2}
 --- !u!1 &6674844210749369839
 GameObject:
   m_ObjectHideFlags: 0
@@ -792,8 +791,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   damage: 1
-  lastAttackTime: -Infinity
   attackCooldown: 1
+  lastAttackTime: -Infinity
 --- !u!1 &7369974192987545702
 GameObject:
   m_ObjectHideFlags: 0
