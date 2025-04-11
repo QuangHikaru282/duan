@@ -264,7 +264,6 @@ public class playerScript : MonoBehaviour
         {
             isFlamethrowerActive = true;
             animator.SetBool("isCastLooping", true);
-            rb.velocity = Vector2.zero;
         }
 
         if (isFlamethrowerActive && Input.GetKey(KeyCode.Q))
@@ -273,7 +272,6 @@ public class playerScript : MonoBehaviour
             {
                 TurnOffFlamethrower();
             }
-            rb.velocity = Vector2.zero;
         }
 
         if (Input.GetKeyUp(KeyCode.Q))

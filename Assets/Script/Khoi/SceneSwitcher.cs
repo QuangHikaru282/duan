@@ -26,35 +26,27 @@ public class SceneSwitcher : MonoBehaviour
 
     protected internal void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("loi 1");
         if (other.CompareTag("Player"))
         {
-            Debug.Log("loi 2");
             CapsuleCollider2D playerCollider = other.GetComponent<CapsuleCollider2D>();
             BoxCollider2D groundCollider = GetComponent<BoxCollider2D>();
 
             if (playerCollider == null || groundCollider == null || fire == null)
             {
-                Debug.Log("loi 4");
                 Debug.LogWarning("Missing components or prefab!");
                 return;
             }
 
             Vector2 startPosition = playerCollider.bounds.center;
             Vector2 targetPosition = groundCollider.bounds.center;
-            Debug.Log("loi 6");
             if (movingObject != null)
             {
-                Debug.Log("loi 5");
                 StopCoroutine("MoveObjectToTarget");
                 Destroy(movingObject); // Hủy đối tượng cũ nếu tồn tại
             }
-            Debug.Log("loi 3");
             movingObject = Instantiate(fire, startPosition, Quaternion.identity);
             animatorFire = movingObject.GetComponent<Animator>();
-            Debug.Log("loi m");
             StartCoroutine(ShowDecoratesInOrder());
-            Debug.Log("loi n");
             StartCoroutine(MoveObjectToTarget(movingObject, targetPosition));
             
         }

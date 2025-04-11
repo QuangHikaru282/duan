@@ -18,14 +18,11 @@ public class Interact : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("aaaa");
-        // Kiểm tra nếu prefab đã được gán
+
         if (prefabToSpawn != null && !isSpawning)
         {
-            Debug.Log("bbbb");
-            // Lấy BoxCollider2D từ đối tượng hiện tại
+
             BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
-            Debug.Log("cccc");
             if (boxCollider != null)
             {
                 // Tính toán vị trí trung tâm của BoxCollider2D
@@ -53,7 +50,6 @@ public class Interact : MonoBehaviour
             particleSystem.Play();
             StartCoroutine(Vibrate.Shake());
             isSpawning = true;
-            Debug.LogWarning("oke");
         }
     }
 
