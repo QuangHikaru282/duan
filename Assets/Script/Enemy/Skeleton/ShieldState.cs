@@ -44,7 +44,6 @@ public class ShieldState : State
 
     public override void Exit()
     {
-        base.Exit();
         DisableShield();
         if (animator)
             animator.speed = 1f;

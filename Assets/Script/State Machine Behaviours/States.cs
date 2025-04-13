@@ -30,7 +30,6 @@ public abstract class State : MonoBehaviour
     public StateMachine machine;
     protected StateMachine parent;
 
-    // Cung cấp truy cập nhanh đến Skeleton
     protected Skeleton skeleton => core as Skeleton; //can phai chu y them core moi khi them quai moi
     protected LOSController los => core.GetComponent<LOSController>();
 

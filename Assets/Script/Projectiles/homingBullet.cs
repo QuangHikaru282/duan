@@ -88,7 +88,6 @@ public class HomingBullet : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        Debug.Log("phat hien va cham!");
         if (hasHit) return;
 
         // Va chạm Ground / Platform

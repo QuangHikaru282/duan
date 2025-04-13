@@ -16,6 +16,7 @@ public class AnimationEventRelay : MonoBehaviour
         if (attackState != null)
             attackState.EndAttack();
     }
+
     public void GetNextState()
     {
         if (hurtState != null)
