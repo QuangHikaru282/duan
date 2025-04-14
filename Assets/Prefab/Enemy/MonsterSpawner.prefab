@@ -65,7 +65,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.041017, y: 1.7626216}
+  m_Offset: {x: 1.2805572, y: 1.7626216}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -76,7 +76,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.8184824, y: 6.3013177}
+  m_Size: {x: 12.036519, y: 6.3013177}
   m_EdgeRadius: 0
 --- !u!114 &4790549013881201353
 MonoBehaviour:
@@ -93,20 +93,18 @@ MonoBehaviour:
   spawnDuration: 20
   spawnInterval: 3
   monstersPerInterval: 2
-  maximumSpawn: 8
+  maximumSpawn: 10
   spawnAreaWidth: 10
   spawnAreaHeight: 5
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
   monsterPrefabs:
-  - {fileID: 9220092957517445129, guid: 22f9b0698fd170148979f72fe6b7eb26, type: 3}
-  - {fileID: 458885630010988881, guid: 6a4968e59503d47408d2f9874d067e87, type: 3}
-  - {fileID: 1632722150886002613, guid: daa3930af04632c41ba59cc86990a441, type: 3}
+  - {fileID: 3731365272065750146, guid: 22f9b0698fd170148979f72fe6b7eb26, type: 3}
+  - {fileID: 3428830708244296759, guid: 2386051f34a99c74b8844bb71887c009, type: 3}
   spawnWeights:
-  - 60
-  - 20
-  - 20
+  - 50
+  - 50
   monsterZoneUIPrefab: {fileID: 9039621177948048763, guid: 546d694cf0be1eb4486f6c22147c79da,
     type: 3}
   notificationDuration: 5

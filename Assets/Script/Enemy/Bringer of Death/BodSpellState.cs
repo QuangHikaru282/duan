@@ -63,6 +63,7 @@ public class BodSpellState : State
             core.StopCoroutine(spawnRoutine);
             spawnRoutine = null;
         }
+
         if (!isComplete)
         {
             lastSpellTime = Time.time; // Đánh dấu cooldown như đã dùng

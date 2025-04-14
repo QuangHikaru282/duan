@@ -68,20 +68,29 @@ public class AttackState : State
     }
 
 #if UNITY_EDITOR
-    private void OnDrawGizmosSelected()
+private void OnDrawGizmosSelected()
+{
+    if (atkPoint == null) return;
+
+    float facing = 1f;
+
+    if (Application.isPlaying)
     {
-        if (atkPoint)
-        {
-            float facing = Application.isPlaying
-                ? Mathf.Sign(core.transform.localScale.x)
-                : Mathf.Sign(transform.root.localScale.x);
-
-            Vector2 offset = new Vector2(attackOffset.x * facing, attackOffset.y);
-            Vector2 drawPos = (Vector2)atkPoint.position + offset;
-
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(drawPos, attackRange);
-        }
+        if (core != null)
+            facing = Mathf.Sign(core.transform.localScale.x);
     }
+    else
+    {
+        if (transform.root != null)
+            facing = Mathf.Sign(transform.root.localScale.x);
+    }
+
+    Vector2 offset = new Vector2(attackOffset.x * facing, attackOffset.y);
+    Vector2 drawPos = (Vector2)atkPoint.position + offset;
+
+    Gizmos.color = Color.red;
+    Gizmos.DrawWireSphere(drawPos, attackRange);
+}
 #endif
+
 }

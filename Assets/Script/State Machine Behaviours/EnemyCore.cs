@@ -33,16 +33,23 @@ public class EnemyCore : MonoBehaviour, IEnemy
     [Header("Effect Prefabs")]
     public GameObject meleeEffect;
     public GameObject rangeEffect;
-    public GameObject floatingTextPrefab; // Prefab hiển thị số damage
+    public GameObject floatingTextPrefab;
 
     [Header("Die Settings")]
     public float fallBelowOffsetY = -20f;
 
-    // State Machine
     public StateMachine machine;
-    public State state => machine.state;
+    public State state => machine?.state;
 
-    void Start()
+    public virtual void Start()
+    {
+        InitCore();
+        SetupInstances();
+
+        machine.Set(idleState);
+    }
+
+    protected void InitCore()
     {
         if (player == null)
         {
@@ -61,9 +68,6 @@ public class EnemyCore : MonoBehaviour, IEnemy
 
         if (hpCanvasObj != null)
             hpCanvasObj.SetActive(false);
-
-        SetupInstances();
-        machine.Set(idleState);
     }
 
     public void SetupInstances()
@@ -79,7 +83,7 @@ public class EnemyCore : MonoBehaviour, IEnemy
 
     void Update()
     {
-        if (machine.state != null)
+        if (machine != null && machine.state != null)
         {
             if (machine.state.isComplete)
             {
@@ -87,6 +91,7 @@ public class EnemyCore : MonoBehaviour, IEnemy
                 if (next != null)
                     machine.Set(next);
             }
+
             machine.state.DoBranch();
         }
 
@@ -97,7 +102,7 @@ public class EnemyCore : MonoBehaviour, IEnemy
                 HideHPAndReset();
         }
 
-        if (transform.position.y < fallBelowOffsetY && state != dieState)
+        if (transform.position.y < fallBelowOffsetY && machine != null && state != dieState)
         {
             machine.TrySet(dieState, true);
         }
@@ -105,7 +110,7 @@ public class EnemyCore : MonoBehaviour, IEnemy
 
     void FixedUpdate()
     {
-        if (machine.state != null)
+        if (machine != null && machine.state != null)
             machine.state.FixedDoBranch();
     }
 
@@ -115,10 +120,6 @@ public class EnemyCore : MonoBehaviour, IEnemy
 
         currentHP -= dmg;
         currentHP = Mathf.Max(currentHP, 0);
-
-/*#if UNITY_EDITOR
-    Debug.Log($"[TakeDamage] {name} took {dmg} damage ({dmgType}) → Remaining HP: {currentHP}");
-#endif*/
 
         if (hpSlider != null)
             hpSlider.value = currentHP;
@@ -130,6 +131,8 @@ public class EnemyCore : MonoBehaviour, IEnemy
 
         ShowHitEffect(dmgType, attackDir);
         ShowFloatingText(dmg);
+
+        if (machine == null) return;
 
         if (currentHP <= 0)
         {
@@ -180,7 +183,8 @@ public class EnemyCore : MonoBehaviour, IEnemy
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (state == dieState) return;
+        if (machine == null || state == dieState)
+            return;
 
         if (other.CompareTag("Trap"))
         {
@@ -191,18 +195,17 @@ public class EnemyCore : MonoBehaviour, IEnemy
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
-        if (Application.isPlaying && state != null)
-        {
-            var activeStates = machine.GetActiveStateBranch();
-            string path = "";
-            foreach (var s in activeStates)
-                path += s.GetType().Name + " > ";
+        if (!Application.isPlaying || machine == null || state == null) return;
 
-            if (path.Length > 3)
-                path = path.Substring(0, path.Length - 3);
+        var activeStates = machine.GetActiveStateBranch();
+        string path = "";
+        foreach (var s in activeStates)
+            path += s.GetType().Name + " > ";
 
-            UnityEditor.Handles.Label(transform.position, "Active States: " + path);
-        }
+        if (path.Length > 3)
+            path = path.Substring(0, path.Length - 3);
+
+        UnityEditor.Handles.Label(transform.position, "Active States: " + path);
     }
 #endif
 }
