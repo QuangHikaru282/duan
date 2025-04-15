@@ -21,6 +21,7 @@ public class IGIntroState : State
     {
         isComplete = false;
         exitReason = StateExitReason.None;
+        core.canBeDamaged = false;
         body.velocity = Vector2.zero;
 
         if (animator && introClip != null)
@@ -88,6 +89,7 @@ public class IGIntroState : State
 
         if (bossCam != null)
             bossCam.Priority = 5;
+        core.canBeDamaged = true;
     }
 
     public override State GetNextState()

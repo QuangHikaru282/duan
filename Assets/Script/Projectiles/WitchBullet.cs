@@ -23,41 +23,32 @@ public class WitchBullet : MonoBehaviour
         rb.velocity = bulletDirection * speed;
     }
 
-    void Update()
-    {
-        // Đạn di chuyển tự động theo velocity; không cần xử lý logic Update thêm.
-    }
-
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (hasExploded)
             return;
 
-        // Kiểm tra va chạm với Player, Ground hoặc MovingPlaform
         if (collision.CompareTag("Player") || collision.CompareTag("Ground") || collision.CompareTag("MovingPlaform"))
         {
-            // Nếu va chạm với Player thì gây sát thương
             if (collision.CompareTag("Player"))
             {
                 playerScript ps = collision.GetComponent<playerScript>();
                 if (ps != null)
                 {
                     ps.TakeDamage(damage);
+                    HitStopManager.Instance.TriggerHitStop(0.25f);
                 }
             }
 
-            // Nếu có Animator, kích hoạt trigger explosion
             Animator anim = GetComponent<Animator>();
             if (anim != null)
             {
                 anim.SetTrigger("ExplodeTrigger");
             }
 
-            // Dừng chuyển động của đạn
             rb.velocity = Vector2.zero;
             hasExploded = true;
 
-            // Bắt đầu coroutine để chờ animation explosion (0.7 giây) rồi destroy object
             StartCoroutine(ExplosionRoutine());
         }
     }

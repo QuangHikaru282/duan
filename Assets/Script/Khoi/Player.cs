@@ -79,10 +79,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private static Player instance;
 
-    //Prefab
-    //[SerializeField]
-    //private GameObject prefabToSpawn;
-    //private GameObject spawnedObject;
     public void SavePlayerData()
     {
         // Lấy vị trí hiện tại và scene hiện tại

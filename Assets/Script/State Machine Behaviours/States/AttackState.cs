@@ -56,6 +56,7 @@ public class AttackState : State
             if (player != null)
             {
                 player.TakeDamage(damage);
+                HitStopManager.Instance.TriggerHitStop(0.15f);
             }
         }
     }

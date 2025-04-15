@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSlider: {fileID: 8137743175218459899}
-  resetTime: 10
+  resetTime: 15
   attackCooldown: 2
   firePoint: {fileID: 222724990878243396}
   witchBulletPrefab: {fileID: 8101465223323206308, guid: 8184bd18b0601eb418c0ef604867cc4b,
@@ -166,7 +166,7 @@ MonoBehaviour:
   detectionAreaWidth: 6
   detectionAreaHeight: 8
   teleportDelay: 0.5
-  emergencyDamageThreshold: 25
+  emergencyDamageThreshold: 40
   alertMarkPrefab: {fileID: 2879550769798472158, guid: 7ec5ade9583831144adf66abe91b25c7,
     type: 3}
 --- !u!61 &4641329636389137380
@@ -231,7 +231,8 @@ MonoBehaviour:
   - {fileID: 3938232544952528158, guid: 59308a0dc2f99da4cb457008abed3fd7, type: 3}
   - {fileID: 380629376001808881, guid: 3cfb417f6a93e3b4c92c5b227f3e55a2, type: 3}
   dropChance: 0.7
-  spawnOffset: 0
+  spawnOffsetY: 0
+  spreadRadius: 1.2
 --- !u!114 &8782831597232330875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -503,12 +504,12 @@ PrefabInstance:
     - target: {fileID: 6427280163784928987, guid: 4febfb02390f79244b9271f11d66ffd7,
         type: 3}
       propertyPath: m_Value
-      value: 90
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6427280163784928987, guid: 4febfb02390f79244b9271f11d66ffd7,
         type: 3}
       propertyPath: m_MaxValue
-      value: 90
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

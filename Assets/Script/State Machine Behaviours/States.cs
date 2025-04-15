@@ -16,13 +16,15 @@ public abstract class State : MonoBehaviour
 
     public virtual int priority => _priority;
     public virtual bool forceInterrupt => _forceInterrupt;
-
+    public int PriorityValue
+    {
+        get => _priority;
+        set => _priority = value;
+    }
     public bool isComplete { get; set; }
     public StateExitReason exitReason { get; set; } = StateExitReason.None;
-
     protected float startTime;
     public float time => Time.time - startTime;
-
     protected EnemyCore core;
     protected Rigidbody2D body => core.body;
     protected Animator animator => core.animator;
@@ -31,6 +33,8 @@ public abstract class State : MonoBehaviour
     protected StateMachine parent;
 
     protected Skeleton skeleton => core as Skeleton; //can phai chu y them core moi khi them quai moi
+    protected IceGuardian ig => core as IceGuardian;
+
     protected LOSController los => core.GetComponent<LOSController>();
 
 
