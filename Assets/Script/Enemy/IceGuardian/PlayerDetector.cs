@@ -17,8 +17,18 @@ public class PlayerDetector : MonoBehaviour
 
         if (other.CompareTag("Player") && los.isSeeingTarget)
         {
-            Debug.Log("Detector thay va bao cho IG");
             ig.OnPlayerDetected();
         }
     }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (ig == null || los == null) return;
+
+        if (other.CompareTag("Player") && los.isSeeingTarget)
+        {
+            ig.OnSkill2Detected();
+        }
+    }
+
 }

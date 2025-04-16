@@ -121,6 +121,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackState: {fileID: 3644124480914682637}
   hurtState: {fileID: 9195631122180847026}
+  skill1State: {fileID: 0}
+  skill2State: {fileID: 0}
 --- !u!1 &930147378742106227
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,7 +584,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  damage: 1
+  damage: 2
   attackCooldown: 1
   lastAttackTime: -Infinity
 --- !u!1 &5868603317845335274
@@ -998,7 +1000,6 @@ GameObject:
   - component: {fileID: 1136635418564592979}
   - component: {fileID: 6000790162670042811}
   - component: {fileID: 8596676691814650727}
-  - component: {fileID: 3848813956891101876}
   - component: {fileID: 4406434333380116016}
   m_Layer: 8
   m_Name: Skeleton
@@ -1104,8 +1105,10 @@ MonoBehaviour:
   lastKnownPosition: {x: 0, y: 0}
   hpCanvasObj: {fileID: 2657094920180321067}
   hpSlider: {fileID: 6841934324078998153}
-  maxHP: 150
-  hpHideDelay: 10
+  maxHP: 500
+  hpTimer: 0
+  hpHideDelay: 20
+  canBeDamaged: 1
   meleeEffect: {fileID: 6645803334524371341, guid: e81943fd38df03449abca6069b9f48b4,
     type: 3}
   rangeEffect: {fileID: 4281637207453206883, guid: e1e23abb60bad9a41bccb526b0654f7c,
@@ -1166,24 +1169,8 @@ MonoBehaviour:
   - {fileID: 3938232544952528158, guid: 59308a0dc2f99da4cb457008abed3fd7, type: 3}
   - {fileID: 227186903172507890, guid: 89956d91f54961745b8c94f795233c1a, type: 3}
   dropChance: 0.7
-  spawnOffset: 0
---- !u!114 &3848813956891101876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9118355762941802076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d2527ab56901ed40906adb5a5b40adc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  separationRadius: 0.5
-  separationForce: 2
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 256
+  spawnOffsetY: 0
+  spreadRadius: 1.2
 --- !u!114 &4406434333380116016
 MonoBehaviour:
   m_ObjectHideFlags: 0

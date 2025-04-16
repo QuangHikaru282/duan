@@ -42,13 +42,13 @@ public class playerScript : MonoBehaviour
     public LayerMask enemyLayers;
 
     [Header("Skill HomingBullet")]
-    public GameObject homingBulletPrefab;   // Drag prefab
-    public Transform skillShotPoint;        // con của player
-    public string castTrigger = "CastTrigger";  // Trigger anim E
-    public int homingBulletCost = 20;       // Mana cost
+    public GameObject homingBulletPrefab;   
+    public Transform skillShotPoint;        
+    public string castTrigger = "CastTrigger";  
+    public int homingBulletCost = 20;       
 
     [Header("Flamethrower")]
-    public GameObject flameThrowerPrefab;   // Prefab vùng lửa (FlameThrowerZone)
+    public GameObject flameThrowerPrefab;  
     private Vector2 originalColliderOffset;
     private GameObject flameInstance = null;
     bool isFlamethrowerActive = false;
@@ -76,6 +76,7 @@ public class playerScript : MonoBehaviour
     private bool jumpRequest = false;
     private bool isDead = false;
     private bool isHurt = false;
+    [HideInInspector] public bool isFrozen = false;
     private Animator animator;
     private Vector2 checkpointPosition;
 
@@ -238,12 +239,13 @@ public class playerScript : MonoBehaviour
         // Dash (phím L)
         if (Input.GetKeyDown(KeyCode.L))
         {
-            // Nếu ở mặt đất và đủ cooldown, thực hiện dash
+            if (isFrozen || isHurt || isFlamethrowerActive) return;
+
             if (isGrounded && dashTimer <= 0f && !isDashing)
             {
                 StartCoroutine(PerformDash());
             }
-            // Nếu ở trên không và còn dash cho lần nhảy hiện tại
+
             else if (!isGrounded && airDashRemaining > 0 && !isDashing)
             {
                 StartCoroutine(PerformDash());
@@ -286,16 +288,15 @@ public class playerScript : MonoBehaviour
     {
         // Lưu lại giá trị gravity ban đầu
         float originalGravity = rb.gravityScale;
-        rb.gravityScale = 0f; // Tạm tắt trọng lực
-        ResetAttackTriggers(); // Cancel các đòn tấn công
+        rb.gravityScale = 0f;
+        ResetAttackTriggers(); 
         isDashing = true;
         animator.SetBool("isDashing", true);
-        // Đặt velocity dash theo hướng của player, đặt trục y = 0 để không bị ảnh hưởng bởi trọng lực
         rb.velocity = new Vector2(dashForce * facingDirection, 0f);
         yield return new WaitForSeconds(0.2f); //thời gian càng ngắn thì quãng đường dash càng ngắn => lực cần tăng
         animator.SetBool("isDashing", false);
         isDashing = false;
-        rb.gravityScale = originalGravity; // Phục hồi trọng lực ban đầu
+        rb.gravityScale = originalGravity;
         dashTimer = dashCooldown;
     }
 
@@ -346,7 +347,9 @@ public class playerScript : MonoBehaviour
             {
                 damagedEnemies.Add(enemyScript);
                 enemyScript.TakeDamage(meleeDamage, "Melee", facingDirection);
+                HitStopManager.Instance.TriggerHitStop(0.1f);
             }
+
         }
     }
 
@@ -410,6 +413,8 @@ public class playerScript : MonoBehaviour
         isHurt = true;
         currentHealth -= damage;
         HealthUIManager.Instance.UpdateHealthUI(currentHealth);
+        //HitStopManager.Instance.TriggerHitStop(0.25f); // Ví dụ: stop trong 0.08 giây
+
 
         if (currentHealth <= 0)
             Die();

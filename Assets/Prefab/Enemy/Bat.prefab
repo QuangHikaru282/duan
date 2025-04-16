@@ -310,7 +310,8 @@ MonoBehaviour:
   - {fileID: 227186903172507890, guid: 89956d91f54961745b8c94f795233c1a, type: 3}
   - {fileID: 380629376001808881, guid: 3cfb417f6a93e3b4c92c5b227f3e55a2, type: 3}
   dropChance: 0.5
-  spawnOffset: 0
+  spawnOffsetY: 0
+  spreadRadius: 1.2
 --- !u!114 &6229912373967858798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -673,12 +674,12 @@ PrefabInstance:
     - target: {fileID: 9113194238188284092, guid: abdeb6ad9447d9147bc92428ebef7456,
         type: 3}
       propertyPath: m_Value
-      value: 80
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 9113194238188284092, guid: abdeb6ad9447d9147bc92428ebef7456,
         type: 3}
       propertyPath: m_MaxValue
-      value: 80
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 9113194238188284092, guid: abdeb6ad9447d9147bc92428ebef7456,
         type: 3}

@@ -389,8 +389,10 @@ MonoBehaviour:
   lastKnownPosition: {x: 0, y: 0}
   hpCanvasObj: {fileID: 11892220069592627}
   hpSlider: {fileID: 8792914528443991953}
-  maxHP: 200
-  hpHideDelay: 10
+  maxHP: 100
+  hpTimer: 0
+  hpHideDelay: 20
+  canBeDamaged: 1
   meleeEffect: {fileID: 6645803334524371341, guid: e81943fd38df03449abca6069b9f48b4,
     type: 3}
   rangeEffect: {fileID: 4281637207453206883, guid: e1e23abb60bad9a41bccb526b0654f7c,
@@ -415,7 +417,8 @@ MonoBehaviour:
   - {fileID: 3938232544952528158, guid: 59308a0dc2f99da4cb457008abed3fd7, type: 3}
   - {fileID: 227186903172507890, guid: 89956d91f54961745b8c94f795233c1a, type: 3}
   dropChance: 0.7
-  spawnOffset: 0
+  spawnOffsetY: 0
+  spreadRadius: 1.2
 --- !u!114 &6573753250866559677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -977,6 +980,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackState: {fileID: 2512369405730182583}
   hurtState: {fileID: 0}
+  skill1State: {fileID: 0}
+  skill2State: {fileID: 0}
 --- !u!1001 &2536930031877630282
 PrefabInstance:
   m_ObjectHideFlags: 0

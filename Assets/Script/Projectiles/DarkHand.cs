@@ -44,6 +44,7 @@ public class DarkHand : MonoBehaviour
             if (ps != null)
             {
                 ps.TakeDamage(damage);
+                HitStopManager.Instance.TriggerHitStop(0.2f);
             }
         }
     }

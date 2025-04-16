@@ -9,7 +9,7 @@ public class LOSController : MonoBehaviour
 
     [Header("Bộ nhớ")]
     public float memoryDuration = 1.5f;
-    private float memoryTimer = 0f;
+    protected float memoryTimer = 0f;
 
     [Header("Ray Offset (tùy chỉnh theo sprite)")]
     public Vector2 raycastOffset = Vector2.zero;
@@ -17,17 +17,18 @@ public class LOSController : MonoBehaviour
     [Header("Debug")]
     public bool debugRay = false;
 
-    public bool isSeeingTarget { get; private set; } = false;
-    public Transform target { get; private set; }
+    public bool isSeeingTarget => _isSeeingTarget;
+    public Transform target => _target;
+    protected bool _isSeeingTarget = false;
+    protected Transform _target = null;
+    protected Transform cachedTransform;
 
-    private Transform cachedTransform;
-
-    void Awake()
+    protected virtual void Awake()
     {
         cachedTransform = transform;
     }
 
-    void Update()
+    protected virtual void Update()
     {
         Vector2 origin = (Vector2)cachedTransform.position + raycastOffset;
         Vector2[] directions = { Vector2.left, Vector2.right };
@@ -38,12 +39,12 @@ public class LOSController : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(origin, dir, detectRange, obstacleMask);
             if (debugRay)
             {
-                Debug.DrawRay(origin, dir * detectRange, hit.collider ? Color.red : Color.green);
+                Debug.DrawRay(origin, dir * detectRange, hit.collider ? Color.red : Color.yellow);
             }
 
             if (hit.collider && hit.collider.CompareTag(playerTag))
             {
-                target = hit.collider.transform;
+                _target = hit.collider.transform;
                 sawThisFrame = true;
                 break;
             }
@@ -51,7 +52,7 @@ public class LOSController : MonoBehaviour
 
         if (sawThisFrame)
         {
-            isSeeingTarget = true;
+            _isSeeingTarget = true;
             memoryTimer = memoryDuration;
         }
         else
@@ -59,8 +60,8 @@ public class LOSController : MonoBehaviour
             memoryTimer -= Time.deltaTime;
             if (memoryTimer <= 0f)
             {
-                isSeeingTarget = false;
-                target = null;
+                _isSeeingTarget = false;
+                _target = null;
             }
         }
     }

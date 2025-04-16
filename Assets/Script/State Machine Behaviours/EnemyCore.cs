@@ -27,8 +27,9 @@ public class EnemyCore : MonoBehaviour, IEnemy
     public Slider hpSlider;
     public int maxHP = 10;
     private int currentHP;
-    private float hpTimer = 0f;
+    public float hpTimer = 0f;
     public float hpHideDelay = 5f;
+    public bool canBeDamaged = true;
 
     [Header("Effect Prefabs")]
     public GameObject meleeEffect;
@@ -45,7 +46,6 @@ public class EnemyCore : MonoBehaviour, IEnemy
     {
         InitCore();
         SetupInstances();
-
         machine.Set(idleState);
     }
 
@@ -81,7 +81,7 @@ public class EnemyCore : MonoBehaviour, IEnemy
         }
     }
 
-    void Update()
+    public virtual void Update()
     {
         if (machine != null && machine.state != null)
         {
@@ -116,7 +116,7 @@ public class EnemyCore : MonoBehaviour, IEnemy
 
     public void TakeDamage(int dmg, string dmgType, int attackDir)
     {
-        if (state == dieState) return;
+        if (!canBeDamaged || state == dieState) return;
 
         currentHP -= dmg;
         currentHP = Mathf.Max(currentHP, 0);
