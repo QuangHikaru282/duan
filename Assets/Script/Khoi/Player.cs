@@ -81,77 +81,16 @@ public class Player : MonoBehaviour
 
     public void SavePlayerData()
     {
-        // Lấy vị trí hiện tại và scene hiện tại
-        Vector3 position = transform.position;
-        string sceneName = SceneManager.GetActiveScene().name;
-
-        // Tạo đối tượng DataGame
-        DataGame data = new DataGame
-        {
-            playerPositionX = position.x,
-            playerPositionY = position.y,
-            playerPositionZ = position.z,
-            currentDiamond = currentDiamond,
-            currentSceneName = sceneName
-        };
-
-        // Lưu dữ liệu
-        if (DataManager.SaveData(data))
-        {
-            Debug.Log("Dữ liệu đã được lưu!");
-        }
+ 
     }
 
     public void LoadPlayerData()
     {
-        // Đọc dữ liệu từ file
-        DataGame data = DataManager.ReadData();
-        if (data != null)
-        {
-            // Chuyển đến scene đã lưu
-            SceneManager.LoadScene(data.currentSceneName);
-
-            // Đợi scene tải xong để thiết lập dữ liệu
-            SceneManager.sceneLoaded += OnSceneLoaded;
-
-            void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-            {
-                // Tìm player hiện tại trong scene
-                Player existingPlayer = FindObjectOfType<Player>();
-
-                // Nếu có một player khác trong scene, xóa nó
-                if (existingPlayer != null && existingPlayer != this)
-                {
-                    Destroy(existingPlayer.gameObject);
-                }
-
-                // Thiết lập vị trí và điểm số cho player
-                transform.position = new Vector3(data.playerPositionX, data.playerPositionY, data.playerPositionZ);
-                currentDiamond = data.currentDiamond;
-
-                Debug.Log("Dữ liệu đã được tải và thiết lập!");
-
-                // Xóa sự kiện sau khi hoàn thành
-                SceneManager.sceneLoaded -= OnSceneLoaded;
-            }
-        }
-        else
-        {
-            Debug.Log("Không có dữ liệu để tải!");
-        }
+        
     }
     private void Awake()
     {
-        // Kiểm tra nếu đã có một player khác tồn tại
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject); // Xóa player hiện tại để tránh trùng lặp
-        }
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject); // Bảo toàn player qua các scene
-        }
+        
     }
 
    
@@ -162,11 +101,7 @@ public class Player : MonoBehaviour
     // Hiển thị phạm vi tấn công trong Scene view để tiện chỉnh sửa
     private void OnDrawGizmosSelected()
     {
-        if (attackPoint == null)
-            return;
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        
     }
 
 

@@ -22,6 +22,8 @@ public class UImanager : MonoBehaviour
     [SerializeField]
     private GameObject playerUI;
     [SerializeField]
+    private GameObject loadUI;
+    [SerializeField]
     private GameObject cameraUI;
     [SerializeField]
     private GameObject AudioPlay;
@@ -58,8 +60,9 @@ public class UImanager : MonoBehaviour
     {
         playUI.SetActive(false);
         logoUI.SetActive(false);
-        stopUI.SetActive(true);
+        stopUI.SetActive(false);
         playerUI.SetActive(true);
+        loadUI.SetActive(false);
         cameraUI.SetActive(true);
         AudioPlay.SetActive(false);
         AudioGame.SetActive(true);
