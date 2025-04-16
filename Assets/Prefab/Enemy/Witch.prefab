@@ -166,7 +166,7 @@ MonoBehaviour:
   detectionAreaWidth: 6
   detectionAreaHeight: 8
   teleportDelay: 0.5
-  emergencyDamageThreshold: 40
+  emergencyDamageThreshold: 10
   alertMarkPrefab: {fileID: 2879550769798472158, guid: 7ec5ade9583831144adf66abe91b25c7,
     type: 3}
 --- !u!61 &4641329636389137380
@@ -504,12 +504,12 @@ PrefabInstance:
     - target: {fileID: 6427280163784928987, guid: 4febfb02390f79244b9271f11d66ffd7,
         type: 3}
       propertyPath: m_Value
-      value: 200
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 6427280163784928987, guid: 4febfb02390f79244b9271f11d66ffd7,
         type: 3}
       propertyPath: m_MaxValue
-      value: 200
+      value: 150
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

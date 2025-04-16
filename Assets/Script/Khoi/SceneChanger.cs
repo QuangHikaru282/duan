@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class SceneChanger : MonoBehaviour
 {
     [SerializeField]
-    public static string NEXT_SCENE = "scene1_Quang";
+    public static string NEXT_SCENE = "scene1_Khoi";
     [SerializeField]
     private GameObject progressBar;
     //[SerializeField]

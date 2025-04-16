@@ -224,7 +224,7 @@ MonoBehaviour:
   radius: 0.5
   height: 2
   canMove: 1
-  maxSpeed: 3
+  maxSpeed: 4
   gravity: {x: 0, y: 0, z: 0}
   groundMask:
     serializedVersion: 2
@@ -281,7 +281,7 @@ MonoBehaviour:
     type: 3}
   rangeEffect: {fileID: 4281637207453206883, guid: e1e23abb60bad9a41bccb526b0654f7c,
     type: 3}
-  speed: 2
+  speed: 2.5
   pointBTransform: {fileID: 1573806623974224086}
   isChasing: 0
   aiPath: {fileID: 5440370470422200210}
@@ -291,7 +291,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  batDamage: 1
+  batDamage: 2
   attackCooldown: 1.5
 --- !u!114 &5160093548910218912
 MonoBehaviour:
