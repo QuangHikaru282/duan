@@ -154,8 +154,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSlider: {fileID: 8137743175218459899}
-  resetTime: 15
-  attackCooldown: 2
+  resetTime: 20
+  attackCooldown: 3
   firePoint: {fileID: 222724990878243396}
   witchBulletPrefab: {fileID: 8101465223323206308, guid: 8184bd18b0601eb418c0ef604867cc4b,
     type: 3}
@@ -163,10 +163,10 @@ MonoBehaviour:
     type: 3}
   rangeEffect: {fileID: 4281637207453206883, guid: e1e23abb60bad9a41bccb526b0654f7c,
     type: 3}
-  detectionAreaWidth: 6
-  detectionAreaHeight: 8
-  teleportDelay: 0.5
-  emergencyDamageThreshold: 10
+  detectionAreaWidth: 10
+  detectionAreaHeight: 10
+  teleportDelay: 0.4
+  emergencyDamageThreshold: 31
   alertMarkPrefab: {fileID: 2879550769798472158, guid: 7ec5ade9583831144adf66abe91b25c7,
     type: 3}
 --- !u!61 &4641329636389137380
@@ -287,8 +287,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2434625857280859478}
-  - component: {fileID: 8681869539818085228}
   - component: {fileID: 9095834555766163882}
+  - component: {fileID: 6987435295602476423}
   m_Layer: 14
   m_Name: WitchDetectionArea
   m_TagString: Untagged
@@ -311,8 +311,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5705944234456590783}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &8681869539818085228
-BoxCollider2D:
+--- !u!114 &9095834555766163882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6758111056182017471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b99a99054302d734db94a76490986c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!58 &6987435295602476423
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -343,31 +355,9 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.6495993}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0.23001194, y: -0.35890055}
   serializedVersion: 2
-  m_Size: {x: 12, y: 7.2991986}
-  m_EdgeRadius: 0
---- !u!114 &9095834555766163882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6758111056182017471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b99a99054302d734db94a76490986c59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Radius: 5.5545588
 --- !u!1001 &3016667432943213088
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -510,6 +500,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_MaxValue
       value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8314760291852886760, guid: 4febfb02390f79244b9271f11d66ffd7,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

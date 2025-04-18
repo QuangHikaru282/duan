@@ -19,6 +19,7 @@ public class playerScript : MonoBehaviour
     public Vector2 respawnPosition;
 
     [Header("Jump Settings")]
+    private bool isJumping = false;
     public float jumpForce = 15f;
     public int maxJumpCount = 2;
 
@@ -61,7 +62,7 @@ public class playerScript : MonoBehaviour
     public float dashCooldown = 0.25f;
     private bool isDashing = false;
     private float dashTimer = 0f;
-    private int airDashRemaining;
+    public int airDashCount = 1; // Số lần nhảy trên không
 
     [Header("Force Settings")]
     public float fallThresholdY = -5f;
@@ -79,6 +80,7 @@ public class playerScript : MonoBehaviour
     [HideInInspector] public bool isFrozen = false;
     private Animator animator;
     private Vector2 checkpointPosition;
+    private bool cantBeDamaged = false;
 
     [SerializeField]
     private GameOverManager gameOverManager;
@@ -126,7 +128,6 @@ public class playerScript : MonoBehaviour
         if (isDead) return;
         HandleInput();
 
-        // Update cooldown timer cho dash trên mặt đất
         if (dashTimer > 0f)
         {
             dashTimer -= Time.deltaTime;
@@ -142,7 +143,6 @@ public class playerScript : MonoBehaviour
 
         UpdateAttackPointPosition();
 
-        // Cập nhật vị trí và hướng của flameInstance nếu tồn tại
         if (flameInstance != null && skillShotPoint != null)
         {
             flameInstance.transform.position = skillShotPoint.position;
@@ -193,9 +193,21 @@ public class playerScript : MonoBehaviour
             spriteRenderer.flipX = true;
         }
 
+        // Nhận input nhảy
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0)
+        {
             jumpRequest = true;
+            isJumping = true;
+        }
 
+        // Jump Cutting: nếu thả phím Space khi đang bay lên thì giảm lực nhảy
+        if (Input.GetKeyUp(KeyCode.Space) && isJumping && rb.velocity.y > 0f)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f); // cắt lực nhảy
+            isJumping = false;
+        }
+
+        // Bắn tên (K)
         if (Input.GetKeyDown(KeyCode.K) && bulletCount > 0)
         {
             Shoot();
@@ -206,6 +218,7 @@ public class playerScript : MonoBehaviour
         {
             if (isGrounded)
             {
+                rb.velocity = Vector2.zero;
                 AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
                 if (stateInfo.IsName("player_Meleeatk"))
                 {
@@ -236,7 +249,7 @@ public class playerScript : MonoBehaviour
             }
         }
 
-        // Dash (phím L)
+        // Dash (L)
         if (Input.GetKeyDown(KeyCode.L))
         {
             if (isFrozen || isHurt || isFlamethrowerActive) return;
@@ -245,15 +258,14 @@ public class playerScript : MonoBehaviour
             {
                 StartCoroutine(PerformDash());
             }
-
-            else if (!isGrounded && airDashRemaining > 0 && !isDashing)
+            else if (!isGrounded && airDashCount > 0 && dashTimer <= 0f && !isDashing)
             {
                 StartCoroutine(PerformDash());
-                airDashRemaining--; // giảm số dash còn lại trong không
+                airDashCount--;
             }
         }
 
-        // HomingBullet skill (E)
+        // HomingBullet (E)
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (SkillManager.Instance.UseMana(homingBulletCost))
@@ -283,17 +295,30 @@ public class playerScript : MonoBehaviour
         }
     }
 
-    // Coroutine thực hiện dash
     IEnumerator PerformDash()
     {
-        // Lưu lại giá trị gravity ban đầu
+        cantBeDamaged = true;
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
-        ResetAttackTriggers(); 
+        ResetAttackTriggers();
         isDashing = true;
         animator.SetBool("isDashing", true);
-        rb.velocity = new Vector2(dashForce * facingDirection, 0f);
-        yield return new WaitForSeconds(0.2f); //thời gian càng ngắn thì quãng đường dash càng ngắn => lực cần tăng
+
+        float elapsed = 0f;
+        float duration = 0.2f;
+        float dashDistance = dashForce;
+        Vector2 start = rb.position;
+        Vector2 end = start + new Vector2(facingDirection * dashDistance, 0f);
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            Vector2 nextPos = Vector2.Lerp(start, end, t);
+            rb.MovePosition(nextPos); // tương tác vật lý an toàn
+            yield return new WaitForFixedUpdate(); // đảm bảo sync với physics engine
+        }
+
         animator.SetBool("isDashing", false);
         isDashing = false;
         rb.gravityScale = originalGravity;
@@ -301,7 +326,15 @@ public class playerScript : MonoBehaviour
     }
 
 
+
+    public void ResetCantBeDamaged()
+    {
+        cantBeDamaged = false;
+    }
+
+
     // ------------------------ Group 3: Các hàm liên quan đến tấn công (skill, shoot, dealdamage) ------------------------
+
     void ResetAttackTriggers()
     {
         animator.ResetTrigger("MeleeTrigger1");
@@ -408,7 +441,7 @@ public class playerScript : MonoBehaviour
     // ------------------------ Group 4: Các hàm nhận sát thương, die và respawn ------------------------
     public void TakeDamage(int damage)
     {
-        if (isDead || isHurt) return;
+        if (cantBeDamaged|| isDead || isHurt) return;
 
         isHurt = true;
         currentHealth -= damage;
@@ -461,8 +494,6 @@ public class playerScript : MonoBehaviour
         animator.SetBool("isDead", false);
 
         HealthUIManager.Instance.UpdateHealthUI(currentHealth);
-
-        bulletCount = 0;
         UIUpdateLogic.Instance.UpdateArrowUI(bulletCount);
     }
 
@@ -496,10 +527,12 @@ public class playerScript : MonoBehaviour
         if (jumpRequest)
         {
             rb.velocity = new Vector2(rb.velocity.x, 0f);
-            rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            isJumping = true;
             jumpCount--;
             jumpRequest = false;
         }
+
     }
 
     void CheckGrounded()
@@ -525,7 +558,7 @@ public class playerScript : MonoBehaviour
         if (isGrounded && !wasGrounded)
         {
             jumpCount = maxJumpCount;
-            airDashRemaining = maxJumpCount;
+            airDashCount = 1;
         }
     }
 

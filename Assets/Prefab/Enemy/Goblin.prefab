@@ -512,7 +512,7 @@ MonoBehaviour:
   lastKnownPosition: {x: 0, y: 0}
   hpCanvasObj: {fileID: 4112533081041834752}
   hpSlider: {fileID: 4845360587424311970}
-  maxHP: 150
+  maxHP: 120
   hpTimer: 0
   hpHideDelay: 20
   canBeDamaged: 1
@@ -522,7 +522,7 @@ MonoBehaviour:
     type: 3}
   floatingTextPrefab: {fileID: 5931283188717562354, guid: 20a3c8059b87aec49934585639f05ca0,
     type: 3}
-  fallBelowOffsetY: -20
+  fallBelowOffsetY: -100
 --- !u!1 &4811614766317146879
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,7 +847,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _priority: 40
   _forceInterrupt: 0
-  chaseSpeed: 4
+  minChaseSpeed: 3.75
+  maxChaseSpeed: 4.75
+  chaseSpeed: 4.75
   runClip: {fileID: 7400000, guid: 7ca4812e017201d4c8dc78a3a903c370, type: 2}
 --- !u!1 &7982723366766376856
 GameObject:
@@ -1104,6 +1106,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8314760291852886760, guid: 4febfb02390f79244b9271f11d66ffd7,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

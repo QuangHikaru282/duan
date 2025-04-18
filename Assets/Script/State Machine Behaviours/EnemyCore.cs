@@ -37,7 +37,7 @@ public class EnemyCore : MonoBehaviour, IEnemy
     public GameObject floatingTextPrefab;
 
     [Header("Die Settings")]
-    public float fallBelowOffsetY = -20f;
+    public float fallBelowOffsetY = -100f;
 
     public StateMachine machine;
     public State state => machine?.state;
@@ -157,10 +157,14 @@ public class EnemyCore : MonoBehaviour, IEnemy
 
         Vector3 offset = new Vector3(0.3f * dir, 0f, 0f);
         GameObject effect = Instantiate(effectPrefab, transform.position + offset, Quaternion.identity);
+
         Vector3 scale = effect.transform.localScale;
         scale.x = (dir < 0) ? -Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
         effect.transform.localScale = scale;
+
+        Destroy(effect, 0.8f); 
     }
+
 
     void ShowFloatingText(int dmg)
     {

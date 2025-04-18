@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class OnScript : MonoBehaviour
 {
-    public GameObject targetObject; // Object chứa script cần bật
-    public MonoBehaviour targetScript; // Script cần bật
+    public GameObject targetObject; 
+    public MonoBehaviour targetScript;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

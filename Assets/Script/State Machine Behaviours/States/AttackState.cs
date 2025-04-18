@@ -14,7 +14,6 @@ public class AttackState : State
     public float attackCooldown = 1.5f;
     public float lastAttackTime = -Mathf.Infinity;
 
-    public override int priority => 60;
     public override bool forceInterrupt => false;
 
     private Vector2 finalAttackPosition;

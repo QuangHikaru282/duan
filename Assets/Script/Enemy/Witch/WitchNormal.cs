@@ -224,7 +224,7 @@ public class WitchNormal : MonoBehaviour, IEnemy
                     maxX = playerPos.x - 2f;
                 }
                 float verticalRange = 1.5f;
-                minY = playerPos.y - verticalRange;
+                minY = playerPos.y;
                 maxY = playerPos.y + verticalRange;
             }
         }
@@ -257,7 +257,7 @@ public class WitchNormal : MonoBehaviour, IEnemy
             if (col != null)
             {
                 // Nếu candidate nằm trong collider, đặt candidate.y lên bằng bounds.max.y cộng offset
-                candidate.y = col.bounds.max.y + 0.5f; // offset có thể điều chỉnh
+                candidate.y = col.bounds.max.y + 0.1f; // offset có thể điều chỉnh
             }
 
             // Kiểm tra khoảng cách theo chiều dọc so với player (nếu có)

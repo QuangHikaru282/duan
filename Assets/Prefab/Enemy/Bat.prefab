@@ -224,7 +224,7 @@ MonoBehaviour:
   radius: 0.5
   height: 2
   canMove: 1
-  maxSpeed: 4
+  maxSpeed: 4.5
   gravity: {x: 0, y: 0, z: 0}
   groundMask:
     serializedVersion: 2
@@ -281,7 +281,7 @@ MonoBehaviour:
     type: 3}
   rangeEffect: {fileID: 4281637207453206883, guid: e1e23abb60bad9a41bccb526b0654f7c,
     type: 3}
-  speed: 2.5
+  speed: 3
   pointBTransform: {fileID: 1573806623974224086}
   isChasing: 0
   aiPath: {fileID: 5440370470422200210}
@@ -641,10 +641,60 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 2601184407285721827, guid: abdeb6ad9447d9147bc92428ebef7456,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2601184407285721827, guid: abdeb6ad9447d9147bc92428ebef7456,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2601184407285721827, guid: abdeb6ad9447d9147bc92428ebef7456,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2601184407285721827, guid: abdeb6ad9447d9147bc92428ebef7456,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4552659511639911192, guid: abdeb6ad9447d9147bc92428ebef7456,
         type: 3}
       propertyPath: m_RenderMode
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765286446951048012, guid: abdeb6ad9447d9147bc92428ebef7456,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.74999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765286446951048012, guid: abdeb6ad9447d9147bc92428ebef7456,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.74999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765286446951048012, guid: abdeb6ad9447d9147bc92428ebef7456,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.74999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765286446951048012, guid: abdeb6ad9447d9147bc92428ebef7456,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765286446951048012, guid: abdeb6ad9447d9147bc92428ebef7456,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765286446951048012, guid: abdeb6ad9447d9147bc92428ebef7456,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6695213717508483191, guid: abdeb6ad9447d9147bc92428ebef7456,
         type: 3}

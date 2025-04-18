@@ -380,7 +380,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.2092905, y: 0.9648104}
+  m_Offset: {x: 0.1375382, y: 0.5783615}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -391,7 +391,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 16.25302, y: 4.3686695}
+  m_Size: {x: 7.6123815, y: 2.880848}
   m_EdgeRadius: 0
 --- !u!114 &4005392286628400405
 MonoBehaviour:
@@ -482,6 +482,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _priority: 40
   _forceInterrupt: 0
+  minChaseSpeed: 4
+  maxChaseSpeed: 5
   chaseSpeed: 4
   runClip: {fileID: 7400000, guid: 6983f0387faa7b243923387c90a058db, type: 2}
 --- !u!1 &5240266709230350294
@@ -979,7 +981,7 @@ Transform:
   m_GameObject: {fileID: 9026442883585568254}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.14, y: -0.9899998, z: 0.042225532}
+  m_LocalPosition: {x: 6.14, y: -0.7, z: 0.042225532}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1105,7 +1107,7 @@ MonoBehaviour:
   lastKnownPosition: {x: 0, y: 0}
   hpCanvasObj: {fileID: 2657094920180321067}
   hpSlider: {fileID: 6841934324078998153}
-  maxHP: 500
+  maxHP: 450
   hpTimer: 0
   hpHideDelay: 20
   canBeDamaged: 1
@@ -1115,7 +1117,7 @@ MonoBehaviour:
     type: 3}
   floatingTextPrefab: {fileID: 5931283188717562354, guid: 20a3c8059b87aec49934585639f05ca0,
     type: 3}
-  fallBelowOffsetY: -20
+  fallBelowOffsetY: -100
   shieldState: {fileID: 9105877684716314538}
   colliderBlock: {fileID: 9109445422950649579}
 --- !u!114 &1136635418564592979

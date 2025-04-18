@@ -28,7 +28,6 @@ public class Checkpoint : MonoBehaviour
                 playerScript player = collision.GetComponent<playerScript>();
                 if (player != null)
                 {
-                    Debug.Log("check point da dc luu");
                     player.SetCheckpoint(transform.position);
                 }
 

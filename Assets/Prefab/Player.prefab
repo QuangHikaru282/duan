@@ -227,18 +227,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e15646596b2434468fe357de017f27e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 3.5
   acceleration: 10
   deceleration: 10
   maxSpeed: 5
-  movementSmoothing: 0.05
+  movementSmoothing: 0.1
   maxHealth: 15
   currentHealth: 15
   respawnPosition: {x: 0, y: 0}
   jumpForce: 13
   maxJumpCount: 2
   groundCheck: {fileID: 2453044933844430016}
-  groundCheckRadius: 0.2
+  groundCheckRadius: 0.5
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -250,7 +250,7 @@ MonoBehaviour:
   firePoint: {fileID: 6400186554282854516}
   arrowDamage: 25
   bulletCount: 0
-  meleeDamage: 12
+  meleeDamage: 15
   attackRange: 0.5
   attackPointOffset: 0.5
   attackPoint: {fileID: 60749791631562182}
@@ -265,8 +265,9 @@ MonoBehaviour:
   flameThrowerPrefab: {fileID: 1218876806488606494, guid: c367d7ce4ecf7e242ae6e2b3d4331673,
     type: 3}
   manaCostPerSec: 20
-  dashForce: 13
-  dashCooldown: 0.3
+  dashForce: 3
+  dashCooldown: 0.85
+  airDashCount: 1
   fallThresholdY: -100
   knockbackForce: 3
   isFrozen: 0
@@ -386,7 +387,7 @@ Transform:
   m_GameObject: {fileID: 8585652565296317362}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0213, y: -0.2232, z: 0}
+  m_LocalPosition: {x: 0.0213, y: -0.272, z: 0}
   m_LocalScale: {x: 0.79494, y: 0.79494, z: 0.79494}
   m_ConstrainProportionsScale: 0
   m_Children: []

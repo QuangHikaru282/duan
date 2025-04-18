@@ -399,7 +399,7 @@ MonoBehaviour:
     type: 3}
   floatingTextPrefab: {fileID: 5931283188717562354, guid: 20a3c8059b87aec49934585639f05ca0,
     type: 3}
-  fallBelowOffsetY: -20
+  fallBelowOffsetY: -100
 --- !u!114 &6162155304426711467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -707,6 +707,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _priority: 40
   _forceInterrupt: 0
+  minChaseSpeed: 3.5
+  maxChaseSpeed: 4.5
   chaseSpeed: 4
   runClip: {fileID: 7400000, guid: 35e01b4554ce9e0498642ea1b4f9baa0, type: 2}
 --- !u!1 &5634901942115811661

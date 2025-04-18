@@ -76,14 +76,13 @@ public class IGPhase2State : State
         {
             ig.skill1State.damage += 1;
             ig.skill1State.cooldown = Mathf.Max(0f, ig.skill1State.cooldown - 2f);
-            ig.skill1State.PriorityValue = 82;
+            //ig.skill1State.PriorityValue = 82;
         }
 
 
         if (ig.attackState != null)
         {
             ig.attackState.damage += 1;
-            ig.attackState.PriorityValue = 81;
         }
 
 

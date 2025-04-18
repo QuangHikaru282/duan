@@ -2,7 +2,11 @@
 
 public class ChaseState : State
 {
-    public float chaseSpeed = 3f;
+    [Header("Chase Settings")]
+    [SerializeField] private float minChaseSpeed = 4f;
+    [SerializeField] private float maxChaseSpeed = 5f;
+    public float chaseSpeed;
+
     public AnimationClip runClip;
 
     private Vector2 lastTimeSeenPlayerPos;
@@ -11,7 +15,6 @@ public class ChaseState : State
 
     public override void SetCore(EnemyCore _core, bool createSubMachine = false)
     {
-        // Nếu EnemyCore có SearchState thì bật sub-state machine
         base.SetCore(_core, _core.searchState != null);
     }
 
@@ -22,6 +25,8 @@ public class ChaseState : State
         exitReason = StateExitReason.None;
         requestContinueChase = false;
         playedRun = false;
+
+        chaseSpeed = Random.Range(minChaseSpeed, maxChaseSpeed);
 
         if (animator)
             animator.speed = 1.5f;
@@ -70,7 +75,6 @@ public class ChaseState : State
             return;
         }
 
-        // Nếu mất sight → chuyển sang search (nội tại)
         if (!los.isSeeingTarget)
         {
             core.lastKnownPosition = lastTimeSeenPlayerPos;
@@ -86,7 +90,6 @@ public class ChaseState : State
             return;
         }
 
-        // Tiếp tục đuổi
         if (core.player)
         {
             Vector2 enemyPos = core.transform.position;

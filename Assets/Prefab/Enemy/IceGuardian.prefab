@@ -48,7 +48,7 @@ MonoBehaviour:
   _forceInterrupt: 0
   skillAnim: {fileID: 7400000, guid: 23281ea60cf26e542ae0d43edc656ec0, type: 2}
   skill1Point: {fileID: 8656944106729514037}
-  triggerRange: 3.75
+  triggerRange: 4
   damage: 3
   playerLayer:
     serializedVersion: 2
@@ -564,9 +564,9 @@ GameObject:
   - component: {fileID: 8262684045623415942}
   - component: {fileID: 7514155776960647860}
   - component: {fileID: 1302333324926695165}
-  - component: {fileID: 2223804160496324231}
   - component: {fileID: 646009849320478260}
   - component: {fileID: 4088681985900702671}
+  - component: {fileID: 5372081911590620104}
   m_Layer: 8
   m_Name: IceGuardian
   m_TagString: Enemy
@@ -658,26 +658,6 @@ MonoBehaviour:
   platformMask:
     serializedVersion: 2
     m_Bits: 1024
---- !u!114 &2223804160496324231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3293938464221983971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6767230be35f2846a8ad51c9f308fd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectRange: 12
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 136
-  playerTag: Player
-  memoryDuration: 3
-  raycastOffset: {x: 0, y: 0.15}
-  debugRay: 1
 --- !u!114 &646009849320478260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -740,6 +720,30 @@ MonoBehaviour:
   dropChance: 1
   spawnOffsetY: 1
   spreadRadius: 1.2
+--- !u!114 &5372081911590620104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3293938464221983971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d15cb5ae16dde9c4a9147367719fcc00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectRange: 12
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 136
+  playerTag: Player
+  memoryDuration: 3
+  raycastOffset: {x: 0, y: 0}
+  debugRay: 1
+  multiRayOffsets:
+  - {x: 0, y: 0.15}
+  - {x: 0, y: 1.8}
+  - {x: 0, y: 3.8}
 --- !u!1 &3300884666833645363
 GameObject:
   m_ObjectHideFlags: 0
@@ -1006,7 +1010,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _priority: 40
   _forceInterrupt: 0
-  chaseSpeed: 4
+  minChaseSpeed: 4
+  maxChaseSpeed: 5
+  chaseSpeed: 5
   runClip: {fileID: 7400000, guid: 29aec9f0676d9f84dbb10ba8504744dd, type: 2}
 --- !u!1 &6017628958644927887
 GameObject:
@@ -1189,7 +1195,7 @@ MonoBehaviour:
   atkAnim: {fileID: 7400000, guid: b06e77986d33f074a9b6382463ee8f4e, type: 2}
   atkPoint: {fileID: 5745883245612945302}
   attackOffset: {x: 1, y: 0}
-  attackRange: 2.8
+  attackRange: 3
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -1522,27 +1528,27 @@ PrefabInstance:
     - target: {fileID: 5622036704824616064, guid: 4febfb02390f79244b9271f11d66ffd7,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5622036704824616064, guid: 4febfb02390f79244b9271f11d66ffd7,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5622036704824616064, guid: 4febfb02390f79244b9271f11d66ffd7,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5622036704824616064, guid: 4febfb02390f79244b9271f11d66ffd7,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1.96
+      value: 24.8
       objectReference: {fileID: 0}
     - target: {fileID: 5622036704824616064, guid: 4febfb02390f79244b9271f11d66ffd7,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1.2
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 5622036704824616064, guid: 4febfb02390f79244b9271f11d66ffd7,
         type: 3}

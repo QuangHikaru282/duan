@@ -12,6 +12,7 @@ public class TrapScript : MonoBehaviour
             if (player != null)
             {
                 player.TakeDamage(1);
+                player.Respawn(); 
             }
         }
     }

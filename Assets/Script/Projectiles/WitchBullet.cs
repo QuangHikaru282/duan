@@ -36,7 +36,7 @@ public class WitchBullet : MonoBehaviour
                 if (ps != null)
                 {
                     ps.TakeDamage(damage);
-                    HitStopManager.Instance.TriggerHitStop(0.25f);
+                    HitStopManager.Instance.TriggerHitStop(0.15f);
                 }
             }
 
