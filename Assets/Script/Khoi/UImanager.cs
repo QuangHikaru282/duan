@@ -44,6 +44,9 @@ public class UImanager : MonoBehaviour
     public void OnGameExitPress()
     {
         Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
     public void OnStop()
     {
