@@ -20,6 +20,15 @@ public class PlayerManager : MonoBehaviour
 
 
     }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
+    //        Debug.Log("aaaa");
+    //        OnSaveGameData();
+    //    }
+          
+    //}
     public void OnSaveGameData()
     {
         Vector2 position = player.transform.position;
@@ -44,7 +53,6 @@ public class PlayerManager : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
 
-        // ✅ Gán lại player và các script sau khi scene load xong
         player = GameObject.FindWithTag("Player");
         
         playerScript = player.GetComponent<playerScript>();

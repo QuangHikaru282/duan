@@ -6,6 +6,7 @@ public class Interact : MonoBehaviour
 {
     [SerializeField]
     private GameObject prefabToSpawn;
+    [SerializeField]
     private GameObject spawnedObject; // Lưu trữ tham chiếu đến prefab đã được tạo
     [SerializeField]
     private bool isColliding = false; // Biến kiểm tra trạng thái va chạm
@@ -16,7 +17,8 @@ public class Interact : MonoBehaviour
     [SerializeField]
     private ParticleSystem particleSystem;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
 
         if (prefabToSpawn != null && !isSpawning)
@@ -42,7 +44,7 @@ public class Interact : MonoBehaviour
             Debug.LogWarning("Prefab chưa được gán!");
         }
     }
-    private void Update()
+    protected virtual void Update()
     {
         if (isColliding && Input.GetKeyDown(KeyCode.F))
         {
@@ -60,7 +62,7 @@ public class Interact : MonoBehaviour
         isColliding = false; // Đánh dấu không còn va chạm
     }
 
-    private void RemoveSpawnedObject()
+    protected virtual void RemoveSpawnedObject()
     {
         if (spawnedObject != null)
         {
