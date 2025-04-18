@@ -11,7 +11,7 @@ public class Save : MonoBehaviour
     {
         if (collision.CompareTag("Player")) // Đảm bảo Player có tag là "Player"
         {
-
+            if(playerManager!=null)
             playerManager.OnSaveGameData();
             
         }

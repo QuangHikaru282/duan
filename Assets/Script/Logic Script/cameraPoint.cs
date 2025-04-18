@@ -58,7 +58,7 @@ public class CameraPoint : MonoBehaviour
         }
         if (virtualCamera == null)
         {
-            Debug.LogError("CameraPoint: VirtualCamera reference is not assigned!");
+            //Debug.LogError("CameraPoint: VirtualCamera reference is not assigned!");
         }
         else
         {
