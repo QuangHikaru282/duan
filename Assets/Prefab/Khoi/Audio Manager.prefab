@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2320316422887007753}
   m_Layer: 0
   m_Name: Audio Manager
-  m_TagString: Untagged
+  m_TagString: Audio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,7 +49,10 @@ MonoBehaviour:
   musicAudioSource: {fileID: 7945369187837090345}
   vfxAudioSource: {fileID: 1184726581353827646}
   musicClip: {fileID: 0}
-  coinClip: {fileID: 0}
+  checkpointClip: {fileID: 8300000, guid: 9097b81bb228a554f8434d0debdc91fe, type: 3}
+  arrowClip: {fileID: 8300000, guid: 3724d64844b2308458d048f30b1a1cac, type: 3}
+  manaClip: {fileID: 8300000, guid: f544bd885767649498cf8559840b8829, type: 3}
+  heartClip: {fileID: 8300000, guid: aafb5db1a0dee514eb60ce46474aed38, type: 3}
   winClip: {fileID: 0}
 --- !u!1 &1554862580730909214
 GameObject:

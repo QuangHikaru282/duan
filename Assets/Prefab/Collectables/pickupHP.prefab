@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6097509630645206944}
   - component: {fileID: 7330888484316297583}
   - component: {fileID: 749077871774245819}
+  - component: {fileID: 8098623342951035417}
   m_Layer: 0
   m_Name: pickupHP
   m_TagString: Untagged
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 827175799
-  m_SortingLayer: 3
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 315c7e2f68abe2b4a9dc31b60307b824, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -156,3 +157,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8098623342951035417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3938232544952528158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f08b17fb0724a924ab84b0fca3c5e96c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
