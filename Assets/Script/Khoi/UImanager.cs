@@ -29,6 +29,10 @@ public class UImanager : MonoBehaviour
     private GameObject AudioPlay;
     [SerializeField]
     private GameObject AudioGame;
+
+    [SerializeField]
+    private GameObject Exit;
+
     public void OnRestartPress()
     {
         if (Time.timeScale == 0)
@@ -58,6 +62,7 @@ public class UImanager : MonoBehaviour
     }
     public void OnPlay()
     {
+        Exit.SetActive(false);
         playUI.SetActive(false);
         logoUI.SetActive(false);
         stopUI.SetActive(false);
