@@ -10,7 +10,10 @@ public class AudioManager : MonoBehaviour
 
     // Create variables to store audio clips
     public AudioClip musicClip;
-    public AudioClip coinClip;
+    public AudioClip checkpointClip;
+    public AudioClip arrowClip;
+    public AudioClip manaClip;
+    public AudioClip heartClip;
     public AudioClip winClip;
 
     // Unity Message
