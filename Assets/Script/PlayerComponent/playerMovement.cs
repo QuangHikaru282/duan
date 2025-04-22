@@ -21,7 +21,8 @@ public class playerScript : MonoBehaviour
     [Header("Jump Settings")]
     private bool isJumping = false;
     public float jumpForce = 15f;
-    public int maxJumpCount = 2;
+    public int maxJumpCount = 1;
+    public bool UnlockMaxJumpCount =false;
 
     [Header("Ground Check Settings")]
     public Transform groundCheck;
@@ -85,6 +86,17 @@ public class playerScript : MonoBehaviour
     [SerializeField]
     private GameOverManager gameOverManager;
 
+    [Header("Skill Manager Settings")]
+    [SerializeField]
+    private SkillUnlockManager skillUnlockManager;
+    [Header("UI Settings")]
+    [SerializeField]
+    private GameObject Mana;
+    [SerializeField]
+    private GameObject skill_E;
+    [SerializeField]
+    private GameObject skill_Q;
+
     // ------------------------ Group 1: Start, Update, FixedUpdate ------------------------
     void Start()
     {
@@ -125,6 +137,14 @@ public class playerScript : MonoBehaviour
 
     void Update()
     {
+        if (GameState.isDialoguePlaying)
+        {
+            moveInput = 0f; // Reset input để không bị "dính" lại
+            rb.velocity = new Vector2(0, rb.velocity.y); // Dừng ngang
+            animator.SetFloat("moveSpeed", 0); // Nếu dùng animation
+            return;
+        }
+
         if (isDead) return;
         HandleInput();
 
@@ -171,6 +191,10 @@ public class playerScript : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (GameState.isDialoguePlaying)
+        {
+            return;
+        }
         // Nếu đang dash, bỏ qua xử lý di chuyển thông thường
         if (!isDashing)
             HandleMovement();
@@ -192,12 +216,17 @@ public class playerScript : MonoBehaviour
             facingDirection = -1;
             spriteRenderer.flipX = true;
         }
-
+        if (!UnlockMaxJumpCount && skillUnlockManager.isDoubleJumpUnlocked)
+        {
+            maxJumpCount = 2;
+            jumpCount = maxJumpCount;
+            UnlockMaxJumpCount =true;
+        }
         // Nhận input nhảy
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0)
         {
-            jumpRequest = true;
-            isJumping = true;
+                jumpRequest = true;
+                isJumping = true;
         }
 
         // Jump Cutting: nếu thả phím Space khi đang bay lên thì giảm lực nhảy
@@ -248,9 +277,20 @@ public class playerScript : MonoBehaviour
                 animator.SetTrigger("AirAttackTrigger");
             }
         }
-
-        // Dash (L)
-        if (Input.GetKeyDown(KeyCode.L))
+        if (skillUnlockManager.isSkillEUnlocked || skillUnlockManager.isSkillQUnlocked)
+        {
+            //Mana.SetActive(true);
+            if (skillUnlockManager.isSkillEUnlocked)
+            {
+                skill_E.SetActive(true);
+            }
+            if (skillUnlockManager.isSkillQUnlocked)
+            {
+                skill_Q.SetActive(true);
+            }
+        }
+            // Dash (L)
+            if (Input.GetKeyDown(KeyCode.L) && skillUnlockManager.isSkillLUnlocked)
         {
             if (isFrozen || isHurt || isFlamethrowerActive) return;
 
@@ -266,7 +306,7 @@ public class playerScript : MonoBehaviour
         }
 
         // HomingBullet (E)
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && skillUnlockManager.isSkillEUnlocked)
         {
             if (SkillManager.Instance.UseMana(homingBulletCost))
             {
@@ -275,13 +315,13 @@ public class playerScript : MonoBehaviour
         }
 
         // Flamethrower (Q)
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && skillUnlockManager.isSkillQUnlocked)
         {
             isFlamethrowerActive = true;
             animator.SetBool("isCastLooping", true);
         }
 
-        if (isFlamethrowerActive && Input.GetKey(KeyCode.Q))
+        if (isFlamethrowerActive && Input.GetKey(KeyCode.Q) && skillUnlockManager.isSkillQUnlocked)
         {
             if (!ConsumeFlameMana())
             {
@@ -289,7 +329,7 @@ public class playerScript : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.Q))
+        if (Input.GetKeyUp(KeyCode.Q) && skillUnlockManager.isSkillQUnlocked)
         {
             TurnOffFlamethrower();
         }

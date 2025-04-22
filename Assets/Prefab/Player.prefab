@@ -109,6 +109,8 @@ GameObject:
   - component: {fileID: 7819183367309133686}
   - component: {fileID: 4212507223269064425}
   - component: {fileID: 5245510876160426097}
+  - component: {fileID: 7501682205585964704}
+  - component: {fileID: 1222883916243851770}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -236,7 +238,8 @@ MonoBehaviour:
   currentHealth: 15
   respawnPosition: {x: 0, y: 0}
   jumpForce: 13
-  maxJumpCount: 2
+  maxJumpCount: 1
+  UnlockMaxJumpCount: 0
   groundCheck: {fileID: 2453044933844430016}
   groundCheckRadius: 0.5
   groundLayer:
@@ -272,6 +275,10 @@ MonoBehaviour:
   knockbackForce: 3
   isFrozen: 0
   gameOverManager: {fileID: 0}
+  skillUnlockManager: {fileID: 1222883916243851770}
+  Mana: {fileID: 0}
+  skill_E: {fileID: 0}
+  skill_Q: {fileID: 0}
 --- !u!70 &2042731921359690349
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -362,6 +369,34 @@ MonoBehaviour:
   minFreezeTime: 1.2
   maxFreezeTime: 3
   inputToBreak: 12
+--- !u!114 &7501682205585964704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6309806426050705749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43fd4393589d6aa4190b0d90602a5fad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1222883916243851770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6309806426050705749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3669f8606253b684bb3a1ba957d2fef4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSkillLUnlocked: 0
+  isSkillEUnlocked: 0
+  isSkillQUnlocked: 0
+  isDoubleJumpUnlocked: 0
 --- !u!1 &8585652565296317362
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,7 +554,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8549838728629548315, guid: 0cb06e2e97b60ac48b706c9c0ba4b94c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3639028871898552066}
   m_SourcePrefab: {fileID: 100100000, guid: 0cb06e2e97b60ac48b706c9c0ba4b94c, type: 3}
 --- !u!4 &1802311842946689255 stripped
 Transform:
@@ -527,3 +566,23 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4804239852623787072}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3750152375809933659 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8549838728629548315, guid: 0cb06e2e97b60ac48b706c9c0ba4b94c,
+    type: 3}
+  m_PrefabInstance: {fileID: 4804239852623787072}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3639028871898552066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3750152375809933659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e456f49a2b40eb04689506db877afc19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  virtualCamera: {fileID: 0}
+  isModified: 0

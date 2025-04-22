@@ -15,6 +15,8 @@ public class SceneSwitcher : MonoBehaviour
     [SerializeField]
     private GameObject outro;
     [SerializeField]
+    private GameObject dark;
+    [SerializeField]
     private Animator outroAnimator;
     [SerializeField]
     private GameObject loading;
@@ -105,7 +107,8 @@ public class SceneSwitcher : MonoBehaviour
         // Đợi cho đến khi animation kết thúc
         yield return new WaitForSeconds(1.2f);
         animator.enabled = false;
-        loading.SetActive(true);
+        outro.SetActive(false);
+        dark.SetActive(true);
         loading.SetActive(true);
     }
 }

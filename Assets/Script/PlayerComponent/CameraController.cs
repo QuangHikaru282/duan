@@ -23,6 +23,8 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+        if (GameState.isDialoguePlaying)
+            return;
         if (framingTransposer != null)
         {
             

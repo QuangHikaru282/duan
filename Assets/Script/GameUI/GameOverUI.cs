@@ -105,6 +105,18 @@ public class GameOverManager : MonoBehaviour
             gameOverPanel.SetActive(false);
         }
     }
+    public void MenuGame()
+    {
+        Time.timeScale = 1f;
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
+        SceneLoadData.nextSceneName = "scene_Begin";
+        SceneManager.LoadScene("scene_Begin");
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(false);
+        }
+    }
 
     public void ExitGame()
     {

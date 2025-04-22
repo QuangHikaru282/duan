@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7118cbb58afd82b40a684555cb721449, type: 3}
+  m_Name: 2A_2_asked
+  m_EditorClassIdentifier: 
+  lines:
+  - What is it that you seek to know?
+  portraits:
+  - {fileID: 21300000, guid: 8ab365ef84469de4dae767d02d21ed6d, type: 3}
+  isPlayerSpeaking: 01
+  choices:
+  - choiceText: Might I receive a hint?
+    nextDialogue: {fileID: 11400000, guid: 0f6bd86627da58e43a251085717aec33, type: 2}
+  - choiceText: About what you spoke of at the beginning
+    nextDialogue: {fileID: 11400000, guid: aacd77a7406c27d44bd7ce8f11625e7c, type: 2}
+  - choiceText: How can I escape this place?
+    nextDialogue: {fileID: 11400000, guid: a1f69df5cf72c2e4bab431974f49d491, type: 2}
+  - choiceText: Bye
+    nextDialogue: {fileID: 0}
