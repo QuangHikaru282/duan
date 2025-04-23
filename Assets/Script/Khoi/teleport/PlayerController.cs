@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private TeleportPoint currentTeleportPoint; // Lưu điểm dịch chuyển đang va chạm
+    private TeleportPoint currentTeleportPoint; 
 
-    // Kiểm tra mỗi frame
     private void Update()
     {
-        // Nếu nhấn phím F và đang va chạm với điểm dịch chuyển
         if (Input.GetKeyDown(KeyCode.F) && currentTeleportPoint != null)
         {
             currentTeleportPoint.TeleportPlayer(gameObject);
@@ -17,7 +15,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Khi va chạm với điểm dịch chuyển
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("TeleportPoint"))
@@ -26,7 +23,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Khi rời khỏi điểm dịch chuyển
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("TeleportPoint"))

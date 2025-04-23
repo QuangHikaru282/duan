@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class Unlockable : MonoBehaviour
@@ -70,10 +70,10 @@ public class Unlockable : MonoBehaviour
         {
             if (lockNotificationUI != null)
             {
-                lockNotificationUI.SetActive(true);
+                lockNotificationUI.SetActive(true);  // <<== DÒNG NÀY gọi pressF UI
                 var text = lockNotificationUI.GetComponentInChildren<TMPro.TextMeshProUGUI>();
                 if (text != null)
-                    text.text = requiredKeyMessage;
+                text.text = requiredKeyMessage;
             }
 
             if (unlockPromptUI != null)

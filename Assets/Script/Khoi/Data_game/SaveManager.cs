@@ -25,7 +25,6 @@ public class SaveManager : MonoBehaviour
         }
 
         File.WriteAllText(savePath, json);
-        Debug.Log("Đã lưu dữ liệu tại: " + savePath);
     }
 
     public PlayerData LoadPlayer()
@@ -34,12 +33,10 @@ public class SaveManager : MonoBehaviour
         {
             string json = File.ReadAllText(savePath);
             PlayerData data = JsonUtility.FromJson<PlayerData>(json);
-            Debug.Log($"Đã load: máu {data.health}, mana {data.mana}, vị trí ({data.x}, {data.y}), scene {data.sceneName}");
             return data;
         }
         else
         {
-            Debug.Log("Không tìm thấy file, trả về dữ liệu mặc định");
             return new PlayerData(10, 50, Vector2.zero, "StartScene", false, false, false, false, false); // Scene mặc định
         }
     }

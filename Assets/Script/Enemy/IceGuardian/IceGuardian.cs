@@ -9,6 +9,9 @@ public class IceGuardian : EnemyCore
     public IGPhase2State phase2State;
     public StaggerState staggerState;
     private float lastStaggerHPThreshold = 1f;
+    private bool hasPlayedIntro = false;
+
+
 
 
     private LOSController los;
@@ -71,7 +74,7 @@ public class IceGuardian : EnemyCore
 
     public void OnPlayerDetected()
     {
-        if (introState == null || !los.isSeeingTarget || machine == null)
+        if (introState == null || !los.isSeeingTarget || machine == null || hasPlayedIntro)
             return;
 
         if (state != null && (state == introState || state.priority >= introState.priority))
@@ -82,6 +85,7 @@ public class IceGuardian : EnemyCore
         hpTimer = 0f;
 
         machine.TrySet(introState, true);
+        hasPlayedIntro = true;
     }
 
     public void OnSkill2Detected()

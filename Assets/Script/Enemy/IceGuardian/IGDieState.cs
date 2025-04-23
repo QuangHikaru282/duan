@@ -38,7 +38,7 @@ public class IGDieState : DieState
             noise.m_FrequencyGain = shakeFrequency;
         }
 
-        yield return new WaitForSeconds(1f); 
+        yield return new WaitForSeconds(1.25f); 
 
         if (noise != null)
         {

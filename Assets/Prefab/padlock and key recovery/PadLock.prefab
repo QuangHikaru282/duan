@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6752882448512556987}
   - component: {fileID: 6638002201406068138}
   - component: {fileID: 8873988301706346852}
+  - component: {fileID: 2156933997666212198}
   m_Layer: 0
   m_Name: PadLock
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7173323069071394747}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 9.26, y: -2.28, z: -0.14381118}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -73,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 827175799
-  m_SortingLayer: 7
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 1643856426, guid: 9ccad5489a6c2714ebe3c705b5aff162, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -180,3 +181,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5669005, y: 1.0623119}
   m_EdgeRadius: 0
+--- !u!114 &2156933997666212198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7173323069071394747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 274f3c1cb3afe0e4fb9f1bf035601db2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredKeyType: 0
+  requiredAmount: 1
+  unlockPromptUI: {fileID: 0}
+  lockNotificationUI: {fileID: 0}
+  requiredKeyMessage: You need a key to unlock this!
+  unlockedMessage: Elevator unlocked!
+  animator: {fileID: 6752882448512556987}
+  destroyAfterUnlock: 0
+  destroyDelay: 1
+  elevatorTriggerCollider: {fileID: 0}
