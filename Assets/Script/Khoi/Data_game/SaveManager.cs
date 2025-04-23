@@ -12,10 +12,10 @@ public class SaveManager : MonoBehaviour
         savePath = Application.dataPath + "/data_game/playerdata.json";
     }
 
-    public void SavePlayer(int health, int mana, Vector2 position)
+    public void SavePlayer(int health, int mana, Vector2 position, bool unlockSkill_L, bool unlockSkill_E, bool unlockSkill_Q, bool unlockSkill_DoubleJump, bool door)
     {
         string currentScene = SceneManager.GetActiveScene().name;
-        PlayerData data = new PlayerData(health, mana, position, currentScene);
+        PlayerData data = new PlayerData(health, mana, position, currentScene, unlockSkill_L, unlockSkill_E, unlockSkill_Q, unlockSkill_DoubleJump, door);
         string json = JsonUtility.ToJson(data, true);
 
         string directory = Path.GetDirectoryName(savePath);
@@ -40,7 +40,7 @@ public class SaveManager : MonoBehaviour
         else
         {
             Debug.Log("Không tìm thấy file, trả về dữ liệu mặc định");
-            return new PlayerData(10, 50, Vector2.zero, "StartScene"); // Scene mặc định
+            return new PlayerData(10, 50, Vector2.zero, "StartScene", false, false, false, false, false); // Scene mặc định
         }
     }
 }

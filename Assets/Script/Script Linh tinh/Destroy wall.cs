@@ -10,6 +10,7 @@ public class BreakableWall : MonoBehaviour
     private GameObject burnEffectInstance;
     private Animator animator;
     public AnimationClip destroywallAnim;
+    public bool isDestroyWall =false;
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class BreakableWall : MonoBehaviour
             StartBurnEffect();
             StartSmokeEffect();
             StartCoroutine(DestroyAfterDelay(2f));
+            isDestroyWall = true;
         }
     }
 
