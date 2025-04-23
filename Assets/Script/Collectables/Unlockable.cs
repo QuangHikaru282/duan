@@ -15,7 +15,6 @@ public class Unlockable : MonoBehaviour
 
     [Header("Animation & Target")]
     public Animator animator;
-    //public GameObject objectToActivate;
 
     [Header("Unlock Behavior")]
     public bool destroyAfterUnlock = false;

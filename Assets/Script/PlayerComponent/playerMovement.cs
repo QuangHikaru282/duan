@@ -26,15 +26,18 @@ public class playerScript : MonoBehaviour
 
     [Header("Ground Check Settings")]
     public Transform groundCheck;
-    public float groundCheckRadius = 0.2f;
     public LayerMask groundLayer;
     public LayerMask platformLayer;
+    public Vector2 groundBoxSize = new Vector2(0.8f, 0.2f);
+    public Vector2 groundBoxOffset = new Vector2(0f, -0.6f);  
 
     [Header("Shooting Settings")]
     public GameObject bulletPrefab;
     public Transform firePoint;
     public int arrowDamage = 3;
     public int bulletCount = 0;
+    private bool isShooting = false;
+    private Vector2 shootDirection = Vector2.right;
 
     [Header("Attack Settings")]
     public int meleeDamage = 1;
@@ -222,27 +225,29 @@ public class playerScript : MonoBehaviour
             jumpCount = maxJumpCount;
             UnlockMaxJumpCount =true;
         }
-        // Nhận input nhảy
+
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0)
         {
                 jumpRequest = true;
                 isJumping = true;
         }
 
-        // Jump Cutting: nếu thả phím Space khi đang bay lên thì giảm lực nhảy
         if (Input.GetKeyUp(KeyCode.Space) && isJumping && rb.velocity.y > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f); // cắt lực nhảy
             isJumping = false;
         }
 
-        // Bắn tên (K)
         if (Input.GetKeyDown(KeyCode.K) && bulletCount > 0)
         {
-            Shoot();
+            rb.velocity = Vector2.zero;
+            isShooting = true;
+            ResetAttackTriggers();
+            animator.SetTrigger("BowAttackTrigger");
+            shootDirection = GetShootDirection();
         }
 
-        // Melee (J)
+
         if (Input.GetKeyDown(KeyCode.J))
         {
             if (isGrounded)
@@ -277,9 +282,9 @@ public class playerScript : MonoBehaviour
                 animator.SetTrigger("AirAttackTrigger");
             }
         }
+
         if (skillUnlockManager.isSkillEUnlocked || skillUnlockManager.isSkillQUnlocked)
         {
-            //Mana.SetActive(true);
             if (skillUnlockManager.isSkillEUnlocked)
             {
                 skill_E.SetActive(true);
@@ -289,7 +294,6 @@ public class playerScript : MonoBehaviour
                 skill_Q.SetActive(true);
             }
         }
-            // Dash (L)
             if (Input.GetKeyDown(KeyCode.L) && skillUnlockManager.isSkillLUnlocked)
         {
             if (isFrozen || isHurt || isFlamethrowerActive) return;
@@ -305,7 +309,6 @@ public class playerScript : MonoBehaviour
             }
         }
 
-        // HomingBullet (E)
         if (Input.GetKeyDown(KeyCode.E) && skillUnlockManager.isSkillEUnlocked)
         {
             if (SkillManager.Instance.UseMana(homingBulletCost))
@@ -314,7 +317,6 @@ public class playerScript : MonoBehaviour
             }
         }
 
-        // Flamethrower (Q)
         if (Input.GetKeyDown(KeyCode.Q) && skillUnlockManager.isSkillQUnlocked)
         {
             isFlamethrowerActive = true;
@@ -384,24 +386,36 @@ public class playerScript : MonoBehaviour
         animator.ResetTrigger("BowAttackTrigger");
     }
 
-    void Shoot()
+    private Vector2 GetShootDirection()
     {
-        ResetAttackTriggers();
-        animator.SetTrigger("BowAttackTrigger");
-        bulletCount--;
-        UIUpdateLogic.Instance.UpdateArrowUI(bulletCount);
+        float x = Input.GetAxisRaw("Horizontal");
+        float y = Input.GetAxisRaw("Vertical");
+
+        Vector2 dir = new Vector2(x, y);
+
+        if (dir == Vector2.zero)
+        {
+            dir = new Vector2(facingDirection, 0f); // fallback hướng trái/phải
+        }
+
+        return dir.normalized;
     }
 
     public void SpawnArrow()
     {
+        isShooting = false;
+        bulletCount--;
+        UIUpdateLogic.Instance.UpdateArrowUI(bulletCount);
+
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
         Bullet bulletComponent = bullet.GetComponent<Bullet>();
         if (bulletComponent != null)
         {
-            bulletComponent.SetDirection(new Vector2(facingDirection, 0));
+            bulletComponent.SetDirection(shootDirection);
             bulletComponent.SetDamage(arrowDamage);
         }
     }
+
 
     public void DealDamage()
     {
@@ -545,7 +559,7 @@ public class playerScript : MonoBehaviour
     // ------------------------ Group 5: Các hàm linh tinh ------------------------
     void HandleMovement()
     {
-        if (isHurt || isFlamethrowerActive || isDashing) return;
+        if (isHurt || isFlamethrowerActive || isDashing || isShooting) return;
 
         float targetSpeed = moveInput * maxSpeed;
         float speedDifference = targetSpeed - rb.velocity.x;
@@ -577,22 +591,18 @@ public class playerScript : MonoBehaviour
 
     void CheckGrounded()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(
-            groundCheck.position,
-            groundCheckRadius,
+        Vector2 boxCenter = (Vector2)transform.position + groundBoxOffset;
+
+        Collider2D hit = Physics2D.OverlapBox(
+            boxCenter,
+            groundBoxSize,
+            0f,
             groundLayer | platformLayer
         );
-        bool wasGrounded = isGrounded;
-        isGrounded = false;
 
-        for (int i = 0; i < colliders.Length; i++)
-        {
-            if (colliders[i].gameObject != gameObject)
-            {
-                isGrounded = true;
-                break;
-            }
-        }
+        bool wasGrounded = isGrounded;
+        isGrounded = hit != null;
+
         animator.SetBool("isGrounded", isGrounded);
 
         if (isGrounded && !wasGrounded)
@@ -601,6 +611,7 @@ public class playerScript : MonoBehaviour
             airDashCount = 1;
         }
     }
+
 
     void UpdateAttackPointPosition()
     {
@@ -641,4 +652,17 @@ public class playerScript : MonoBehaviour
         bulletCount += amount;
         UIUpdateLogic.Instance.UpdateArrowUI(bulletCount);
     }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+
+        Vector2 boxCenter = Application.isPlaying
+            ? (Vector2)transform.position + groundBoxOffset
+            : (Vector2)transform.position + new Vector2(0f, -0.6f); // giá trị mặc định ngoài runtime
+
+        Vector3 size = new Vector3(groundBoxSize.x, groundBoxSize.y, 0f);
+        Gizmos.DrawWireCube(boxCenter, size);
+    }
+
 }

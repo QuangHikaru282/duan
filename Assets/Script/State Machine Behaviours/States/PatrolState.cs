@@ -116,19 +116,6 @@ public class PatrolState : State
         machine.Set(navigate, true);
     }
 
-
-    /*void GoToNextDestination()
-    {
-        if (!navigate) return;
-
-        Vector2 a1 = anchor1 ? (Vector2)anchor1.position : (Vector2)core.transform.position;
-        Vector2 a2 = anchor2 ? (Vector2)anchor2.position : (Vector2)core.transform.position;
-        Vector2 curr = navigate.destination;
-
-        navigate.destination = (curr == a1) ? a2 : a1;
-        machine.Set(navigate, true);
-    }*/
-
     void CheckForFlip()
     {
         LayerMask groundMask = core.groundSensor.groundMask | core.groundSensor.platformMask;

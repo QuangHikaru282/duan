@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 5245510876160426097}
   - component: {fileID: 7501682205585964704}
   - component: {fileID: 1222883916243851770}
+  - component: {fileID: 7937523681683706450}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -237,23 +238,24 @@ MonoBehaviour:
   maxHealth: 15
   currentHealth: 15
   respawnPosition: {x: 0, y: 0}
-  jumpForce: 13
+  jumpForce: 15
   maxJumpCount: 1
   UnlockMaxJumpCount: 0
   groundCheck: {fileID: 2453044933844430016}
-  groundCheckRadius: 0.5
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
   platformLayer:
     serializedVersion: 2
     m_Bits: 1024
+  groundBoxSize: {x: 0.5, y: 0.3}
+  groundBoxOffset: {x: 0, y: -0.5}
   bulletPrefab: {fileID: 5782915061162433134, guid: 0d56e02de889b3e429707c3ef2f55888,
     type: 3}
   firePoint: {fileID: 6400186554282854516}
-  arrowDamage: 25
+  arrowDamage: 30
   bulletCount: 0
-  meleeDamage: 15
+  meleeDamage: 25
   attackRange: 0.5
   attackPointOffset: 0.5
   attackPoint: {fileID: 60749791631562182}
@@ -274,6 +276,7 @@ MonoBehaviour:
   fallThresholdY: -100
   knockbackForce: 3
   isFrozen: 0
+  cantBeDamaged: 0
   gameOverManager: {fileID: 0}
   skillUnlockManager: {fileID: 1222883916243851770}
   Mana: {fileID: 0}
@@ -397,6 +400,18 @@ MonoBehaviour:
   isSkillEUnlocked: 0
   isSkillQUnlocked: 0
   isDoubleJumpUnlocked: 0
+--- !u!114 &7937523681683706450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6309806426050705749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dce34cb534f8a7448d592f1d75aa774, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8585652565296317362
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,7 +437,7 @@ Transform:
   m_GameObject: {fileID: 8585652565296317362}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0213, y: -0.272, z: 0}
+  m_LocalPosition: {x: 0.027, y: -0.214, z: 0}
   m_LocalScale: {x: 0.79494, y: 0.79494, z: 0.79494}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -36,7 +36,7 @@ public class DieState : State
         // Gọi drop item nếu có
     }
 
-    protected virtual void HandleDeathEffect()
+    public virtual void HandleDeathEffect()
     {
 
     }

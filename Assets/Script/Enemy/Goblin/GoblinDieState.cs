@@ -2,7 +2,7 @@
 
 public class GoblinDieState : DieState
 {
-    protected override void HandleDeathEffect()
+    public override void HandleDeathEffect()
     {
         if (core.body == null) return;
 

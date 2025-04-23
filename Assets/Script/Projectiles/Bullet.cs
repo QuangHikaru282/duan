@@ -14,21 +14,17 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
-        // Hủy đạn sau khi hết thời gian tồn tại
         Destroy(gameObject, lifeTime);
 
-        // Lấy Rigidbody và SpriteRenderer
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        // Đảm bảo đạn không bị rơi do trọng lực
         if (rb != null)
         {
             rb.gravityScale = 0f;
-            rb.velocity = direction * speed; // Set velocity
+            rb.velocity = direction * speed;
         }
 
-        // Lật sprite dựa trên hướng
         if (direction.x < 0)
         {
             spriteRenderer.flipX = true;
@@ -45,12 +41,20 @@ public class Bullet : MonoBehaviour
     {
         direction = dir.normalized;
 
-        // Nếu rb đã tồn tại, có thể cập nhật velocity ngay khi SetDirection được gọi
         if (rb != null)
-        {
             rb.velocity = direction * speed;
-        }
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, angle);
+
+
+        Vector3 scale = transform.localScale;
+        scale.x = Mathf.Abs(scale.x);
+        scale.x *= direction.x < 0 ? -1 : 1;
+        transform.localScale = scale;
     }
+
+
 
     public void SetDamage(int damageValue)
     {
