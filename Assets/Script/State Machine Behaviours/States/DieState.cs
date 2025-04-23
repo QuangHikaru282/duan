@@ -38,7 +38,7 @@ public class DieState : State
 
     protected virtual void HandleDeathEffect()
     {
-        // Mặc định không có hiệu ứng đặc biệt
+
     }
 
     IEnumerator DestroyAfterDelay(float delay)

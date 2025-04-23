@@ -2,21 +2,26 @@
 
 public class BulletPickup : MonoBehaviour
 {
-    public int bulletAmount = 3; // Số lượng đạn mà vật phẩm cung cấp
+    public int bulletAmount = 5;
+    private AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            // Lấy script của người chơi để thêm đạn
             playerScript player = collision.GetComponent<playerScript>();
             if (player != null)
             {
+                audioManager.PlaySFX(audioManager.arrowClip);
                 player.AddBullets(bulletAmount);
 
             }
 
-            // Hủy vật phẩm sau khi nhặt
             Destroy(gameObject);
 
         }

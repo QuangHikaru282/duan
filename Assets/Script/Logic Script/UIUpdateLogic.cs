@@ -23,4 +23,10 @@ public class UIUpdateLogic : MonoBehaviour
             arrowText.text = "x" + arrowCount.ToString();
         }
     }
+
+    public void UpdateKeyUI(KeyType type, int count)
+    {
+        Debug.Log($"[UI] Player now has {count} of {type}");
+    }
+
 }

@@ -28,7 +28,7 @@ public class WitchBullet : MonoBehaviour
         if (hasExploded)
             return;
 
-        if (collision.CompareTag("Player") || collision.CompareTag("Ground") || collision.CompareTag("MovingPlaform"))
+        if (collision.CompareTag("Player"))
         {
             if (collision.CompareTag("Player"))
             {

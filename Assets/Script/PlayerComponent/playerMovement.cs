@@ -81,7 +81,7 @@ public class playerScript : MonoBehaviour
     [HideInInspector] public bool isFrozen = false;
     private Animator animator;
     private Vector2 checkpointPosition;
-    private bool cantBeDamaged = false;
+    public bool cantBeDamaged = false;
 
     [SerializeField]
     private GameOverManager gameOverManager;

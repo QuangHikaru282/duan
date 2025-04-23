@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4149738753425219132}
   - component: {fileID: 8180451889536941170}
   - component: {fileID: 6752882448512556987}
-  - component: {fileID: 5054034740688603979}
   - component: {fileID: 6638002201406068138}
   - component: {fileID: 8873988301706346852}
   m_Layer: 0
@@ -109,23 +108,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5054034740688603979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7173323069071394747}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c605d372af1ba6140bed55e639f594aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lockNotificationUI: {fileID: 0}
-  requiredKeyMessage: You need a key to continue!
-  unlockedMessage: Platform has been unlocked!
-  linkedPlatform: {fileID: 0}
-  unlockPromptUI: {fileID: 0}
 --- !u!50 &6638002201406068138
 Rigidbody2D:
   serializedVersion: 4
