@@ -14,7 +14,6 @@ public class AudioManager : MonoBehaviour
     public AudioClip arrowClip;
     public AudioClip manaClip;
     public AudioClip heartClip;
-    public AudioClip winClip;
 
     // Unity Message
     void Start()

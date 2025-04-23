@@ -5,10 +5,11 @@ public class Checkpoint : MonoBehaviour
     private bool isActive = false;
     public GameObject checkpointUI;
     private Animator animator;
+    private AudioManager audioManager;
 
     void Start()
     {
-        // Lấy component Animator
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         animator = GetComponent<Animator>();
         if (checkpointUI != null)
         {
@@ -24,20 +25,18 @@ public class Checkpoint : MonoBehaviour
             {
                 isActive = true;
 
-                // Lưu vị trí checkpoint vào playerScript
+                audioManager.PlaySFX(audioManager.checkpointClip);
                 playerScript player = collision.GetComponent<playerScript>();
                 if (player != null)
                 {
                     player.SetCheckpoint(transform.position);
                 }
 
-                // Hiển thị thông báo "Checkpoint reached!"
                 if (checkpointUI != null)
                 {
                     checkpointUI.SetActive(true);
                 }
 
-                // Kích hoạt animation CheckPointSaved
                 if (animator != null)
                 {
                     animator.SetBool("isSaved", true);

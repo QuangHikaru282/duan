@@ -9,7 +9,6 @@ public class PlayerManager : MonoBehaviour
     public SaveManager saveManager;
     public playerScript playerScript;
     public SkillManager skillManager;
-
     private bool sceneLoaded = false;
 
     private void Start()
@@ -20,19 +19,11 @@ public class PlayerManager : MonoBehaviour
 
 
     }
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Player"))
-    //    {
-    //        Debug.Log("aaaa");
-    //        OnSaveGameData();
-    //    }
-          
-    //}
+
     public void OnSaveGameData()
     {
         Vector2 position = player.transform.position;
-        saveManager.SavePlayer(playerScript.currentHealth, skillManager.currentMana, position);
+        saveManager.SavePlayer(playerScript.currentHealth, skillManager.currentMana, playerScript.bulletCount, position);
     }
     public void OnLoadGameData()
     {
@@ -75,6 +66,8 @@ public class PlayerManager : MonoBehaviour
         playerScript.currentHealth = data.health;
         skillManager.currentMana = data.mana;
         player.transform.position = data.position;
+        playerScript.bulletCount = data.bulletCount;
+        UIUpdateLogic.Instance.UpdateArrowUI(playerScript.bulletCount);
         HealthUIManager.Instance.UpdateHealthUI(playerScript.currentHealth);
         ManaUIManager.Instance.UpdateManaUI(skillManager.currentMana, skillManager.maxMana);
     }

@@ -1,19 +1,25 @@
 ﻿using UnityEngine;
-
+using System.Collections;
 
 public class TrapScript : MonoBehaviour
 {
-    void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-      
             playerScript player = collision.GetComponent<playerScript>();
             if (player != null)
             {
+                player.cantBeDamaged = false;
                 player.TakeDamage(1);
-                player.Respawn(); 
+                StartCoroutine(DelayedRespawn(player));
             }
         }
+    }
+
+    private IEnumerator DelayedRespawn(playerScript player)
+    {
+        yield return new WaitForSeconds(0.5f);
+        player.Respawn();
     }
 }
