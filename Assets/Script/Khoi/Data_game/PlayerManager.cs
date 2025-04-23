@@ -37,20 +37,7 @@ public class PlayerManager : MonoBehaviour
         saveManager = FindObjectOfType<SaveManager>();
 
         PlayerData data = saveManager.LoadPlayer();
-        Debug.Log(skillUnlockManager.isSkillLUnlocked);
-        Debug.Log(skillUnlockManager.isSkillEUnlocked);
-        Debug.Log(skillUnlockManager.isSkillQUnlocked);
-        Debug.Log(skillUnlockManager.isDoubleJumpUnlocked);
     }
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Player"))
-    //    {
-    //        Debug.Log("aaaa");
-    //        OnSaveGameData();
-    //    }
-
-    //}
     public void OnSaveGameData()
     {
         Vector2 position = player.transform.position;
@@ -66,6 +53,47 @@ public class PlayerManager : MonoBehaviour
             Destroywall.isDestroyWall
         );
     }
+    public void ResetSceneAndLoadData()
+    {
+        sceneLoaded = false; // Cho phép gọi lại OnSceneLoaded
+        SceneManager.sceneLoaded += OnSceneReloaded;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void OnSceneReloaded(Scene scene, LoadSceneMode mode)
+    {
+        SceneManager.sceneLoaded -= OnSceneReloaded;
+
+        // Gán lại các reference cần thiết
+        player = GameObject.FindWithTag("Player");
+        playerScript = player.GetComponent<playerScript>();
+
+        GameObject logicManager = GameObject.FindWithTag("LogicManager");
+        if (logicManager != null)
+        {
+            Transform skillObj = logicManager.transform.Find("SkillManager");
+            if (skillObj != null)
+            {
+                skillManager = skillObj.GetComponent<SkillManager>();
+            }
+
+            Transform unlockObj = logicManager.transform.Find("Player");
+            if (unlockObj != null)
+            {
+                skillUnlockManager = unlockObj.GetComponent<SkillUnlockManager>();
+            }
+
+            Transform wallObj = logicManager.transform.Find("DestroyableWall");
+            if (wallObj != null)
+            {
+                Destroywall = wallObj.GetComponent<BreakableWall>();
+            }
+        }
+
+        // Tải lại dữ liệu đầy đủ
+        OnLoadGameData();
+    }
+
 
     public void OnLoadGameData()
     {
@@ -147,5 +175,6 @@ public class PlayerManager : MonoBehaviour
         {
             Destroy(Door);
         }
+
     }
 }
