@@ -318,6 +318,7 @@ public class WitchNormal : MonoBehaviour, IEnemy
         if (accumulatedDamage >= emergencyDamageThreshold && currentState == WitchState.Attack)
         {
             accumulatedDamage = 0;
+            animator.SetTrigger("AttackTrigger");
             Vector2 newPos = GetSafeTeleportPosition();
             transform.position = newPos;
             currentState = WitchState.Idle;

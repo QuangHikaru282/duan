@@ -288,7 +288,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2434625857280859478}
   - component: {fileID: 9095834555766163882}
-  - component: {fileID: 6987435295602476423}
+  - component: {fileID: 7877946366758052437}
   m_Layer: 14
   m_Name: WitchDetectionArea
   m_TagString: Untagged
@@ -323,8 +323,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99a99054302d734db94a76490986c59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!58 &6987435295602476423
-CircleCollider2D:
+--- !u!70 &7877946366758052437
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -355,9 +355,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.23001194, y: -0.35890055}
-  serializedVersion: 2
-  m_Radius: 5.5545588
+  m_Offset: {x: 0.13789944, y: 0.18387699}
+  m_Size: {x: 19.785967, y: 7.313119}
+  m_Direction: 1
 --- !u!1001 &3016667432943213088
 PrefabInstance:
   m_ObjectHideFlags: 0

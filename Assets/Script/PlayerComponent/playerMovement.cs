@@ -36,7 +36,6 @@ public class playerScript : MonoBehaviour
     public Transform firePoint;
     public int arrowDamage = 3;
     public int bulletCount = 0;
-    private bool isShooting = false;
     private Vector2 shootDirection = Vector2.right;
 
     [Header("Attack Settings")]
@@ -241,7 +240,6 @@ public class playerScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K) && bulletCount > 0)
         {
             rb.velocity = Vector2.zero;
-            isShooting = true;
             ResetAttackTriggers();
             animator.SetTrigger("BowAttackTrigger");
             shootDirection = GetShootDirection();
@@ -403,7 +401,6 @@ public class playerScript : MonoBehaviour
 
     public void SpawnArrow()
     {
-        isShooting = false;
         bulletCount--;
         UIUpdateLogic.Instance.UpdateArrowUI(bulletCount);
 
@@ -559,7 +556,7 @@ public class playerScript : MonoBehaviour
     // ------------------------ Group 5: Các hàm linh tinh ------------------------
     void HandleMovement()
     {
-        if (isHurt || isFlamethrowerActive || isDashing || isShooting) return;
+        if (isHurt || isFlamethrowerActive || isDashing) return;
 
         float targetSpeed = moveInput * maxSpeed;
         float speedDifference = targetSpeed - rb.velocity.x;
