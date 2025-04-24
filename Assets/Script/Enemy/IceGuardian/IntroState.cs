@@ -13,12 +13,19 @@ public class IGIntroState : State
     [SerializeField] private float shakeDuration = 0.3f;
     [SerializeField] private float shakeAmplitude = 2f;
     [SerializeField] private float shakeFrequency = 2f;
+    private BossMusicManager musicManager;
 
     private Coroutine sequenceRoutine;
     private CinemachineBasicMultiChannelPerlin noise;
 
     public override void Enter()
     {
+        AudioManager audioManager = FindObjectOfType<AudioManager>();
+        if (audioManager != null)
+            audioManager.musicAudioSource.Stop();
+        musicManager = FindObjectOfType<BossMusicManager>();
+        musicManager?.PlayIntroTheme();
+
         isComplete = false;
         exitReason = StateExitReason.None;
         core.canBeDamaged = false;

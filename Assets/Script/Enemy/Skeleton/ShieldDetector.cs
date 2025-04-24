@@ -26,6 +26,6 @@ public class ShieldDetector : MonoBehaviour
             }
         }
 
-        skeleton?.OnProjectileDetected();
+        skeleton.OnProjectileDetected();
     }
 }

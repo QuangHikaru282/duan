@@ -13,11 +13,9 @@ public class FlameThrowerZone : MonoBehaviour
     {
         if (other.CompareTag("Shield"))
         {
-            Debug.Log("Phat hien dc tag shield");
             StatusEffectHandler seh = other.GetComponentInParent<StatusEffectHandler>();
             if (seh != null)
             {
-                Debug.Log("FlameThrowerZone: Shield detected, stopping all burn effects.");
                 seh.StopAllBurn(); // Dừng mọi hiệu ứng
             }
             return;
@@ -35,6 +33,15 @@ public class FlameThrowerZone : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
+        if (other.CompareTag("Shield"))
+        {
+            StatusEffectHandler seh = other.GetComponentInParent<StatusEffectHandler>();
+            if (seh != null)
+            {
+                seh.StopAllBurn(); // Dừng mọi hiệu ứng
+            }
+            return;
+        }
 
         if (other.CompareTag("Enemy"))
         {

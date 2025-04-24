@@ -13,7 +13,7 @@ public class IGPhase2State : State
     [SerializeField] private float shakeDuration = 0.3f;
     [SerializeField] private float shakeAmplitude = 2f;
     [SerializeField] private float shakeFrequency = 2f;
-
+    private BossMusicManager musicManager;
     private Coroutine sequenceRoutine;
     private CinemachineBasicMultiChannelPerlin noise;
 
@@ -29,6 +29,9 @@ public class IGPhase2State : State
         {
             animator.Play(phase2Anim.name);
         }
+
+        musicManager = FindObjectOfType<BossMusicManager>();
+        musicManager?.PlayPhase2Theme();
 
         if (bossCam != null)
         {
@@ -75,7 +78,7 @@ public class IGPhase2State : State
         if (ig.skill1State != null)
         {
             ig.skill1State.damage += 1;
-            ig.skill1State.cooldown = Mathf.Max(0f, ig.skill1State.cooldown - 2f);
+            ig.skill1State.cooldown = Mathf.Max(0f, ig.skill1State.cooldown - 3f);
             //ig.skill1State.PriorityValue = 82;
         }
 
@@ -90,7 +93,7 @@ public class IGPhase2State : State
         {
             var chase = ig.chaseState as ChaseState;
             if (chase != null)
-                chase.chaseSpeed += 2f; 
+                chase.chaseSpeed += 3f; 
         }
     }
 

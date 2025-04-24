@@ -15,6 +15,12 @@ public class IGDieState : DieState
 
     public override void HandleDeathEffect()
     {
+        BossMusicManager bossMusic = GameObject.FindObjectOfType<BossMusicManager>();
+        if (bossMusic != null)
+        {
+            bossMusic.StopMusic();
+        }
+
         if (animator != null && dieAnim != null)
         {
             animator.Play(dieAnim.name);
@@ -59,6 +65,14 @@ public class IGDieState : DieState
         }
 
         Destroy(core.gameObject);
+
+        AudioManager audioManager = FindObjectOfType<AudioManager>();
+        if (audioManager != null && audioManager.musicClip != null)
+        {
+            audioManager.musicAudioSource.clip = audioManager.musicClip;
+            audioManager.musicAudioSource.Play();
+        }
+
     }
 
     public override void Do()
