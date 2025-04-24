@@ -32,6 +32,80 @@ public class PlayerManager : MonoBehaviour
 
     private bool sceneLoaded = false;
 
+    public void ResetSceneAndLoadSavedData()
+    {
+        sceneLoaded = true;
+        SceneManager.sceneLoaded += OnSceneLoaded_ExcludeHPMPPos;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void OnSceneLoaded_ExcludeHPMPPos(Scene scene, LoadSceneMode mode)
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded_ExcludeHPMPPos;
+
+        player = GameObject.FindWithTag("Player");
+        playerScript = player.GetComponent<playerScript>();
+
+        GameObject logicManager = GameObject.FindWithTag("LogicManager");
+        if (logicManager != null)
+        {
+            Transform skillObj = logicManager.transform.Find("SkillManager");
+            if (skillObj != null)
+            {
+                skillManager = skillObj.GetComponent<SkillManager>();
+            }
+        }
+
+        skillUnlockManager = player.GetComponent<SkillUnlockManager>();
+
+        GameObject destroyWallObj = GameObject.Find("DestroyableWall");
+        if (destroyWallObj != null)
+        {
+            Destroywall = destroyWallObj.GetComponent<BreakableWall>();
+        }
+
+        PlayerData data = saveManager.LoadPlayer();
+        ApplyLoadedData_ExcludeHPMPPos(data);
+    }
+
+    private void ApplyLoadedData_ExcludeHPMPPos(PlayerData data)
+    {
+        // KHÔNG cập nhật máu, mana và vị trí
+        skillUnlockManager.isSkillLUnlocked = data.unlockSkill_L;
+        skillUnlockManager.isSkillEUnlocked = data.unlockSkill_E;
+        skillUnlockManager.isSkillQUnlocked = data.unlockSkill_Q;
+        skillUnlockManager.isDoubleJumpUnlocked = data.unlockSkill_DoubleJump;
+        Destroywall.isDestroyWall = data.door;
+
+        if (data.unlockSkill_L)
+        {
+            Destroy(L);
+            Ltable.SetActive(false);
+            Ltable_2.SetActive(true);
+        }
+        if (data.unlockSkill_E)
+        {
+            Destroy(E);
+            Etable.SetActive(false);
+            Etable_2.SetActive(true);
+        }
+        if (data.unlockSkill_Q)
+        {
+            Destroy(Q);
+            Qtable.SetActive(false);
+            Qtable_2.SetActive(true);
+        }
+        if (data.unlockSkill_DoubleJump)
+        {
+            Destroy(DoubleJump);
+            DoubleJumptable.SetActive(false);
+            DoubleJumptable_2.SetActive(true);
+        }
+        if (data.door)
+        {
+            Destroy(Door);
+        }
+    }
     private void Start()
     {
         saveManager = FindObjectOfType<SaveManager>();
@@ -53,48 +127,6 @@ public class PlayerManager : MonoBehaviour
             Destroywall.isDestroyWall
         );
     }
-    public void ResetSceneAndLoadData()
-    {
-        sceneLoaded = false; // Cho phép gọi lại OnSceneLoaded
-        SceneManager.sceneLoaded += OnSceneReloaded;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    private void OnSceneReloaded(Scene scene, LoadSceneMode mode)
-    {
-        SceneManager.sceneLoaded -= OnSceneReloaded;
-
-        // Gán lại các reference cần thiết
-        player = GameObject.FindWithTag("Player");
-        playerScript = player.GetComponent<playerScript>();
-
-        GameObject logicManager = GameObject.FindWithTag("LogicManager");
-        if (logicManager != null)
-        {
-            Transform skillObj = logicManager.transform.Find("SkillManager");
-            if (skillObj != null)
-            {
-                skillManager = skillObj.GetComponent<SkillManager>();
-            }
-
-            Transform unlockObj = logicManager.transform.Find("Player");
-            if (unlockObj != null)
-            {
-                skillUnlockManager = unlockObj.GetComponent<SkillUnlockManager>();
-            }
-
-            Transform wallObj = logicManager.transform.Find("DestroyableWall");
-            if (wallObj != null)
-            {
-                Destroywall = wallObj.GetComponent<BreakableWall>();
-            }
-        }
-
-        // Tải lại dữ liệu đầy đủ
-        OnLoadGameData();
-    }
-
-
     public void OnLoadGameData()
     {
         PlayerData data = saveManager.LoadPlayer();
@@ -104,7 +136,7 @@ public class PlayerManager : MonoBehaviour
             sceneLoaded = true;
             SceneManager.sceneLoaded += OnSceneLoaded;
             SceneManager.LoadScene(data.sceneName);
-            
+
         }
         else
         {
@@ -116,8 +148,9 @@ public class PlayerManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
 
         player = GameObject.FindWithTag("Player");
-        
         playerScript = player.GetComponent<playerScript>();
+
+        // Lấy SkillManager từ LogicManager
         GameObject logicManager = GameObject.FindWithTag("LogicManager");
         if (logicManager != null)
         {
@@ -128,6 +161,17 @@ public class PlayerManager : MonoBehaviour
             }
         }
 
+        // Lấy skillUnlockManager từ player
+        skillUnlockManager = player.GetComponent<SkillUnlockManager>();
+
+        // Lấy Destroywall từ scene bằng tên GameObject hoặc tag
+        GameObject destroyWallObj = GameObject.Find("DestroyableWall"); // tên đúng GameObject
+        if (destroyWallObj != null)
+        {
+            Destroywall = destroyWallObj.GetComponent<BreakableWall>();
+        }
+
+        // Áp dụng dữ liệu đã load
         PlayerData data = saveManager.LoadPlayer();
         ApplyLoadedData(data);
     }
