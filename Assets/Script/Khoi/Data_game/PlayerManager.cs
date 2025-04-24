@@ -41,11 +41,12 @@ public class PlayerManager : MonoBehaviour
 
     private void OnSceneLoaded_ExcludeHPMPPos(Scene scene, LoadSceneMode mode)
     {
-        SceneManager.sceneLoaded -= OnSceneLoaded_ExcludeHPMPPos;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
 
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerScript>();
 
+        // Lấy SkillManager từ LogicManager
         GameObject logicManager = GameObject.FindWithTag("LogicManager");
         if (logicManager != null)
         {
@@ -56,9 +57,11 @@ public class PlayerManager : MonoBehaviour
             }
         }
 
+        // Lấy skillUnlockManager từ player
         skillUnlockManager = player.GetComponent<SkillUnlockManager>();
 
-        GameObject destroyWallObj = GameObject.Find("DestroyableWall");
+        // Lấy Destroywall từ scene bằng tên GameObject hoặc tag
+        GameObject destroyWallObj = GameObject.Find("DestroyableWall"); // tên đúng GameObject
         if (destroyWallObj != null)
         {
             Destroywall = destroyWallObj.GetComponent<BreakableWall>();
@@ -77,35 +80,111 @@ public class PlayerManager : MonoBehaviour
         skillUnlockManager.isDoubleJumpUnlocked = data.unlockSkill_DoubleJump;
         Destroywall.isDestroyWall = data.door;
 
-        if (data.unlockSkill_L)
+        if (data.unlockSkill_L == true)
         {
+            GameObject L = GameObject.Find("DashStone");
             Destroy(L);
-            Ltable.SetActive(false);
-            Ltable_2.SetActive(true);
+            if (Ltable == null && Ltable_2 == null)
+            {
+                var canvas = GameObject.Find("Canvas");
+                if (canvas != null)
+                {
+                    var t1 = canvas.transform
+                                   .Find("UI/MidUI/HowToPlayUI/HowToPlayUI/DASH/L");
+                    var t2 = canvas.transform
+                                   .Find("UI/MidUI/HowToPlayUI/HowToPlayUI/DASH/L_2");
+
+                    if (t2 != null) t2.gameObject.SetActive(true);
+                    if (t1 != null) t1.gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                Ltable.SetActive(false);
+                Ltable_2.SetActive(true);
+            }
         }
-        if (data.unlockSkill_E)
+        if (data.unlockSkill_E == true)
         {
+            GameObject E = GameObject.Find("HomingBulletStone");
             Destroy(E);
-            Etable.SetActive(false);
-            Etable_2.SetActive(true);
+            if (Etable == null && Etable_2 == null)
+            {
+                var canvas = GameObject.Find("Canvas");
+                if (canvas != null)
+                {
+                    var v1 = canvas.transform
+                                   .Find("UI/MidUI/HowToPlayUI/HowToPlayUI/HomingBullet/E");
+                    var v2 = canvas.transform
+                                   .Find("UI/MidUI/HowToPlayUI/HowToPlayUI/HomingBullet/E_2");
+
+                    if (v2 != null) v2.gameObject.SetActive(true);
+                    if (v1 != null) v1.gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                Etable.SetActive(false);
+                Etable_2.SetActive(true);
+            }
+
         }
-        if (data.unlockSkill_Q)
+        if (data.unlockSkill_Q == true)
         {
+            GameObject Q = GameObject.Find("FlamethrowerStone");
             Destroy(Q);
-            Qtable.SetActive(false);
-            Qtable_2.SetActive(true);
+            if (Etable == null && Etable_2 == null)
+            {
+                var canvas = GameObject.Find("Canvas");
+                if (canvas != null)
+                {
+                    var b1 = canvas.transform
+                                   .Find("UI/MidUI/HowToPlayUI/HowToPlayUI/Flamethrower/Q");
+                    var b2 = canvas.transform
+                                   .Find("UI/MidUI/HowToPlayUI/HowToPlayUI/Flamethrower/Q_2");
+
+                    if (b2 != null) b2.gameObject.SetActive(true);
+                    if (b1 != null) b1.gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                Qtable.SetActive(false);
+                Qtable_2.SetActive(true);
+            }
         }
-        if (data.unlockSkill_DoubleJump)
+        if (data.unlockSkill_DoubleJump == true)
         {
+            GameObject DoubleJump = GameObject.Find("DoubleJumpStone");
             Destroy(DoubleJump);
-            DoubleJumptable.SetActive(false);
-            DoubleJumptable_2.SetActive(true);
+            if (Etable == null && Etable_2 == null)
+            {
+                var canvas = GameObject.Find("Canvas");
+                if (canvas != null)
+                {
+                    var u1 = canvas.transform
+                                   .Find("UI/MidUI/HowToPlayUI/HowToPlayUI/DoubleJump/SPACE");
+                    var u2 = canvas.transform
+                                   .Find("UI/MidUI/HowToPlayUI/HowToPlayUI/DoubleJump/SPACE_2");
+
+                    if (u2 != null) u2.gameObject.SetActive(true);
+                    if (u1 != null) u1.gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                DoubleJumptable.SetActive(false);
+                DoubleJumptable_2.SetActive(true);
+            }
         }
-        if (data.door)
+        if (data.door == true)
         {
+            GameObject Door = GameObject.Find("DestroyableWall");
             Destroy(Door);
         }
     }
+
+
     private void Start()
     {
         saveManager = FindObjectOfType<SaveManager>();
@@ -187,36 +266,110 @@ public class PlayerManager : MonoBehaviour
         skillUnlockManager.isSkillEUnlocked = data.unlockSkill_E;
         skillUnlockManager.isSkillQUnlocked = data.unlockSkill_Q;
         skillUnlockManager.isDoubleJumpUnlocked = data.unlockSkill_DoubleJump;
-        Destroywall.isDestroyWall = data.door;
+        skillUnlockManager.isDestroyWall = data.door;
 
         HealthUIManager.Instance.UpdateHealthUI(playerScript.currentHealth);
         ManaUIManager.Instance.UpdateManaUI(skillManager.currentMana, skillManager.maxMana);
         if (data.unlockSkill_L == true)
         {
+            GameObject L = GameObject.Find("DashStone");
             Destroy(L);
-            Ltable.SetActive(false);
-            Ltable_2.SetActive(true);
+            if (Ltable == null && Ltable_2 == null)
+            {
+                var canvas = GameObject.Find("Canvas");
+                if (canvas != null)
+                {
+                    var t1 = canvas.transform
+                                   .Find("UI/MidUI/HowToPlayUI/HowToPlayUI/DASH/L");
+                    var t2 = canvas.transform
+                                   .Find("UI/MidUI/HowToPlayUI/HowToPlayUI/DASH/L_2");
+
+                    if (t2 != null) t2.gameObject.SetActive(true);
+                    if (t1 != null) t1.gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                Ltable.SetActive(false);
+                Ltable_2.SetActive(true);
+            } 
         }
         if (data.unlockSkill_E == true)
         {
+            GameObject E = GameObject.Find("HomingBulletStone");
             Destroy(E);
-            Etable.SetActive(false);
-            Etable_2.SetActive(true);
+            if (Etable == null && Etable_2 == null)
+            {
+                var canvas = GameObject.Find("Canvas");
+                if (canvas != null)
+                {
+                    var v1 = canvas.transform
+                                   .Find("UI/MidUI/HowToPlayUI/HowToPlayUI/HomingBullet/E");
+                    var v2 = canvas.transform
+                                   .Find("UI/MidUI/HowToPlayUI/HowToPlayUI/HomingBullet/E_2");
+
+                    if (v2 != null) v2.gameObject.SetActive(true);
+                    if (v1 != null) v1.gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                Etable.SetActive(false);
+                Etable_2.SetActive(true);
+            }
+
         }
         if (data.unlockSkill_Q == true)
         {
+            GameObject Q = GameObject.Find("FlamethrowerStone");
             Destroy(Q);
-            Qtable.SetActive(false);
-            Qtable_2.SetActive(true);
+            if (Etable == null && Etable_2 == null)
+            {
+                var canvas = GameObject.Find("Canvas");
+                if (canvas != null)
+                {
+                    var b1 = canvas.transform
+                                   .Find("UI/MidUI/HowToPlayUI/HowToPlayUI/Flamethrower/Q");
+                    var b2 = canvas.transform
+                                   .Find("UI/MidUI/HowToPlayUI/HowToPlayUI/Flamethrower/Q_2");
+
+                    if (b2 != null) b2.gameObject.SetActive(true);
+                    if (b1 != null) b1.gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                Qtable.SetActive(false);
+                Qtable_2.SetActive(true);
+            }
         }
         if (data.unlockSkill_DoubleJump == true)
         {
+            GameObject DoubleJump = GameObject.Find("DoubleJumpStone");
             Destroy(DoubleJump);
-            DoubleJumptable.SetActive(false);
-            DoubleJumptable_2.SetActive(true);
+            if (Etable == null && Etable_2 == null)
+            {
+                var canvas = GameObject.Find("Canvas");
+                if (canvas != null)
+                {
+                    var u1 = canvas.transform
+                                   .Find("UI/MidUI/HowToPlayUI/HowToPlayUI/DoubleJump/SPACE");
+                    var u2 = canvas.transform
+                                   .Find("UI/MidUI/HowToPlayUI/HowToPlayUI/DoubleJump/SPACE_2");
+
+                    if (u2 != null) u2.gameObject.SetActive(true);
+                    if (u1 != null) u1.gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                DoubleJumptable.SetActive(false);
+                DoubleJumptable_2.SetActive(true);
+            }
         }
         if (data.door == true)
         {
+            GameObject Door = GameObject.Find("DestroyableWall");
             Destroy(Door);
         }
 

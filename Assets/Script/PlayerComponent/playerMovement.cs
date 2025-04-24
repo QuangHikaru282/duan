@@ -283,11 +283,11 @@ public class playerScript : MonoBehaviour
 
         if (skillUnlockManager.isSkillEUnlocked || skillUnlockManager.isSkillQUnlocked)
         {
-            if (skillUnlockManager.isSkillEUnlocked)
+            if (skillUnlockManager.isSkillEUnlocked && skill_E != null)
             {
                 skill_E.SetActive(true);
             }
-            if (skillUnlockManager.isSkillQUnlocked)
+            if (skillUnlockManager.isSkillQUnlocked && skill_E != null)
             {
                 skill_Q.SetActive(true);
             }
