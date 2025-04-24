@@ -235,8 +235,8 @@ MonoBehaviour:
   deceleration: 10
   maxSpeed: 6
   movementSmoothing: 0.1
-  maxHealth: 15
-  currentHealth: 15
+  maxHealth: 18
+  currentHealth: 18
   respawnPosition: {x: 0, y: 0}
   jumpForce: 15
   maxJumpCount: 1
@@ -266,10 +266,10 @@ MonoBehaviour:
     type: 3}
   skillShotPoint: {fileID: 1489403092757980732}
   castTrigger: CastTrigger
-  homingBulletCost: 12
+  homingBulletCost: 15
   flameThrowerPrefab: {fileID: 1218876806488606494, guid: c367d7ce4ecf7e242ae6e2b3d4331673,
     type: 3}
-  manaCostPerSec: 20
+  manaCostPerSec: 25
   dashForce: 3
   dashCooldown: 0.85
   airDashCount: 1

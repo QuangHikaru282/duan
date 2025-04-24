@@ -369,12 +369,12 @@ public class WitchNormal : MonoBehaviour, IEnemy
         Destroy(gameObject);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+/*    void OnTriggerEnter2D(Collider2D other)
     {
         if (!isDead && other.CompareTag("Trap"))
             Die();
            
-    }
+    }*/
 
     // Hàm cập nhật flip sprite và FirePoint
     void SetFacingDirection(int dir)
