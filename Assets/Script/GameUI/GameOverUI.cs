@@ -6,6 +6,7 @@ public class GameOverManager : MonoBehaviour
 {
     public GameObject gameOverPanel;
     public GameObject pauseMenuPanel;
+    public GameObject musicMenuPanel;
 
     private bool isGameOver = false;
     private bool isPaused = false;
@@ -20,6 +21,10 @@ public class GameOverManager : MonoBehaviour
         if (pauseMenuPanel != null)
         {
             pauseMenuPanel.SetActive(false);
+        }
+        if (musicMenuPanel != null)
+        {
+            musicMenuPanel.SetActive(false);
         }
 
         Time.timeScale = 1f;
@@ -52,14 +57,25 @@ public class GameOverManager : MonoBehaviour
 
     public void ResumeGame()
     {
-        if (pauseMenuPanel != null)
+        if (pauseMenuPanel != null && !musicMenuPanel.activeSelf)
         {
             pauseMenuPanel.SetActive(false);
             Time.timeScale = 1f;
             isPaused = false;
         }
     }
-
+    public void ResumeMusicGame()
+    {
+        if (musicMenuPanel != null)
+        {
+            musicMenuPanel.SetActive(false);
+        }
+    }
+    public void OnMusicGame()
+    {
+        musicMenuPanel.SetActive(true);
+        Time.timeScale = 0;
+    }
     public void ShowGameOver()
     {
         if (gameOverPanel != null)
