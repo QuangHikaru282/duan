@@ -47,7 +47,7 @@ public class GameOverManager : MonoBehaviour
 
     public void PauseGame()
     {
-        if (pauseMenuPanel != null)
+        if (pauseMenuPanel != null && !gameOverPanel.activeSelf)
         {
             pauseMenuPanel.SetActive(true);
             Time.timeScale = 0f;
